@@ -1,9 +1,10 @@
 import './Header.css';
+import '../stylesheets/initialization.css'
 
 function Header() {
   return (
     <div className="Header">
-        dfdf
+        헤더 입니다.
     </div>
   );
 }
