@@ -1,0 +1,10 @@
+
+html[data-theme='dark'] {
+    --bg-color: black;
+    --color: white;
+  }
+
+html[data-theme='light'] {
+    --bg-color: beige;
+    --color: black;
+  }
