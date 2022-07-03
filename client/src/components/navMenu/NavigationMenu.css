@@ -1,0 +1,17 @@
+.navMenu_content-box{
+  width: 85%;
+  height: 100%;
+  position: relative;
+  left: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: left .3s;
+  background-color: var(--bg-color);
+  z-index: 30;
+}
+
+
+.navMenu-active{
+  left:15%;
+}
