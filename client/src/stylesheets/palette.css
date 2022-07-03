@@ -8,3 +8,10 @@ html[data-theme='light'] {
     --bg-color: beige;
     --color: black;
   }
+
+:root{
+  --default-font-color:#93989e;
+  --default-select-font-color:#1c2028;
+  --signature-color:#59a900;
+  --1gray-color :#edeef0;
+}
