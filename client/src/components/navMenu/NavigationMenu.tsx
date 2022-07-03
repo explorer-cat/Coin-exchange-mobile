@@ -10,7 +10,19 @@ interface NavigationProps {
 }
 
 function NavigationMenu({view} : NavigationProps):React.ReactElement {
-  console.log("view", view)
+
+  //네비게이션 종료 이벤트
+  const clickCloseNavigation = (e:Event) => {
+
+  }
+
+  useEffect(() => {
+    console.log("NavigationMenu 생성");
+    return () => {
+      console.log("컴포넌트가 사라졋다")
+    }
+  })
+
 
 
     return (
