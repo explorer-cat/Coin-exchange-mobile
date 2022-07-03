@@ -46,6 +46,9 @@
     font-weight: 600;
 }
 
+
+
+
 .navBar_header-left .navBar_header-main-logo {
     display: block;
     width: 77px;
@@ -58,7 +61,6 @@
 
 .navBar_header-setting-btn {
     margin-right: 70px;
-    margin-bottom: 50px;
 }
 
 .navBar_header-setting-btn,
@@ -70,9 +72,13 @@
 }
 
 .navBar_header-setting-btn{
-  position: relative;
-  width: 50px;
+  position: fixed;
+  top: 0;
+  right: -72px;
+  text-align: center;
+  width: 58px;
   height: 44px;
+  z-index: 999;
 }
 
 .navBar_header-setting-btn span {
@@ -85,31 +91,36 @@
 }
 
 .navBar_header-setting-btn span:nth-of-type(1) {
-  top: 10px;
+  top: 12px;
 }
 
 .navBar_header-setting-btn span:nth-of-type(2) {
-  top: 20px;
+  top: 22px;
 }
 
 .navBar_header-setting-btn span:nth-of-type(3) {
-  bottom: 11px;
+  bottom: 10px;
 }
 
 
 .active-3 {
-    position: relative;
-    z-index: 100000;
+    position: absolute;
+    transform: translate(50%,50%);
+    top: 0;
+    left: 330px;
+    bottom: 0;
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
   
   .active-3 span:nth-of-type(1) {
+    transform: translate(50%,50%);
     -webkit-transform: translateY(10px) rotate(-45deg);
     transform: translateY(10px) rotate(-45deg);
   }
   
   .active-3 span:nth-of-type(2) {
+    transform: translate(50%,50%);
     -webkit-transform: translateY(0) rotate(45deg);
     transform: translateY(0) rotate(45deg);
   }

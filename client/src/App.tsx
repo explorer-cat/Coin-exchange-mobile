@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/header/Header';
 import NavigationMenu from './components/navMenu/NavigationMenu'
+import Footer from './components/footer/Footer'
 import {useState} from 'react'
 import PropTypes, { InferProps } from "prop-types";
 import './stylesheets/public.css';
@@ -18,15 +19,26 @@ function App() : React.ReactElement {
     setNavigationMenu(active)
   }
 
-
+  
   return (
     <div className="mobile-view">
-     {/* <NavMenu/> */}
+     {/*네비게이션 메뉴 미리 생성 해놓기*/}
      <NavigationMenu view = {navigationMenu}/>
       <div className = "wrap-container menu-active">
-        {/* 백그라운드 gray */}
-        <div className = {navigationMenu ? "bg-gray-active" : "bg-gray"}></div>
+        {/* 네비게이션 메뉴가 실행되면 뒷배경 회색으로 */}
+        <div className = {
+          navigationMenu ? "bg-gray-active" : "bg-gray"}>
+        </div>
+
+        {/* 헤더 */}
         <Header navigationMenu = {getNavigationMenu}/>
+        {/* 메인 */}
+
+        {/* 푸터 */}
+        <Footer></Footer>
+
+
+
       </div>
     </div>
   );
