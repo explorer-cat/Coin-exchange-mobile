@@ -1,0 +1,12 @@
+.exchange-view {
+    position: fixed;
+    top: 104px;
+    height: 80%;
+    width: 100%;
+    margin: 0;
+    overflow: auto;
+}
+
+table {
+    font-size: 28px;
+}

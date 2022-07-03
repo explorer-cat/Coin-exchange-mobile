@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/header/Header';
 import NavigationMenu from './components/navMenu/NavigationMenu'
+import Exchange from './components/exchange/Exchange'
 import Footer from './components/footer/Footer'
 import {useState} from 'react'
 import PropTypes, { InferProps } from "prop-types";
@@ -33,9 +34,10 @@ function App() : React.ReactElement {
         {/* 헤더 */}
         <Header navigationMenu = {getNavigationMenu}/>
         {/* 메인 */}
+        <Exchange />
 
         {/* 푸터 */}
-        <Footer></Footer>
+        <Footer />
 
 
 
