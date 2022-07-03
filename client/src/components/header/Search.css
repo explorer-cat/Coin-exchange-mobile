@@ -1,0 +1,32 @@
+.navBar_search-content{
+    display: flex;
+    width: 100%;
+    max-height: 56px;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.navBar_search-box {
+    display: flex;
+    align-items: center;
+    padding:8px;
+    width: 100%;
+    height: 40px;
+    border-bottom: 2px solid var(--1gray-color);
+}
+
+.search-icon {
+    width: 15px;
+    height: 15px;
+    background: url(https://cdn.upbit.com/upbit-web/images/bg_upbit.b201e1b.png) -110px 0 no-repeat;
+    background-size: 320px;
+}
+
+.search-input-box{
+    display: block;
+    font-size: 18px;
+    padding:8px;
+    margin:0;
+    box-sizing: border-box;
+}
