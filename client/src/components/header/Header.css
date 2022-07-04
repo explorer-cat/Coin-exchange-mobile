@@ -21,15 +21,16 @@
     align-items: center;
 }
 
+
 .navBar_header-content .navBar_header-left {
     box-sizing: border-box;
     flex: 1 1;
-    
+
 }
 
 .navBar_header-content .navBar_header-right {
     display: flex;
-    min-width: 116px;
+    min-width: 136px;
 }
 
 .navBar_header-content .navBar_header-right div {
@@ -72,14 +73,40 @@
 }
 
 .navBar_header-setting-btn{
-  position: fixed;
-  top: 0;
-  right: -72px;
-  text-align: center;
-  width: 58px;
-  height: 44px;
-  z-index: 999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    text-align: center;
+    height: 45px;
+    z-index: 999;
 }
+
+
+.active-3 {
+    position: absolute;
+    text-align: center;
+    height: 45px;
+    top: 0;
+    right: 0;
+}
+
+.active-3 span:nth-of-type(1) {
+    transform: translate(50%,50%);
+    -webkit-transform: translateY(10px) rotate(-45deg);
+    transform: translateY(10px) rotate(-45deg);
+}
+
+.active-3 span:nth-of-type(2) {
+    transform: translate(50%,50%);
+    -webkit-transform: translateY(0) rotate(45deg);
+    transform: translateY(0) rotate(45deg);
+}
+
+.active-3 span:nth-of-type(3) {
+    opacity: 0;
+}
+
+
 
 .navBar_header-setting-btn span {
   position: absolute;
@@ -102,30 +129,13 @@
   bottom: 10px;
 }
 
-
-.active-3 {
-    position: absolute;
-    transform: translate(50%,50%);
-    top: 0;
-    left: 330px;
-    bottom: 0;
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-  
-  .active-3 span:nth-of-type(1) {
-    transform: translate(50%,50%);
-    -webkit-transform: translateY(10px) rotate(-45deg);
-    transform: translateY(10px) rotate(-45deg);
-  }
-  
-  .active-3 span:nth-of-type(2) {
-    transform: translate(50%,50%);
-    -webkit-transform: translateY(0) rotate(45deg);
-    transform: translateY(0) rotate(45deg);
-  }
-  
-  .active-3 span:nth-of-type(3) {
-    opacity: 0;
-  }
-  
+.navBar_market-category {
+    display: flex;
+    width: 100%;
+    margin-top:8px;
+    max-height: 42px;
+    height: 42px;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+}

@@ -1,12 +1,63 @@
 .exchange-view {
     position: fixed;
-    top: 104px;
+    top: 158px;
     height: 80%;
     width: 100%;
     margin: 0;
     overflow: auto;
 }
 
-table {
-    font-size: 28px;
+
+.exchange-publie-table {
+    width: 100%;
+    border : 1;
+    table-layout: fixed;
+}
+
+
+.exchange-publie-table > thead > tr  {
+    width: 100%;
+    border-top: 2px solid var(--1gray-color);
+    border-bottom: 1px solid var(--1gray-color);
+    padding: 4px 0px;
+    height: 32px;
+}
+
+.exchange-publie-table > thead > tr > th {
+    font-size: 12px;
+    color: var(--default-font-color);
+    font-weight: 600;
+}
+
+.exchange-publie-table > thead > tr > th:nth-child(1) {
+    width: 18px;
+}
+/* 가상자산명 */
+.exchange-publie-table > thead > tr > .title {
+    width: 25%;
+}
+
+.exchange-publie-table > thead > tr > .percent {
+    width: 15%;
+}
+
+/* 
+.exchange-publie-table > thead > .price {
+    width: 20%;
+}
+
+
+
+.exchange-publie-table > thead > .tradecost {
+    width: 25%;
+}
+
+.exchange-publie-table > thead > .premium {
+    width: 20%;
+} */
+
+.exchange-publie-table > tbody > tr  {
+    font-size: 14px;
+    text-align: center;
+    height: 42px;
 }

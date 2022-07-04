@@ -4,6 +4,7 @@ import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
 import '../../stylesheets/public.css'
 import Search from './Search'
+import MarketCategory from './MarketCategory';
 import React from 'react';
 import {useState} from 'react'
 
@@ -27,23 +28,21 @@ function Header({navigationMenu} : HeaderProps) {
       //네비게이션 메뉴바 세팅
       navigationMenu(true)
       setNavMenu(true)
-    } 
+    }
     //제거
     else {
       navigationMenu(false)
-      setNavMenu(false) 
+      setNavMenu(false)
     }
   }
 
   return (
     <header>
-
       <div className = {navMenu ? "navBar_header-setting-btn active-3" : "navBar_header-setting-btn"} onClick={clickSettingBtn}>
               <span></span>
               <span></span>
               <span></span>
      </div>
-
       <div className = "fixed-header">
         <div className ="navBar_header-content">
           <div className ="navBar_header-left">
@@ -58,6 +57,9 @@ function Header({navigationMenu} : HeaderProps) {
         <div className ="navBar_search-content">
           {/* 검색창 */}
           <Search />
+        </div>
+        <div className = "navBar_market-category">
+        <MarketCategory />
         </div>
       </div>
     </header>
