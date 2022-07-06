@@ -25,6 +25,7 @@ function Market_KRW(list : ExchangeMarket_KRW_Type): React.ReactElement {
 
 
     useEffect(() => {
+        setPrice(3)
         connectWS("upbit",(result:any) => {
             if(result.code === 'KRW-BTC') {
                 console.log("dfd",result.prev_closing_price)
@@ -43,10 +44,10 @@ function Market_KRW(list : ExchangeMarket_KRW_Type): React.ReactElement {
             <strong>{info.market.name}</strong>
             <p>{info.market.code}</p>
         </td>
-        {/* <td className="price">{price}</td>
+        <td className="price">{price}</td>
         <td className="percent up">{percent}%</td>
         <td className="tradecost">{tradecost}</td>
-        <td className="premium">{premium}</td> */}
+        <td className="premium">{premium}</td>
     </tr>));
 
     
