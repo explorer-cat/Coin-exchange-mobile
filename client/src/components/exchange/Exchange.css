@@ -4,18 +4,19 @@
     height: 80%;
     width: 100%;
     margin: 0;
+    color : var(--black-font-color);
     overflow: auto;
 }
 
 
-.exchange-publie-table {
+.exchange-public-table {
     width: 100%;
     border : 1;
     table-layout: fixed;
 }
 
 
-.exchange-publie-table > thead > tr  {
+.exchange-public-table > thead > tr  {
     width: 100%;
     border-top: 2px solid var(--1gray-color);
     border-bottom: 1px solid var(--1gray-color);
@@ -23,41 +24,43 @@
     height: 32px;
 }
 
-.exchange-publie-table > thead > tr > th {
+.exchange-public-table > thead > tr > th {
     font-size: 12px;
     color: var(--default-font-color);
     font-weight: 600;
 }
 
-.exchange-publie-table > thead > tr > th:nth-child(1) {
-    width: 18px;
+.exchange-public-table > thead > tr > th:nth-child(1) {
+    width: 30px;
 }
-/* 가상자산명 */
-.exchange-publie-table > thead > tr > .title {
-    width: 25%;
+/* 테이블 헤더 */
+.exchange-public-table > thead > tr > .title {
+    width: 15%;
+    padding: 15px;
 }
-
-.exchange-publie-table > thead > tr > .percent {
+.exchange-public-table > thead > tr > .price {
+    width: 20%;
+}
+.exchange-public-table > thead > tr > .percent {
+    width: 15%;
+}
+.exchange-public-table > thead > tr > .premium {
     width: 15%;
 }
 
-/* 
-.exchange-publie-table > thead > .price {
-    width: 20%;
+/* 테이블 내용 */
+.exchange-public-table > tbody > tr > .up {
+    color: red;
 }
 
-
-
-.exchange-publie-table > thead > .tradecost {
-    width: 25%;
-}
-
-.exchange-publie-table > thead > .premium {
-    width: 20%;
-} */
-
-.exchange-publie-table > tbody > tr  {
+.exchange-public-table > tbody > tr  {
     font-size: 14px;
     text-align: center;
-    height: 42px;
+    height: 56px;
 }
+.exchange-public-table > tbody > tr > .name > p  {
+    font-size: 14px;
+    text-align: center;
+    color: var(--default-font-color);
+}
+

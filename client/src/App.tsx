@@ -14,13 +14,15 @@ import './stylesheets/public.css';
 function App() : React.ReactElement {
   //백그라운드 회색 처리 여부
   const [navigationMenu, setNavigationMenu] = useState<boolean>(false);
-   
+  //무슨 마켓을 보여줄거임 0:원화 1:BTC 2:보유 3:관심
+  const [marketView, setMarketView] = useState<Number>(0);
+
   //navigation menu 실행
   const getNavigationMenu = (active:boolean) => {
     setNavigationMenu(active)
   }
 
-  
+
   return (
     <div className="mobile-view">
      {/*네비게이션 메뉴 미리 생성 해놓기*/}
@@ -34,7 +36,7 @@ function App() : React.ReactElement {
         {/* 헤더 */}
         <Header navigationMenu = {getNavigationMenu}/>
         {/* 메인 */}
-        <Exchange />
+        <Exchange viewType = {marketView}/>
 
         {/* 푸터 */}
         <Footer />

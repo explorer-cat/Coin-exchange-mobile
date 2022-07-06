@@ -1,0 +1,4 @@
+tr > .name,
+tr > .name > p {
+    text-align: left !important;
+}

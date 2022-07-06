@@ -4,19 +4,23 @@ import Search from './Search'
 import React from 'react';
 import {useState} from 'react'
 
-
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
+interface categoryProps {
+    viewType : Number
+}
 
 function MarketCategory() {
+    const category = ["원화", "BTC", "보유", "관심"]
+    const categoryList = category.map((menu) => {
+        if(menu === "원화") {
+            return(<span><strong className = "select" >{menu}</strong></span>)
+        }
+        return(<span><strong>{menu}</strong></span>)
+    });
 
   return (
         <div className = "market-category-div">
-            <span className = "select">
-                원화
-            </span>
-            <span>BTC</span>
-            <span>보유</span>
-            <span>관심</span>
+            {categoryList}
         </div>
   );
 }

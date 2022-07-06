@@ -16,7 +16,7 @@ interface HeaderProps {
 
 function Header({navigationMenu} : HeaderProps) {
 
-  const [navMenu , setNavMenu] = useState<boolean>(false)
+  const [navMenu , setNavMenu] = useState(false)
 
   /*옵션 버거 아이콘 클릭 이벤트*/
   const clickSettingBtn = (event:React.MouseEvent<HTMLDivElement>) => {
@@ -36,10 +36,8 @@ function Header({navigationMenu} : HeaderProps) {
     }
   }
 
-   const test = 1;
   return (
     <header>
-
       <div className = {navMenu ? "navBar_header-setting-btn active-3" : "navBar_header-setting-btn"} onClick={clickSettingBtn}>
               <span></span>
               <span></span>

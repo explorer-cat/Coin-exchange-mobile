@@ -1,16 +1,43 @@
 import './Exchange.css';
 import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
+import connectWS from "../../dataHandler/socket";
+import Market_KRW from "./Market_KRW";
+import getUpbitCryptoList from "../../settings/upbitCryptoSetting";
+
+/**/
+
+interface ExchangeViewType {
+    viewType : Number
+}
+
+
+function Exchange({viewType} : ExchangeViewType):React.ReactElement {
+    //소켓 연결
+    let res;
+    //업비트 상장되어있는 코인 리스트 전부 불러옴
+    let coinList : any = getUpbitCryptoList().listing;
+
+    //원화 코인들 이름만 선별
+    let KRW_market_listing :any = [];
+    coinList.map((code:any)=> {
+        if(code.market.indexOf("KRW-") === -1) {
+            KRW_market_listing.push({
+                market : {
+                name : code.korean_name,
+                code : code.market
+                },
+            });
+        }
+    })
 
 
 
-
-function Exchange():React.ReactElement {
     return (
       <main>
           <div className = "exchange-view">
-            <table className = "exchange-publie-table">
+            <table className = "exchange-public-table">
                 <thead>
                     <tr>
                         <th></th>
@@ -22,19 +49,8 @@ function Exchange():React.ReactElement {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className ="candle"></td>
-                        <td className ="name">
-                            <strong>비트코인</strong>
-                            <p>BTC/KRW</p>
-                        </td>
-                        <td className ="price">23,201,000</td>
-                        <td className ="percent">3.2%</td>
-                        <td className ="tradecost">123,290만</td>
-                        <td className ="premium">+0.32%</td>
-                    </tr>
+                   <Market_KRW list = {KRW_market_listing}/>
                 </tbody>
-         
             </table>
           </div>
       </main>
