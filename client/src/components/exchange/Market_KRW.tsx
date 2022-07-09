@@ -27,12 +27,12 @@ function Market_KRW(list : ExchangeMarket_KRW_Type): React.ReactElement {
     useEffect(() => {
         setPrice(3)
         connectWS("upbit",(result:any) => {
-            if(result.code === 'KRW-BTC') {
+          //  if(result.code === 'KRW-BTC') {
                 console.log("dfd",result.prev_closing_price)
-                setPrice(1)
-            }
+                return setPrice(result.prev_closing_price);
+            //}
         })
-    })
+    },[])
 
     
     let dom : Object = []
