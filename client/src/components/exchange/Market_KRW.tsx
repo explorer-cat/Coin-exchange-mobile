@@ -4,6 +4,7 @@ import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
 import React, {useEffect, useState} from 'react';
 import connectWS from "../../dataHandler/socket";
+import CoinItems from "./CoinItem"
 
 
 interface ExchangeMarket_KRW_Type {
@@ -14,23 +15,18 @@ interface ExchangeMarket_KRW_Type {
 
 
 function Market_KRW(list : ExchangeMarket_KRW_Type): React.ReactElement {
-    const [price, setPrice] = useState(0);
-    const [percent, setPercent] = useState(0);
-    const [tradecost, setTradeCost] = useState(0); 
-    const [premium, setPremium] = useState(0)
-    
-    let res;
+    const test = '';
+    const [price, setPrice] = useState();
+
     const cryptoInfo = list.list;
 
-
-
     useEffect(() => {
-        setPrice(3)
         connectWS("upbit",(result:any) => {
-          //  if(result.code === 'KRW-BTC') {
+            console.log("resuit.code",result)
+            if(result.code.indexOf('KRW-') !== -1) {
                 console.log("dfd",result.prev_closing_price)
-                return setPrice(result.prev_closing_price);
-            //}
+               // return setPrice(result.prev_closing_price);
+            }
         })
     },[])
 
@@ -38,16 +34,16 @@ function Market_KRW(list : ExchangeMarket_KRW_Type): React.ReactElement {
     let dom : Object = []
 
     const setCryptoRow = cryptoInfo.map((info:any) => (
-    <tr>
-        <td className="candle"></td>
+    <tr >
+        <td className="candle"></td> 
         <td className="name">
             <strong>{info.market.name}</strong>
             <p>{info.market.code}</p>
         </td>
-        <td className="price">{price}</td>
-        <td className="percent up">{percent}%</td>
-        <td className="tradecost">{tradecost}</td>
-        <td className="premium">{premium}</td>
+        <td className="price">0</td>
+        <td className="percent up">0</td>
+        <td className="tradecost">0</td>
+        <td className="premium">0</td>
     </tr>));
 
     
