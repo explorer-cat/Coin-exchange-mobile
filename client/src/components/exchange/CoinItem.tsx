@@ -13,15 +13,10 @@ function CoinItem(): React.ReactElement {
     let dom : Object = []
 
 
-
-    
     
     return (<div>
 
     </div>);
-
-
-
 
 
 }
