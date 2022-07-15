@@ -27,7 +27,7 @@ function Market_KRW(info:any): React.ReactElement {
      //console.log("ddd",info.pair)
     //  if(info.pair.socketInfo.pair === "KRW-BTC") {
         if(info.code === info.pair.socketInfo.pair) {
-            console.log(info.pair.socketInfo.price)
+          //  console.log(info.pair.socketInfo.price)
           //  setPrice(info.pair.socketInfo.pair)
         } else {
 
@@ -35,7 +35,17 @@ function Market_KRW(info:any): React.ReactElement {
         //  console.log("다름2",info.pair.socketInfo.pair)
         }
 
+        //info.code === info.pair.socketInfo.pair && 
+        useEffect(() => {
+            console.log("component mount")
+            return () => {
+                console.log("component unmount")
+            }
+          },[]);
         
+          
+        
+     //   console.log("info",info)
         return (
             <tr >
               <td className="candle"></td> 
@@ -43,43 +53,13 @@ function Market_KRW(info:any): React.ReactElement {
                   <strong>{info.name}</strong>
                   <p>{info.code}</p>
               </td>
-              
-              <td className="price">{info.code === info.pair.socketInfo.pair && info.pair.socketInfo.price}</td>
+              <td className="price">{info.pair.socketInfo.price}</td>
               <td className="percent up">0</td>
               <td className="tradecost">0</td>
               <td className="premium">0</td>
           </tr>);
-        // console.log("state!!",info.pair.socketInfo.price)
-        // setPrice(info.pair.socketInfo.price)
-    //  }
     }
 
-    // useEffect(() => {        
-    //     console.log("key",key)
-    //     c
-
-    //     // connectWS("upbit",(result:any) => {
-    //     // //    console.log("resuit.code",result)
-    //     //     if(result.code.indexOf('KRW-') !== -1) {
-    //     //         return setPrice(result.prev_closing_price)
-    //     //     }
-    //     // })
-    // },[])
-
-
-    // return (
-    //   <tr >
-    //     <td className="candle"></td> 
-    //     <td className="name">
-    //         <strong>{info.name}</strong>
-    //         <p>{info.code}</p>
-    //     </td>
-    //     <td className="price">{price}</td>
-    //     <td className="percent up">0</td>
-    //     <td className="tradecost">0</td>
-    //     <td className="premium">0</td>
-    // </tr>);
-
-//}
+ 
 
 export default Market_KRW;

@@ -13,6 +13,8 @@ interface ExchangeViewType {
 
 
 function Exchange({viewType} : ExchangeViewType):React.ReactElement {
+    const [ itemKey , setItemKey] = useState("")
+    
     let [status,setStatus] = useState({
         socketInfo :{
             pair : '',
@@ -77,6 +79,7 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
                     
                     
                    <Market_KRW 
+                   itemKey = {info.market.code}
                    name = {info.market.name}
                    code = {info.market.code}
                    pair = {status}
