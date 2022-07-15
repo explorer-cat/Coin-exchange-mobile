@@ -12,11 +12,15 @@ function CoinItem(): React.ReactElement {
     
     let dom : Object = []
 
+    useEffect(()=>{
+        console.log("렌더링 되었습니다.")
+        // if(info.code === info.pair.socketInfo.pair) {
+        //     console.log("gdgd")
+        // }
+       });
 
-    
-    return (<div>
-
-    </div>);
+    //{info.pair.socketInfo.price}
+    return (<td className="price">dfd</td>);
 
 
 }

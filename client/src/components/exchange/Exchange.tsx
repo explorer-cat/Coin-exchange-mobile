@@ -11,16 +11,14 @@ interface ExchangeViewType {
     viewType : Number
 }
 
+interface coinInfo {
+    symbol : string,
+    name : string,
+}
+
 
 function Exchange({viewType} : ExchangeViewType):React.ReactElement {
-    const [ itemKey , setItemKey] = useState("")
-    
-    let [status,setStatus] = useState({
-        socketInfo :{
-            pair : '',
-            price : 0,
-        }
-    });
+    const [coin, setCoin] = useState({});
 
     //소켓 연결
     let res;
@@ -29,13 +27,12 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
 
     //원화 코인들 이름만 선별
     let KRW_market_listing :any = [];
+
     coinList.map((code:any)=> {
         if(code.market.indexOf("KRW-") !== -1) {
             KRW_market_listing.push({
-                market : {
                 name : code.korean_name,
-                code : code.market
-                },
+                symbol : code.market
             });
         }
     })
@@ -47,14 +44,21 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
         connectWS("upbit",(result:any) => {
            // console.log("resuit.code",result)
             if(result.code.indexOf('KRW-') !== -1) {
-                 return setStatus({socketInfo :{
-                    pair : result.code,
+                setCoin({
+                    name : result.code,
                     price : result.prev_closing_price
-                 }})
+                })
+              //  console.log("result", result)
+                //  return setStatus({socketInfo :{
+                //     pair : result.code,
+                //     price : result.prev_closing_price
+                //  }})
                // return setPrice(result.prev_closing_price);
             }
         })
     },[])
+
+    console.log("coin",coin)
 
 
     return (
@@ -73,17 +77,25 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
                 </thead>
                 <tbody>
                     {
-                        
                 KRW_market_listing.map((info:any) => (
-                    ///console.log("tt",typeof info.market)
-                    
-                    
-                   <Market_KRW 
-                   itemKey = {info.market.code}
-                   name = {info.market.name}
-                   code = {info.market.code}
-                   pair = {status}
-                                   />
+                    ///console.log("tt",typeof info.market)    
+                <tr key = {info.symbol}>
+                    <td className="candle"></td> 
+                    <td className="name">
+                        <strong>{info.name}</strong>
+                        <p>{info.symbol}</p>
+                    </td>
+                    <td className="price"></td>
+                    <td className="percent up">0</td>
+                    <td className="tradecost">0</td>
+                    <td className="premium">0</td>
+                </tr>
+                //    <Market_KRW 
+                //    key = {info.market.code} 
+                //    name = {info.market.name}
+                //    code = {info.market.code}
+                //    pair = {status}
+                                   
                    ))
                 }
                 </tbody>
