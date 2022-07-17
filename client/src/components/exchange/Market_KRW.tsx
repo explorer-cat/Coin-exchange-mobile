@@ -20,7 +20,11 @@ interface ExchangeMarket_KRW_Type {
 
 
 //pair : ExchangeMarket_KRW_Type
-function Market_KRW(info:any): React.ReactElement {
+function Market_KRW(info:any,status:any): React.ReactElement {
+
+    console.log("info",info)
+    console.log("status",status)
+
 
     // const [coinKey, setCoinKey] = useState(0);
        // setPrice(info.code)
@@ -40,14 +44,16 @@ function Market_KRW(info:any): React.ReactElement {
         //    });
         
      //   console.log("info",info)
+
+    
         return (
             <tr >
               <td className="candle"></td> 
               <td className="name">
                   <strong>{info.name}</strong>
-                  <p>{info.code}</p>
+                  <p>{info.status.symbol}</p>
               </td>
-              <td className="price">dfd</td>
+              <td className="price">{info.status.price}</td>
               <td className="percent up">0</td>
               <td className="tradecost">0</td>
               <td className="premium">0</td>
