@@ -22,28 +22,26 @@ interface ExchangeMarket_KRW_Type {
 //pair : ExchangeMarket_KRW_Type
 function Market_KRW(info:any,status:any): React.ReactElement {
 
-    console.log("info",info)
-    console.log("status",status)
+    useEffect(() => {
+        connectWS("upbit",(result:any) => {
+            if(result.code.indexOf('KRW-') !== -1) {
+                let info = {
+                    key : result.code,
+                    name : "비트코인"
+                }
+                let staus = {
+                    symbol : result.code,
+                    price : result.prev_closing_price
+                }
+                
+                // coinItem(info,result)
+              //  console.log("dfdf")
+            }
+        })
+    },[])
 
 
-    // const [coinKey, setCoinKey] = useState(0);
-       // setPrice(info.code)
 
-        // if(info.code === info.pair.socketInfo.pair) {
-
-        // }
-
-        // useEffect(() => {
-        //     console.log("렌더링이 온료될때마다 실행합니다.")
-        //   });
-        
-        // useEffect(()=>{
-        //     if(info.code === info.pair.socketInfo.pair) {
-        //         setCoinKey(info.code)
-        //     }
-        //    });
-        
-     //   console.log("info",info)
 
     
         return (
