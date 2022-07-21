@@ -36,7 +36,7 @@ function connectWS(connectionType:string, callback:any) {
         // 		    {"type":"trade","codes":["KRW-BTC","KRW-ETH","KRW-XRP"]}
         filterRequest(`[
             {"ticket":"UNIQUE_TICKET"},
-			{"type":"trade","codes":${JSON.stringify(codes)}}]`);
+			{"type":"ticker","codes":${JSON.stringify(codes)}}]`);
     }
     socket.onclose 	= function(e:any){
         socket = undefined;

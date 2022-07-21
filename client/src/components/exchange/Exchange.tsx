@@ -1,7 +1,7 @@
 import './Exchange.css';
 import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import connectWS from "../../dataHandler/socket";
 import Market_KRW from "./Market_KRW";
 import getUpbitCryptoList from "../../settings/upbitCryptoSetting";
@@ -13,50 +13,10 @@ interface ExchangeViewType {
     viewType : Number
 }
 
-interface coinInfo {
-    symbol : string,
-    name : string,
-}
-
-
-
-// const coinItem = (info:any,data:any) => {
-    
-//         return (
-//         <Market_KRW 
-//             // key = {info.symbol}
-//             key = {info.symbol}
-//             name = {info.name}
-//             status = {info}
-//             />) 
-//     }
-
-function ListItem(props:any) {
-        //업비트 상장되어있는 코인 리스트 전부 불러옴
-        console.log("props",props)
-
-
-    return <tr>
-        <td className="candle"></td> 
-        <td className="name">
-            <strong>{props.name}</strong>
-            <p>{props.symbol}</p>
-        </td>
-        <td className="price">1</td>
-        <td className="percent up">0</td>
-        <td className="tradecost">0</td>
-        <td className="premium">0</td>
-    </tr>
-}
-
 
 function Exchange({viewType} : ExchangeViewType):React.ReactElement {
-    const [coin, setCoin] = useState({});
-
-    //소켓 연결
-    let res;
-
-    let coinList : any = getUpbitCryptoList().listing;
+    const coinList : any = getUpbitCryptoList().listing;
+    console.log("coinList",coinList)
 
     //원화 코인들 이름만 선별
     let KRW_market_listing :any = [];
@@ -64,54 +24,47 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
     coinList.map((code:any)=> {
         if(code.market.indexOf("KRW-") !== -1) {
             KRW_market_listing.push({
-                // key : code.market,
+                key : code.market,
                 name : code.korean_name,
                 symbol : code.market,
-                // price : "1"
+                price : 0
             });
         }
     })
 
-    const [test, setTest] = useState([
-        {
-            key : 0,
-            name : "비트코인",
-            symbol : "KRW-BTC",
-        },
-        {
-            key : 1,
-            name : "이더리움",
-            symbol : "KRW-ETH",
-        }
-    ]);
+    const [coinItem, setCoinItem] = useState(KRW_market_listing);
 
 
-    const listItems = test.map((info:any) => 
-        <ListItem 
-         key = {info.key}
-         symbol = {info.symbol}
-         name = {info.name} />
-    )
+    // const listItems = coinItem.map((info:any) =>
+    //     <ListItem
+    //      key = {info.key}
+    //      symbol = {info.symbol}
+    //      name = {info.name}
+    //      price = {info.price}/>
+    // )
 
-    
-    useEffect(() => {
-        setTest([
-            {
-                key : 0,
-                name : "비트코인1",
-                symbol : "KRW-BTC",
-            },
-            {
-                key : 1,
-                name : "이더리움",
-                symbol : "KRW-ETH",
+    const changeValue = (value:any) => {
+        if(value.code.indexOf('KRW-') !== -1) {
+            const findIndex = coinItem.findIndex((temp:any) => value.code === temp.symbol);
+            let copyArray = [...coinItem];
+            if(findIndex != -1) {
+                let test = copyArray[findIndex];
+                test['price'] = value.trade_price;
+                copyArray[findIndex] = test;
+                setCoinItem(copyArray)
             }
-        ])
+        }
+    }
+
+    useEffect(() => {
+            connectWS("upbit",(result:any) => {
+                changeValue(result);
+            })
     }
     ,[])
 
-    
-    
+
+
     return (
       <main>
           <div className = "exchange-view">
@@ -127,7 +80,15 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
                     </tr>
                 </thead>
                 <tbody>
-                    {listItems}
+                {
+                    coinItem.map((info:any) =>
+                    <Market_KRW
+                        key = {info.key}
+                        symbol = {info.symbol}
+                        name = {info.name}
+                        price = {info.price}/>
+                    )
+                }
                 </tbody>
             </table>
           </div>
@@ -141,14 +102,14 @@ export default Exchange;
 /*
   // {
                 // KRW_market_listing.map((info:any) => (
-                //     ///console.log("tt",typeof info.market)    
-                //     <Market_KRW 
+                //     ///console.log("tt",typeof info.market)
+                //     <Market_KRW
                 //     key = {info.symbol}
                 //     name = {info.name}
                 //     status = {info}
                 //     />
                 // <tr key = {info.symbol}>
-                //     <td className="candle"></td> 
+                //     <td className="candle"></td>
                 //     <td className="name">
                 //         <strong>{info.name}</strong>
                 //         <p>{info.symbol}</p>
@@ -158,12 +119,12 @@ export default Exchange;
                 //     <td className="tradecost">0</td>
                 //     <td className="premium">0</td>
                 // </tr>
-                //    <Market_KRW 
-                //    key = {info.market.code} 
+                //    <Market_KRW
+                //    key = {info.market.code}
                 //    name = {info.market.name}
                 //    code = {info.market.code}
                 //    pair = {status}
-                                   
+
                  //  ))
                // }
 */
