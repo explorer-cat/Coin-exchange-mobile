@@ -16,7 +16,6 @@ interface ExchangeViewType {
 
 function Exchange({viewType} : ExchangeViewType):React.ReactElement {
     const coinList : any = getUpbitCryptoList().listing;
-    console.log("coinList",coinList)
 
     //원화 코인들 이름만 선별
     let KRW_market_listing :any = [];
@@ -27,7 +26,11 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
                 key : code.market,
                 name : code.korean_name,
                 symbol : code.market,
-                price : 0
+                price : 0,
+                percent : 0,
+                percent_price : 0,
+                volume : 0,
+                premium : 0
             });
         }
     })
@@ -35,27 +38,24 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
     const [coinItem, setCoinItem] = useState(KRW_market_listing);
 
 
-    // const listItems = coinItem.map((info:any) =>
-    //     <ListItem
-    //      key = {info.key}
-    //      symbol = {info.symbol}
-    //      name = {info.name}
-    //      price = {info.price}/>
-    // )
-
     const changeValue = (value:any) => {
         if(value.code.indexOf('KRW-') !== -1) {
             const findIndex = coinItem.findIndex((temp:any) => value.code === temp.symbol);
             let copyArray = [...coinItem];
             if(findIndex != -1) {
-                let test = copyArray[findIndex];
-                test['price'] = value.trade_price;
-                copyArray[findIndex] = test;
+                let target = copyArray[findIndex];
+                console.log("target",target)
+                target['price'] = value.trade_price;
+                target['percent'] = ((value.trade_price - value.opening_price) / value.opening_price * 100).toFixed(2)
+                target['percent_price'] = value.opening_price - value.trade_price
+                target['volume'] = (value.acc_trade_price_24h / 1000000).toFixed(0);
+                copyArray[findIndex] = target;
                 setCoinItem(copyArray)
             }
         }
     }
 
+    /*컴포넌트 렌더링 후 부터 실행*/
     useEffect(() => {
             connectWS("upbit",(result:any) => {
                 changeValue(result);
@@ -76,7 +76,6 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
                         <th className ="price">현재가</th>
                         <th className ="percent">전일대비</th>
                         <th className ="tradecost">거래대금</th>
-                        <th className ="premium">프리미엄</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,7 +85,11 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
                         key = {info.key}
                         symbol = {info.symbol}
                         name = {info.name}
-                        price = {info.price}/>
+                        price = {info.price}
+                        percent = {info.percent}
+                        percent_price = {info.percent_price}
+                        volume = {info.volume}
+                        />
                     )
                 }
                 </tbody>
@@ -98,33 +101,3 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
 
 export default Exchange;
 
-
-/*
-  // {
-                // KRW_market_listing.map((info:any) => (
-                //     ///console.log("tt",typeof info.market)
-                //     <Market_KRW
-                //     key = {info.symbol}
-                //     name = {info.name}
-                //     status = {info}
-                //     />
-                // <tr key = {info.symbol}>
-                //     <td className="candle"></td>
-                //     <td className="name">
-                //         <strong>{info.name}</strong>
-                //         <p>{info.symbol}</p>
-                //     </td>
-                //     <td className="price"></td>
-                //     <td className="percent up">0</td>
-                //     <td className="tradecost">0</td>
-                //     <td className="premium">0</td>
-                // </tr>
-                //    <Market_KRW
-                //    key = {info.market.code}
-                //    name = {info.market.name}
-                //    code = {info.market.code}
-                //    pair = {status}
-
-                 //  ))
-               // }
-*/

@@ -35,18 +35,19 @@
 }
 /* 테이블 헤더 */
 .exchange-public-table > thead > tr > .title {
-    width: 15%;
+    width: 20%;
     padding: 15px;
 }
 .exchange-public-table > thead > tr > .price {
     width: 20%;
 }
 .exchange-public-table > thead > tr > .percent {
-    width: 15%;
+    width: 20%;
 }
-.exchange-public-table > thead > tr > .premium {
-    width: 15%;
+.exchange-public-table > thead > tr > .volume {
+    width: 20%;
 }
+
 
 /* 테이블 내용 */
 .exchange-public-table > tbody > tr > .up {
@@ -63,4 +64,23 @@
     text-align: center;
     color: var(--default-font-color);
 }
+
+.exchange-public-table > tbody > tr > .price  > p,
+.exchange-public-table > tbody > tr > .volume  > p{
+    height: 34px;
+    /* display: block; */
+    /* padding: 0px; */
+    text-align: end;
+}
+
+
+
+
+.exchange-public-table > tbody > tr > .volume,
+.exchange-public-table > tbody > tr > .percent {
+    font-size: 14px;
+    text-align: right;
+    padding:12px;
+}
+
 

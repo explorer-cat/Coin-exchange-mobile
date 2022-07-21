@@ -21,16 +21,26 @@ interface ExchangeMarket_KRW_Type {
 
 //pair : ExchangeMarket_KRW_Type
 function Market_KRW(props:any): React.ReactElement {
+    let price = props.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    let percent = props.percent;
+    let percent_price = props.percent_price.toFixed(0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    let volume = props.volume.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
         return ( <tr>
             <td className="candle"></td>
             <td className="name">
                 <strong>{props.name}</strong>
                 <p>{props.symbol}</p>
             </td>
-            <td className="price">{props.price}</td>
-            <td className="percent up">0</td>
-            <td className="tradecost">0</td>
-            <td className="premium">0</td>
+            <td className="price">
+                <p>{price}</p>
+            </td>
+            <td className="percent">
+                <p>{percent}</p>
+                <p>{percent_price}</p>
+            </td>
+            <td className="volume">
+                <p>{volume}백만</p>
+            </td>
         </tr>)
     }
 
