@@ -2,3 +2,127 @@ tr > .name,
 tr > .name > p {
     text-align: left !important;
 }
+
+.exchange-public-table > thead > tr  {
+    width: 100%;
+    border-top: 2px solid var(--1gray-color);
+    border-bottom: 1px solid var(--1gray-color);
+    padding: 4px 0px;
+    height: 32px;
+}
+
+.exchange-public-table > thead > tr > th {
+    font-size: 12px;
+    color: var(--default-font-color);
+    font-weight: 600;
+}
+
+.exchange-public-table > thead > tr > th:nth-child(1) {
+    width: 30px;
+}
+/* 테이블 헤더 */
+/* .exchange-public-table > thead > tr > .title {
+    width: 20%;
+    padding: 15px;
+}
+.exchange-public-table > thead > tr > .price {
+    width: 20%;
+}
+.exchange-public-table > thead > tr > .percent {
+    width: 20%;
+}
+.exchange-public-table > thead > tr > .volume {
+    width: 20%;
+} */
+
+
+/* 테이블 내용 */
+/* .exchange-public-table > tbody > tr > .up {
+    color: red;
+} */
+
+.exchange-public-table > tbody > tr  {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    height: 52px;
+}
+.exchange-public-table > tbody > tr > td {
+    padding-top: 4px;
+}
+.exchange-public-table > tbody > tr > .name > p  {
+    /* font-size: 14px; */
+    text-align: center;
+    color: var(--default-font-color);
+}
+
+.exchange-public-table > tbody > tr > .price  > p,
+.exchange-public-table > tbody > tr > .volume  > p{
+    height: 34px;
+    /* display: block; */
+    /* padding: 0px; */
+    text-align: end;
+}
+.exchange-public-table > tbody > tr > .percent > p {
+    min-height: 17px;
+}
+
+
+
+.exchange-public-table > tbody > tr > .percent {
+    text-align: right;
+    padding-right: 14px;
+}
+
+.exchange-public-table > tbody > tr > .percent > p:nth-child(2) {
+    font-size: 12px;
+}
+
+
+.exchange-public-table > tbody > tr > .volume{
+    display: flex;
+    justify-content: flex-end;
+    padding: 11px 4px 0px 0px;
+
+}
+
+
+.exchange-public-table > tbody > tr > .volume > p{
+    margin-left: 2px;
+    color: var(--default-font-color);
+
+}
+
+.up {
+    color: var(--up-color);
+
+}
+.down {
+    color: var(--down-color)
+}
+
+
+@keyframes fadeout {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+.isBid{
+    border: 1px solid red;
+    animation: fadeout 1s;
+}
+
+.isAsk {
+    border: 1px solid blue;
+    animation: fadeout 1s;
+}
+
+.wow-enter {
+    /* // 애니메이션 시작할 때 적용할 CSS */
+  opacity: 0;
+}
+
+.wow-enter-active {
+  /* // 애니메이션 동작할 때 적용할 CSS */
+  opacity: 1;
+  transition: all 500ms;
+}

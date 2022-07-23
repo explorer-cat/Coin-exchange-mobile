@@ -15,4 +15,7 @@ html[data-theme='light'] {
   --default-select-font-color:#1c2028;
   --signature-color:#59a900;
   --1gray-color :#edeef0;
+  --up-color : #e12343;
+  --down-color : #1763b6;
+
 }
