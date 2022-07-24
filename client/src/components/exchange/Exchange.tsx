@@ -30,13 +30,13 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
                 percent : 0,
                 percent_price : 0,
                 volume : 0,
-                premium : 0
+                premium : 0,
+                askbid : ""
             });
         }
     })
 
     const [coinItem, setCoinItem] = useState(KRW_market_listing);
-    const [ani,setAni] = useState(false)
 
     const changeValue = (value:any) => {
         if(value.code.indexOf('KRW-') !== -1) {
@@ -48,17 +48,22 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
                 target['percent'] = ((value.trade_price - value.opening_price) / value.opening_price * 100).toFixed(2)
                 target['percent_price'] = value.opening_price - value.trade_price
                 target['volume'] = (value.acc_trade_price_24h / 1000000).toFixed(0);
-                target['ask_bid'] = value.ask_bid;
+                target['askbid'] = value.ask_bid;
                 copyArray[findIndex] = target;
                 setCoinItem(copyArray)
             }
         }
     }
 
+    const changeBorder = () => {
+
+    }
+    
+
     /*컴포넌트 렌더링 후 부터 실행*/
     useEffect(() => {
             connectWS("upbit",(result:any) => {
-                // console.log("result",result)
+                
                 changeValue(result);
             })
     }
@@ -91,7 +96,7 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
                         percent = {info.percent}
                         percent_price = {info.percent_price}
                         volume = {info.volume}
-                        askbid = {true}
+                        askbid = {info.askbid}
                         />
                     )
                 }

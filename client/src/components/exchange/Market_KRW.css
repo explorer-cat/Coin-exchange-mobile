@@ -20,26 +20,6 @@ tr > .name > p {
 .exchange-public-table > thead > tr > th:nth-child(1) {
     width: 30px;
 }
-/* 테이블 헤더 */
-/* .exchange-public-table > thead > tr > .title {
-    width: 20%;
-    padding: 15px;
-}
-.exchange-public-table > thead > tr > .price {
-    width: 20%;
-}
-.exchange-public-table > thead > tr > .percent {
-    width: 20%;
-}
-.exchange-public-table > thead > tr > .volume {
-    width: 20%;
-} */
-
-
-/* 테이블 내용 */
-/* .exchange-public-table > tbody > tr > .up {
-    color: red;
-} */
 
 .exchange-public-table > tbody > tr  {
     font-size: 14px;
@@ -56,17 +36,25 @@ tr > .name > p {
     color: var(--default-font-color);
 }
 
-.exchange-public-table > tbody > tr > .price  > p,
 .exchange-public-table > tbody > tr > .volume  > p{
     height: 34px;
     /* display: block; */
     /* padding: 0px; */
     text-align: end;
 }
+
+.exchange-public-table > tbody > tr > .price  > p{
+    display: flex;
+    align-items: center;
+    height: 24px;
+    justify-content: flex-end;
+    margin: 4px 0px 20px 5px;
+    padding-right: 5px;
+    box-sizing: border-box;
+}
 .exchange-public-table > tbody > tr > .percent > p {
     min-height: 17px;
 }
-
 
 
 .exchange-public-table > tbody > tr > .percent {
@@ -102,27 +90,28 @@ tr > .name > p {
 }
 
 
-@keyframes fadeout {
-    from { opacity: 1; }
-    to { opacity: 0; }
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
+
 .isBid{
-    border: 1px solid red;
-    animation: fadeout 1s;
+    /* background-color: var(--up-color); */
+    background-color:rgba(240, 51, 51, 0.2);
+    /* border-bottom: 1px solid rgba(240, 51, 51, 0.5); */
+     border-radius: 6px;
+   /* animation: fadein 0.5s; */
 }
 
 .isAsk {
-    border: 1px solid blue;
-    animation: fadeout 1s;
+    /* background-color: var(--down-color); */
+    /* border-bottom: 1px solid rgb(16, 23, 158, 0.5); */
+    background-color:rgb(16, 23, 158, 0.2);
+    border-radius: 6px;
+    /* animation: fadein 0.5s; */
 }
 
-.wow-enter {
-    /* // 애니메이션 시작할 때 적용할 CSS */ 
-  opacity: 0;
-}
-
-.wow-enter-active {
-  /* // 애니메이션 동작할 때 적용할 CSS */
-  opacity: 1;
-  transition: all 500ms;
-}

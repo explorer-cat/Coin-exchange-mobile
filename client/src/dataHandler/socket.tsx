@@ -22,10 +22,7 @@ function connectWS(connectionType:string, callback:any) {
     let codes :any = [];
 
     listingData.map((code:any)=> {
-      //  console.log("code",code.market)
-      //  if(code.market.indexOf("KRW-") === -1) {
-            codes.push(code.market);
-     //   }
+        codes.push(code.market);
     })
 
     socket = new WebSocket("wss://api.upbit.com/websocket/v1");

@@ -3,7 +3,6 @@ import './Market_KRW.css'
 import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
 import React, {useEffect, useState, useRef} from 'react';
-import { CSSTransition } from "react-transition-group";
 
 interface ExchangeMarket_KRW_Type {
     // name : any,
@@ -23,15 +22,30 @@ function Market_KRW(props:any): React.ReactElement {
     let percent = props.percent;
     let percent_price = props.percent_price.toFixed(0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     let volume = props.volume.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-    let askbid = props.askbid === "ASK" ? true : false
+    let askbid = props.askbid;
 
+    const [priceBox, setPriceBox] = useState("")
     
 
-    useEffect(()=>{
-      //setTimeout(()=>{ setAnimation(false) }, 2000);
-      
-    });
 
+
+    //가격 변동에 따른 박스 생성
+    const handlePriceChange = () => {
+      if(askbid === "BID") {
+        setPriceBox("isBid")
+      } else {
+        setPriceBox("isAsk")
+      }
+      setTimeout(()=> {
+        setPriceBox("")
+      },1000)
+    }
+
+    //price가 변경될때마다 실행
+    useEffect(() => {
+      handlePriceChange();
+    },[price]);
+    
 
         return ( <tr>
             <td className="candle"></td>
@@ -41,15 +55,11 @@ function Market_KRW(props:any): React.ReactElement {
             </td>
             {/* 가격 표시 박스 */}
             {props.percent  > 0  ?
-              <td className="price">
-              <CSSTransition in = {props.askbid} classNames="wow" timeout={500}>
-                <p className ="up">{price}</p>
-              </CSSTransition>
+              <td className={"price up"}>
+                <p className ={priceBox}>{price}</p>
           </td> :
-              <td className="price">
-              <CSSTransition in = {animaition} classNames="wow" timeout={1000}>
-                <p className ="down">{price}</p>
-              </CSSTransition>
+              <td className={"price down"}>
+                <p className ={priceBox}>{price}</p>
             </td> }
              {/* 퍼센트 표시 박스 */}
             {props.percent  > 0  ?
