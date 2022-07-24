@@ -1,10 +1,10 @@
 .exchange-view {
     position: fixed;
-    top: 158px;
+    top: 206px;
     height: 80%;
     width: 100%;
     margin: 0;
-    color : var(--black-font-color);
+    color: var(--black-font-color);
     overflow: auto;
 }
 

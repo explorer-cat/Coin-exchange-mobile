@@ -10,12 +10,18 @@ html[data-theme='light'] {
   }
 
 :root{
-  --bg-color: white;
-  --default-font-color:#93989e;
-  --default-select-font-color:#1c2028;
-  --signature-color:#59a900;
-  --1gray-color :#edeef0;
-  --up-color : #e12343;
-  --down-color : #1763b6;
+    --bg-color: #191a1c;
+    --bg-color-box: #1f2127;
+    --table-cell-default-font-color: #b8bfc4;
+    --light-color-box :#3a3a41;
+    --default-font-color: #ffffff;
+    --default-select-font-color: #1c2028;
+    --signature-color: #59a900;
+    --1gray-color: #edeef0;
+    --up-color: rgb(255, 108, 71);
+    --down-color: rgb(70, 124, 241);
+    --border-color: #2e2e32;
+
+    --footer-bg-color : #303134;
 
 }

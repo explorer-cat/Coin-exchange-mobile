@@ -1,0 +1,50 @@
+.coinNews-content {
+    background: var(--bg-color-box);
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding:0px 24px;
+}
+
+.coinNews-content-box{
+    border-radius: 6px;
+    background: var(--light-color-box);
+    width: 100%;
+    margin: 8px 0px;
+    /* margin-bottom: 8px; */
+    height: 20px;
+ }
+
+.coinNews-content-box{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 6px;
+    font-size: 12px;
+    background: #3a3a41;
+    padding: 10px;
+}
+
+.coinNews-content-box > .tag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 16px;
+    margin: 0px 12px;
+    border-radius: 4px;
+    font-size: 10px;
+    background: #b8bfc4;
+    color: greenyellow;
+}
+
+.coinNews-content-box > .num{
+    font-weight: bold;
+    margin-right: 12px;
+    color: greenyellow;
+}
+
+.coinNews-content-box > .content{
+    color: var(--default-font-color);
+    font-weight: bold;
+}

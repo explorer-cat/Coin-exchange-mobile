@@ -19,13 +19,23 @@
     justify-content: space-between;
     box-sizing: border-box;
     align-items: center;
+    background: var(--bg-color-box);
 }
-
+.navBar_news-content {
+    display: flex;
+    width: 100%;
+    max-height: 56px;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+}
 
 .navBar_header-content .navBar_header-left {
     box-sizing: border-box;
     flex: 1 1;
-
+}
+.navBar_header-left{
+    color: var(--default-font-color);
 }
 
 .navBar_header-content .navBar_header-right {

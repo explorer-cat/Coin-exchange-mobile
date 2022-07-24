@@ -6,10 +6,11 @@
     left:0;
     margin:0;
     bottom:0;
-    border-top: 1px solid var(--1gray-color);
+    border-top: 1px solid var(--border-color);
 }
 
 .bottom_menu-content > button {
     width: 20%;
-    background-color: var(--bg-color);
+    background-color: var(--footer-bg-color);
+    color: var(--default-font-color);
 }

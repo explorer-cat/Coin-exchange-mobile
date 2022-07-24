@@ -10,10 +10,11 @@
 .navBar_search-box {
     display: flex;
     align-items: center;
-    padding:8px;
+    padding: 8px;
+    margin-top: 9px;
     width: 100%;
     height: 40px;
-    border-bottom: 2px solid var(--1gray-color);
+    background: var(--bg-color-box);
 }
 
 .search-icon {
@@ -25,8 +26,13 @@
 
 .search-input-box{
     display: block;
-    font-size: 18px;
-    padding:8px;
-    margin:0;
+    font-size: 14px;
+    padding: 8px;
+    margin: 0;
     box-sizing: border-box;
+    background: transparent;
+    color: var(--table-cell-default-font-color)
+
 }
+
+

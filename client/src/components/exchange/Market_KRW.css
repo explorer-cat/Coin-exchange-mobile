@@ -3,17 +3,19 @@ tr > .name > p {
     text-align: left !important;
 }
 
+.exchange-public-table{
+    background: var(--bg-color-box);
+}
+
 .exchange-public-table > thead > tr  {
     width: 100%;
-    border-top: 2px solid var(--1gray-color);
-    border-bottom: 1px solid var(--1gray-color);
     padding: 4px 0px;
-    height: 32px;
+    height: 45px;
 }
 
 .exchange-public-table > thead > tr > th {
     font-size: 12px;
-    color: var(--default-font-color);
+    color: var(--table-cell-default-font-color);
     font-weight: 600;
 }
 
@@ -26,14 +28,27 @@ tr > .name > p {
     font-weight: 500;
     text-align: center;
     height: 52px;
+    border-bottom: 1px solid var(--border-color);
 }
 .exchange-public-table > tbody > tr > td {
     padding-top: 4px;
 }
-.exchange-public-table > tbody > tr > .name > p  {
-    /* font-size: 14px; */
+.exchange-public-table > tbody > tr > .name > strong  {
+    font-size: 14px;
     text-align: center;
     color: var(--default-font-color);
+}
+
+.exchange-public-table > tbody > tr > .volume > p,
+.exchange-public-table > tbody > tr > .volume > strong{
+    font-size: 12px;
+    text-align: center;
+    color: var(--table-cell-default-font-color);
+}
+.exchange-public-table > tbody > tr > .name > p:nth-child(2)  {
+    font-size: 10px;
+    text-align: center;
+    color: var(--table-cell-default-font-color);
 }
 
 .exchange-public-table > tbody > tr > .volume  > p{

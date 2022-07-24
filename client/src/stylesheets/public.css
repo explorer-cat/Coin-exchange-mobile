@@ -7,7 +7,9 @@
         opacity: 1;
     }
 }
-
+.mobile-view{
+    background: var(--bg-color);
+}
 .bg-gray-active {
     position: fixed;
     top: 0;
@@ -24,9 +26,9 @@ header {
 }
 
 main {
-    
+
 }
 
 footer{
-    
+
 }

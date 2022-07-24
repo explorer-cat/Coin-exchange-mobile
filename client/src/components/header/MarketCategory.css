@@ -1,8 +1,10 @@
 .market-category-div {
     display: flex;
     flex-direction: row;
-    padding: 8px;
+    padding: 2px;
     width: 100%;
+    background: var(--bg-color-box);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .market-category-div > span {
@@ -23,7 +25,11 @@
     /* border-right: 1px solid var(--signature-color); */
 }
 
+.market-category-div > span{
+    color : var(--table-cell-default-font-color)
+
+}
 .market-category-div > span > .select {
-    border-bottom: 3px solid var(--default-font-color);
-    color: var(--default-select-font-color);
+    border-bottom: 2px solid var(--default-font-color);
+    color : var(--default-font-color) !important;
 }
