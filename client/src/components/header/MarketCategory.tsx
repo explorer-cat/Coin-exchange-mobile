@@ -4,6 +4,8 @@ import Search from './Search'
 import React from 'react';
 import {useState} from 'react'
 import { tab } from '@testing-library/user-event/dist/tab';
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "../../store/modules/counter";
 
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 interface MarketCategoryType {
@@ -16,6 +18,11 @@ function MarketCategory() {
     const [issueView, setIssueView] = useState(false);
     const [premiumView, setPremiumView] = useState(false);
 
+    const dispatch = useDispatch();
+    const count = useSelector((state:any) => state.counter.number);
+
+    
+
     const handleClickCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     
@@ -25,10 +32,12 @@ function MarketCategory() {
         //setClickedButton(button.name);
         switch(target) {
             case "exchange":
-                    setExchangeView(true)
+                    dispatch(increment())
+                  //  setExchangeView(true)
                 break;
             case "issue":
-                !issueView ? setIssueView(true) : null
+                    dispatch(increment())
+                // !issueView ? setIssueView(true) : null
                 break;
         }
       };
@@ -39,8 +48,7 @@ function MarketCategory() {
 
     const categoryList = category.map((menu) => {
         if(menu === "시세") {
-            tabCount ++;
-            return(<span onClick={handleClickCategory} className={categoryKey[tabCount]}><strong className = "select" >{menu}</strong></span>)
+            return(<span onClick={handleClickCategory} className={categoryKey[tabCount]}><strong className = "select" >{count}</strong></span>)
         }
         tabCount ++;
         return(<span onClick={handleClickCategory} className={categoryKey[tabCount]}><strong>{menu}</strong></span>)
