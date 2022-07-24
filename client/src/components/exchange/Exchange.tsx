@@ -9,12 +9,8 @@ import { info } from 'console';
 import { isJSDocDeprecatedTag } from 'typescript';
 
 
-interface ExchangeViewType {
-    viewType : Number
-}
 
-
-function Exchange({viewType} : ExchangeViewType):React.ReactElement {
+function Exchange():React.ReactElement {
     const coinList : any = getUpbitCryptoList().listing;
 
     //원화 코인들 이름만 선별
@@ -72,8 +68,7 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
 
 
     return (
-      <main>
-
+ 
           <div className = "exchange-view">
             <table className = "exchange-public-table">
                 <thead>
@@ -103,7 +98,7 @@ function Exchange({viewType} : ExchangeViewType):React.ReactElement {
                 </tbody>
             </table>
           </div>
-      </main>
+
     );
 }
 

@@ -1,0 +1,10 @@
+.issue-view {
+    position: fixed;
+    top: 206px;
+    left: 100%;
+    height: 80%;
+    width: 100%;
+    margin: 0;
+    color: var(--black-font-color);
+    overflow: auto;
+}

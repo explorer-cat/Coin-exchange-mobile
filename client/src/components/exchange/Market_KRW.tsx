@@ -3,6 +3,8 @@ import './Market_KRW.css'
 import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
 import React, {useEffect, useState, useRef} from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "../../store/modules/counter";
 
 interface ExchangeMarket_KRW_Type {
     // name : any,
@@ -17,7 +19,6 @@ interface ExchangeMarket_KRW_Type {
 
 //pair : ExchangeMarket_KRW_Type
 function Market_KRW(props:any): React.ReactElement {
-    
     let price = props.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     let percent = props.percent;
     let percent_price = props.percent_price.toFixed(0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
@@ -25,7 +26,6 @@ function Market_KRW(props:any): React.ReactElement {
     let askbid = props.askbid;
 
     const [priceBox, setPriceBox] = useState("")
-    
 
 
 

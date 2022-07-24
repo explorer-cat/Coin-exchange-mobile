@@ -1,26 +1,32 @@
 import React, { ComponentProps } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/header/Header';
 import NavigationMenu from './components/navMenu/NavigationMenu'
-import Exchange from './components/exchange/Exchange'
+import Content from './components/Content'
 import Footer from './components/footer/Footer'
 import {useState} from 'react'
-import PropTypes, { InferProps } from "prop-types";
 import './stylesheets/public.css';
+import { useDispatch, useSelector } from "react-redux";
 
 
 
 function App() : React.ReactElement {
+
+  console.log("app.js render")
+
   //백그라운드 회색 처리 여부
   const [navigationMenu, setNavigationMenu] = useState<boolean>(false);
   //무슨 마켓을 보여줄거임 0:원화 1:BTC 2:보유 3:관심
-  const [marketView, setMarketView] = useState<Number>(0);
+  const [contentView, setContentView] = useState<Number>(0);
+
+
 
   //navigation menu 실행
   const getNavigationMenu = (active:boolean) => {
     setNavigationMenu(active)
   }
+
+  const count = useSelector((state:any) => state.counter.number);
 
 
   return (
@@ -36,12 +42,9 @@ function App() : React.ReactElement {
         {/* 헤더 */}
         <Header navigationMenu = {getNavigationMenu}/>
         {/* 메인 */}
-        <Exchange viewType = {marketView}/>
-
+        <Content view = {count}/>
         {/* 푸터 */}
         <Footer />
-
-
 
       </div>
     </div>
