@@ -7,6 +7,8 @@ import Search from './Search'
 import MarketCategory from './MarketCategory';
 import React from 'react';
 import {useState} from 'react'
+import CoinNews from './coinNews';
+
 
 
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
@@ -48,7 +50,7 @@ function Header({navigationMenu} : HeaderProps) {
       <div className = "fixed-header">
         <div className ="navBar_header-content">
           <div className ="navBar_header-left">
-            <a className = "navBar_header-main-logo"></a>
+            <a>마켓</a>
           </div>
           <div className = "navBar_header-right">
             <div className = "navBar_header-search-btn">
@@ -56,12 +58,17 @@ function Header({navigationMenu} : HeaderProps) {
             </div>
           </div>
         </div>
+        <div className ="navBar_news-content">
+          {/* 검색창 */}
+          <CoinNews />
+        </div>
+        {/* 카테고리 */}
+        <div className = "navBar_market-category">
+        <MarketCategory />
+        </div>
         <div className ="navBar_search-content">
           {/* 검색창 */}
           <Search />
-        </div>
-        <div className = "navBar_market-category">
-        <MarketCategory />
         </div>
       </div>
     </header>
