@@ -1,8 +1,9 @@
 .exchange-view {
     position: fixed;
-    top: 206px;
-    height: 80%;
-    width: 100%;
+    top: -9px;
+    left: 1180px;
+    height: 100%;
+    width: 393px;
     margin: 0;
     color: var(--black-font-color);
     overflow: auto;
