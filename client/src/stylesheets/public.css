@@ -7,6 +7,9 @@
         opacity: 1;
     }
 }
+body,html {
+    background: var(--bg-color) !important;    
+}
 .mobile-view{
     background: var(--bg-color);
 }

@@ -1,10 +1,9 @@
 import './Header.css';
-import './Search.css';
+import '../exchange/Search.css';
 import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
 import '../../stylesheets/public.css'
-import Search from './Search'
-import MarketCategory from './MarketCategory';
+import Search from '../exchange/Search'
 import React from 'react';
 import {useState} from 'react'
 import CoinNews from './coinNews';
@@ -61,14 +60,6 @@ function Header({navigationMenu} : HeaderProps) {
         <div className ="navBar_news-content">
           {/* 검색창 */}
           <CoinNews />
-        </div>
-        {/* 카테고리 */}
-        <div className = "navBar_market-category">
-        <MarketCategory />
-        </div>
-        <div className ="navBar_search-content">
-          {/* 검색창 */}
-          <Search />
         </div>
       </div>
     </header>

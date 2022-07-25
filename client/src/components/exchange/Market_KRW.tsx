@@ -19,11 +19,13 @@ interface ExchangeMarket_KRW_Type {
 
 //pair : ExchangeMarket_KRW_Type
 function Market_KRW(props:any): React.ReactElement {
-    let price = props.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    let symbol = props.symbol;
+    let price = props.price.toLocaleString()//.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     let percent = props.percent;
-    let percent_price = props.percent_price.toFixed(0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-    let volume = props.volume.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    let percent_price = props.percent_price.toLocaleString()//.toFixed(0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    let volume = Number(props.volum).toLocaleString()//.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     let askbid = props.askbid;
+    let cryptoImg = `https://static.upbit.com/logos/${symbol.replace("KRW-","")}.png`
 
     const [priceBox, setPriceBox] = useState("")
 
@@ -47,11 +49,15 @@ function Market_KRW(props:any): React.ReactElement {
     },[price]);
     
 
+    
+    
         return ( <tr>
-            <td className="candle"></td>
+            <td className="icon">
+              <img src = {cryptoImg}></img>
+            </td>
             <td className="name">
                 <strong>{props.name}</strong>
-                <p>{props.symbol}</p>
+                <p>{symbol.replace("KRW-", "")}</p>
             </td>
             {/* 가격 표시 박스 */}
             {props.percent  > 0  ?

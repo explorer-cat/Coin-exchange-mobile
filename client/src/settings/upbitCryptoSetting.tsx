@@ -5,13 +5,14 @@ const upbitCryptoList:any = {
             "market": "KRW-BTC",
             "korean_name": "비트코인",
             "english_name": "Bitcoin",
-            "upbit_whale_limit" : 100000000, //고래 체결 매수금액 제한폭
+            "img" : "https://static.upbit.com/logos/BTC.png",
         },
         {
             "market": "KRW-ETH",
             "korean_name": "이더리움",
             "english_name": "Ethereum",
             "upbit_whale_limit" : 100000000, //고래 체결 매수금액 제한폭
+            "img" : "https://static.upbit.com/logos/ETH.png",
         },
         {
             "market": "BTC-ETH",
