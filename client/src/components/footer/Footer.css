@@ -1,17 +1,41 @@
 .bottom_menu-content {
     display: flex;
+    
     position: fixed;
     width: 100%;
-    height: 71px;
+    height: 90px;
     left: 0;
     margin: 0;
     bottom: 0;
     background-color: var(--footer-bg-color);
 }
 
-.bottom_menu-content > button {
-    width: 20%;
-    height: 45px;
+.bottom_menu-content > div {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 100%;
+    font-size: 12px;
     background-color: var(--footer-bg-color);
     color: var(--default-font-color);
+}
+
+.bottom_menu-content > div > button {
+    display: flex;
+    flex-direction: column;
+    /* align-content: center; */
+    /* justify-items: center; */
+    align-items: center;
+    justify-content: center;
+    /* justify-items: center; */
+    /* align-items: center; */
+    width: 100%;
+    height: calc(100% - 31px);
+    font-size: 12px;
+    background-color: var(--footer-bg-color);
+    color: #4E4F4F;
+}
+
+.footer_select {
+    color: var(--default-font-color)!important;
 }

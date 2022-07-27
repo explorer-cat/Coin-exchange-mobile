@@ -8,10 +8,12 @@ html[data-theme='light'] {
     --bg-color: white;
     --color: rgb(7, 6, 6);
   }
-
+/* #A9ACAF sel*/ 
+/* #4E4F4F no sel*/
 :root{
     --bg-color: #191a1c;
-    --bg-color-box: #1f2127;
+    --bg-color-box: #15181a; 
+    /* 1b1b1e */
     --table-cell-default-font-color: #b8bfc4;
     --light-color-box :#3a3a41;
     --default-font-color: #ffffff;
@@ -21,7 +23,6 @@ html[data-theme='light'] {
     --up-color: rgb(255, 108, 71);
     --down-color: rgb(70, 124, 241);
     --border-color: #2e2e32;
-
-    --footer-bg-color : #303134;
+    --footer-bg-color : #1f2127;
 
 }

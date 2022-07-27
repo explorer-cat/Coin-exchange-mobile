@@ -2,17 +2,51 @@ import './Footer.css';
 import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
 import React, { useEffect } from 'react';
+import exchange_select from '../../images/exchange_icon_select.png'
+import exchange from '../../images/exchange_icon.png'
 
+import myWallect_select from '../../images/my_wallet_icon_select.png'
+import myWallet from '../../images/my_wallet_icon.png'
+
+import news_select from '../../images/news_icon_select.png'
+import news from '../../images/news_icon.png'
+
+import nft_select from '../../images/nft_icon_select.png'
+import nft from '../../images/nft_icon.png'
+
+import setting_select from '../../images/setting_icon_select.png'
+import setting from '../../images/setting_icon.png'
+// import myWallet from '../../../public/images/my_wallet_icon.png'
+// import nft from '../../../public/images/nft_icon.png'
+// import setting from '../../../public/images/setting_icon.png'
+// import trend from '../../../public/images/trend_icon.png'
 
 function Footer():React.ReactElement {
+
+    const footerIcon = {
+        width : "18px",
+        height: "18px",
+        margin: "0 0 6px 0",
+    }
+
     return (
       <footer>
           <div className = "bottom_menu-content">
-              <button className = "exchange">거래소</button>
-              <button className = "my-wallet">자산현황</button>
-              <button className = "test">자산연동</button>
-              <button className = "test1">프리미엄</button>
-              <button className = "test2">더보기</button>
+            <div className = "exchange_div">
+                <button className = "footer_select"><img src = {exchange_select} style={footerIcon}/>마켓</button>
+            </div>
+            <div>
+                <button className = "my-wallet"><img src = {myWallet} style={footerIcon}/>내자산</button>
+            </div>
+            <div>
+                <button className = "test"><img src = {news} style={footerIcon}/>뉴스</button>
+            </div>
+            <div>
+                <button className = "test"><img src = {nft} style={footerIcon}/>NFT</button>
+            </div>
+            <div>
+                <button className = "test2"><img src = {setting} style={footerIcon}/>더보기</button>
+            </div>
           </div>
       </footer>
     );
