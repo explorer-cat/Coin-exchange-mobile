@@ -1,6 +1,6 @@
 .content-view {
     position: fixed;
-    top: 148px;
+    top: 162px;
     height: 80%;
     width: 100%;
     margin: 0;
@@ -45,7 +45,7 @@
 
 .category-view{
     position: fixed;
-    top: 103px;
+    top: 121px;
     height: 52px;
     width: 100%;
     margin: 0;
@@ -55,7 +55,7 @@
 .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
     display: flex;
     position: fixed;
-    top: 100px;
+    top: 130px;
     height: 52px;
     background: var(--bg-color-box);
 }

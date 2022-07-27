@@ -23,7 +23,7 @@ function Market_KRW(props:any): React.ReactElement {
     let price = props.price.toLocaleString()//.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     let percent = props.percent;
     let percent_price = props.percent_price.toLocaleString()//.toFixed(0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-    let volume = Number(props.volum).toLocaleString()//.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    let volume = Number(props.volume).toLocaleString()//.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     let askbid = props.askbid;
     let cryptoImg = `https://static.upbit.com/logos/${symbol.replace("KRW-","")}.png`
 
@@ -47,10 +47,11 @@ function Market_KRW(props:any): React.ReactElement {
     useEffect(() => {
       handlePriceChange();
     },[price]);
-    
 
-    
-    
+
+
+    console.log("volumevolume",volume)
+
         return ( <tr>
             <td className="icon">
               <img src = {cryptoImg}></img>
