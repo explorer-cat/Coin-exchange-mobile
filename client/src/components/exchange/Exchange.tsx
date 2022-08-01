@@ -8,11 +8,13 @@ import getUpbitCryptoList from "../../settings/upbitCryptoSetting";
 import Search from "./Search"
 import { info } from 'console';
 import { isJSDocDeprecatedTag } from 'typescript';
-
+import { Skeleton } from '@mui/material';
 
 
 function Exchange():React.ReactElement {
     const coinList : any = getUpbitCryptoList().listing;
+    //로딩 진행중
+    const [loading, setLoading] = useState(true)
 
     //원화 코인들 이름만 선별
     let KRW_market_listing :any = [];
@@ -53,19 +55,24 @@ function Exchange():React.ReactElement {
         }
     }
 
-    const changeBorder = () => {
 
-    }
 
 
     /*컴포넌트 렌더링 후 부터 실행*/
     useEffect(() => {
             connectWS("upbit",(result:any) => {
-
                 changeValue(result);
             })
+            
     }
     ,[])
+
+    /* 스켈레톤 로딩 시작 */ 
+    useEffect(() => {
+        setTimeout(()=> {
+            setLoading(false)
+          },2000)
+    },[])
 
 
 
@@ -79,10 +86,10 @@ function Exchange():React.ReactElement {
                 <thead>
                     <tr>
                         <th></th>
-                        <th className ="title">가상자산명</th>
-                        <th className ="price">현재가</th>
-                        <th className ="percent">전일대비</th>
-                        <th className ="tradecost">거래대금</th>
+                        {loading ? (<th><Skeleton animation="wave" sx={{ bgcolor: 'rgba(255, 255, 255, 0.13)'}} height={40} width="80%" /></th>) : <th className ="title">가상자산명</th>}
+                        {loading ? (<th><Skeleton animation="wave" sx={{ bgcolor: 'rgba(255, 255, 255, 0.13)'}} height={40} width="80%" /></th>) : <th className ="price">현재가</th>}
+                        {loading ? (<th><Skeleton animation="wave" sx={{ bgcolor: 'rgba(255, 255, 255, 0.13)'}} height={40} width="80%" /></th>) : <th className ="percent">전일대비</th>}
+                        {loading ? (<th><Skeleton animation="wave" sx={{ bgcolor: 'rgba(255, 255, 255, 0.13)'}} height={40} width="80%" /></th>) : <th className ="tradecost">거래대금</th>}
                     </tr>
                 </thead>
             </table>
@@ -100,6 +107,7 @@ function Exchange():React.ReactElement {
                             percent_price = {info.percent_price}
                             volume = {info.volume}
                             askbid = {info.askbid}
+                            loading = {loading}
                             />
                         )
                     }
