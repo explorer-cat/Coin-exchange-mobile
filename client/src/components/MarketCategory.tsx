@@ -7,6 +7,7 @@ import { tab } from '@testing-library/user-event/dist/tab';
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../store/modules/counter";
 import "swiper/css/pagination";
+import { Skeleton } from '@mui/material';
 
 
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
@@ -19,8 +20,6 @@ function MarketCategory() {
 
     const handleClickCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-
-
     };
 
     const category = ["시세", "이슈", "김프", "트렌드", "선물"]

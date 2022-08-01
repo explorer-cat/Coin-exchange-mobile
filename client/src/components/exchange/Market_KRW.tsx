@@ -5,6 +5,7 @@ import '../../stylesheets/palette.css'
 import React, {useEffect, useState, useRef} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../../store/modules/counter";
+import { Skeleton } from '@mui/material';
 
 interface ExchangeMarket_KRW_Type {
     // name : any,
@@ -28,8 +29,7 @@ function Market_KRW(props:any): React.ReactElement {
     let cryptoImg = `https://static.upbit.com/logos/${symbol.replace("KRW-","")}.png`
 
     const [priceBox, setPriceBox] = useState("")
-
-
+ 
 
     //가격 변동에 따른 박스 생성
     const handlePriceChange = () => {
@@ -49,8 +49,6 @@ function Market_KRW(props:any): React.ReactElement {
     },[price]);
 
 
-
-    console.log("volumevolume",volume)
 
         return ( <tr>
             <td className="icon">
