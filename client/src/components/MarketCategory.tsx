@@ -12,11 +12,10 @@ import { Skeleton } from '@mui/material';
 
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 interface MarketCategoryType {
-    viewType : Number,
-    name : String
+    loading : Boolean,
 }
 
-function MarketCategory() {
+function MarketCategory({loading}:MarketCategoryType) {
 
     const handleClickCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -32,13 +31,27 @@ function MarketCategory() {
         return(<span onClick={handleClickCategory} className=""><strong>{menu}</strong></span>)
     });
 
-  return (
-        <div className = "market-category-div">
-            {/*<div className = "swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">*/}
+
+    const loadingList = category.map((menu) => {
+        return(<span ><strong><Skeleton sx={{bgcolor: "rgba(255, 255, 255, 0.13)",width : "50px",height : "40px"}}/></strong></span>)
+    });
+
+
+    if(loading) {
+        return (
+            <div className = "market-category-div">
+                {loadingList}
+            </div>
+      );
+    } else {
+        return (
+            <div className = "market-category-div">
+                {/*<div className = "swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">*/}
                 {categoryList}
-            {/*</div>*/}
-        </div>
-  );
+                {/*</div>*/}
+            </div>
+      );
+    }
 }
 
 export default MarketCategory;

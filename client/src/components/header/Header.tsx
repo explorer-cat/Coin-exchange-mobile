@@ -7,17 +7,31 @@ import Search from '../exchange/Search'
 import React from 'react';
 import {useState} from 'react'
 import CoinNews from './coinNews';
-
-
+import { Skeleton } from '@mui/material';
+import bell_select from '../../images/bell_icon_select.png'
+import bell from '../../images/bell_icon.png'
 
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 interface HeaderProps {
-  navigationMenu : any
+    navigationMenu : any
+    loading : boolean
 }
 
-function Header({navigationMenu} : HeaderProps) {
+function Header({navigationMenu,loading} : HeaderProps) {
 
   const [navMenu , setNavMenu] = useState<boolean>(false)
+
+    const searchSkeleton = {
+      display : "flex",
+      justifyItems : "center",
+      justifyContent : "center"
+    }
+
+    const profileIcon = {
+      width : "24px",
+      height: "24px",
+  }
+
 
   /*옵션 버거 아이콘 클릭 이벤트*/
   const clickSettingBtn = (event:React.MouseEvent<HTMLDivElement>) => {
@@ -38,29 +52,65 @@ function Header({navigationMenu} : HeaderProps) {
   }
 
    const test = 1;
+  if(loading) {
+      return (    <header>
+          <div className = {navMenu ? "navBar_header-setting-btn active-3" : "navBar_header-setting-btn"} onClick={clickSettingBtn}>
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+          <div className = "fixed-header">
+              <div className ="navBar_header-content">
+                  <div className ="navBar_header-left">
+                      <Skeleton sx={{
+                          bgcolor: "rgba(255, 255, 255, 0.13)",
+                          width : "65px",
+                          height : "50px",
+                      }}/>
+                  </div>
+                  <div className = "navBar_header-right">
+                      <Skeleton sx={{
+                          bgcolor: "rgba(255, 255, 255, 0.13)",
+                          width : "65px",
+                          height : "50px",
+                      }}/>
+                  </div>
+              </div>
+              <div style = {searchSkeleton}>
+                  {/* 검색창 */}
+                  <Skeleton sx={{
+                      bgcolor: "rgba(255, 255, 255, 0.13)",
+                      width : "80%",
+                      height : "50px",
+                      display : "flex",
+                      justifyContent: 'center',
+                  }}/>
+              </div>
+          </div>
+      </header>)
+  }
   return (
     <header>
 
-      <div className = {navMenu ? "navBar_header-setting-btn active-3" : "navBar_header-setting-btn"} onClick={clickSettingBtn}>
+      {/* <div className = {navMenu ? "navBar_header-setting-btn active-3" : "navBar_header-setting-btn"} onClick={clickSettingBtn}> */}
+              {/* <span></span>
               <span></span>
-              <span></span>
-              <span></span>
-     </div>
+              <span></span> */}
+     {/* </div> */}
       <div className = "fixed-header">
         <div className ="navBar_header-content">
           <div className ="navBar_header-left">
-            <a>마켓</a>
+            <img className ="header_home" /> 
+            <p>Coin King</p>
           </div>
           <div className = "navBar_header-right">
-            <div className = "navBar_header-search-btn">
-              로그인
-            </div>
+            <img className = "profile_logo" />
+            <img onClick={clickSettingBtn} src = {bell} style={profileIcon}/>
           </div>
         </div>
-        <div className ="navBar_news-content">
-          {/* 검색창 */}
+        {/* <div className ="navBar_news-content">
           <CoinNews />
-        </div>
+        </div> */}
       </div>
     </header>
   );

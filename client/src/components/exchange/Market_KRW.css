@@ -20,7 +20,7 @@ tr > .name > p {
 .exchange-public-table > thead > tr  {
     width: 100%;
     padding: 4px 0px;
-    height: 45px;
+    height: 42px;
 }
 
 .exchange-public-table > thead > tr > th {
@@ -29,9 +29,24 @@ tr > .name > p {
     font-weight: 600;
 }
 
+
 .exchange-public-table > thead > tr > th:nth-child(1) {
-    width: 30px;
+    width: 50px;
 }
+
+
+
+.exchange-public-table > thead > tr > .title {
+    text-align: left;
+}
+
+.exchange-public-table > thead > tr > .price,
+.exchange-public-table > thead > tr > .percent,
+.exchange-public-table > thead > tr > .tradecost {
+    text-align: center;
+}
+
+
 
 .exchange-public-table > tbody > tr  {
     font-size: 14px;
@@ -42,6 +57,10 @@ tr > .name > p {
 }
 .exchange-public-table > tbody > tr > td {
     padding-top: 4px;
+}
+
+.exchange-public-table > tbody > tr > .price {
+    width : 879x !important;
 }
 .exchange-public-table > tbody > tr > .name > strong  {
     font-size: 14px;
@@ -83,9 +102,11 @@ tr > .name > p {
     align-items: center;
     height: 24px;
     justify-content: flex-end;
-    margin: 4px 0px 20px 5px;
-    padding-right: 5px;
+    margin: 4px 2px 20px 0px;
+    /* padding-right: 5px; */
     box-sizing: border-box;
+    width: fit-content;
+    float: right;
 }
 .exchange-public-table > tbody > tr > .percent > p {
     min-height: 17px;

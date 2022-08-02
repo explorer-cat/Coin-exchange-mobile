@@ -10,11 +10,13 @@ import { info } from 'console';
 import { isJSDocDeprecatedTag } from 'typescript';
 import { Skeleton } from '@mui/material';
 
+interface ExchangeType {
+    loading : Boolean
+}
 
-function Exchange():React.ReactElement {
+function Exchange({loading} : ExchangeType):React.ReactElement {
     const coinList : any = getUpbitCryptoList().listing;
-    //로딩 진행중
-    const [loading, setLoading] = useState(true)
+
 
     //원화 코인들 이름만 선별
     let KRW_market_listing :any = [];
@@ -63,23 +65,17 @@ function Exchange():React.ReactElement {
             connectWS("upbit",(result:any) => {
                 changeValue(result);
             })
-            
-    }
+        }
     ,[])
 
-    /* 스켈레톤 로딩 시작 */ 
-    useEffect(() => {
-        setTimeout(()=> {
-            setLoading(false)
-          },2000)
-    },[])
+
 
 
 
     return (
         <>
         <div className = "exchange-search">
-            <Search />
+            <Search loading = {loading}/>
         </div>
           <div className = "exchange-view">
             <table className = "exchange-public-table">

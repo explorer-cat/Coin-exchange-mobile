@@ -17,10 +17,11 @@ import { Pagination } from "swiper";
 
 interface ContentViewType {
     view : Number
+    loading : Boolean
 }
 
 
-function Content({view} : ContentViewType):React.ReactElement {
+function Content({view,loading} : ContentViewType):React.ReactElement {
 
 
 
@@ -28,7 +29,7 @@ function Content({view} : ContentViewType):React.ReactElement {
         <main>
             {/* 카테고리 */}
             <div className = "category-view">
-                <MarketCategory />
+                <MarketCategory loading = {loading}/>
             </div>
           <div className = "content-view">
               <Swiper
@@ -45,7 +46,7 @@ function Content({view} : ContentViewType):React.ReactElement {
                   modules={[Pagination]}
                   className="mySwiper"
               >
-                  <SwiperSlide><Exchange /></SwiperSlide>
+                  <SwiperSlide><Exchange loading = {loading} /></SwiperSlide>
                   <SwiperSlide><Issue /></SwiperSlide>
                   <SwiperSlide><Premium /></SwiperSlide>
                   <SwiperSlide><Premium /></SwiperSlide>

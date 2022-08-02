@@ -45,7 +45,7 @@ function Footer():React.ReactElement {
                 <button className = "test"><img src = {nft} style={footerIcon}/>NFT</button>
             </div>
             <div>
-                <button className = "test2"><img src = {setting} style={footerIcon}/>더보기</button>
+                <button className = "test2"><img src = {setting} style={footerIcon}/>내 정보</button>
             </div>
           </div>
       </footer>

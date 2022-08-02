@@ -15,8 +15,8 @@
 .navBar_header-content {
     display: flex;
     width: 100%;
-    max-height: 56px;
-    padding:8px;
+    max-height: 66px;
+    padding: 12px 24px;
     justify-content: space-between;
     box-sizing: border-box;
     align-items: center;
@@ -32,16 +32,25 @@
 }
 
 .navBar_header-content .navBar_header-left {
+    display: flex;
     box-sizing: border-box;
-    flex: 1 1;
+    justify-content: center;
+    align-items: center;
 }
 .navBar_header-left{
     color: var(--default-font-color);
+    font-size: 12px;
 }
+.navBar_header-left > p {
+    margin-left: 8px;
+}
+
 
 .navBar_header-content .navBar_header-right {
     display: flex;
-    min-width: 136px;
+    min-width: 75px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navBar_header-content .navBar_header-right div {
@@ -149,4 +158,19 @@
     justify-content: space-between;
     box-sizing: border-box;
     align-items: center;
+}
+
+.header_home {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    content: url("../../images/logo.png");
+}
+
+
+.profile_logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 14px;
+    content: url("../../images/my_profile_img.jpeg");
 }

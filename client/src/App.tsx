@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react';
+import React, {ComponentProps, useEffect} from 'react';
 import './App.css';
 import Header from './components/header/Header';
 import NavigationMenu from './components/navMenu/NavigationMenu'
@@ -12,12 +12,20 @@ import { useDispatch, useSelector } from "react-redux";
 
 function App() : React.ReactElement {
 
-  console.log("app.js render")
 
   //백그라운드 회색 처리 여부
   const [navigationMenu, setNavigationMenu] = useState<boolean>(false);
   //무슨 마켓을 보여줄거임 0:원화 1:BTC 2:보유 3:관심
   const [contentView, setContentView] = useState<Number>(0);
+  //로딩 진행중
+  const [loading, setLoading] = useState(true)
+
+  /* 스켈레톤 로딩 시작 */
+  useEffect(() => {
+    setTimeout(()=> {
+      setLoading(false)
+    },1000)
+  },[])
 
 
 
@@ -40,9 +48,9 @@ function App() : React.ReactElement {
         </div>
 
         {/* 헤더 */}
-        <Header navigationMenu = {getNavigationMenu}/>
+        <Header navigationMenu = {getNavigationMenu}  loading = {loading}/>
         {/* 메인 */}
-        <Content view = {count}/>
+        <Content view = {count} loading = {loading}/>
         {/* 푸터 */}
         <Footer />
 

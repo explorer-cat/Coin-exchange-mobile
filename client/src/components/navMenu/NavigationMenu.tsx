@@ -22,7 +22,7 @@ function NavigationMenu({view} : NavigationProps):React.ReactElement {
       console.log("컴포넌트가 사라졋다")
     }
   })
-  
+
 
     return (
       <div className= {view ? "navMenu_content-box navMenu-active" : "navMenu_content-box"}>

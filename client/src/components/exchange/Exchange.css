@@ -1,7 +1,7 @@
 .exchange-view {
     position: relative;
     top: 0;
-    height: calc(100% - 132px);
+    height: calc(100% - 83px);
     /* width: 393px; */
     width: 100%;
     margin: 0;
@@ -38,9 +38,9 @@
 .exchange-search{
     position: fixed;
     width: 100%;
-    height: 52px;
-    left:0;
-    top: 17px;
+    height: 43px;
+    left: 0;
+    top: 0px;
 }
 
 
