@@ -9,7 +9,7 @@
     border-top: 0;
     border-bottom: 0;
     box-sizing: border-box;
-    padding: 15px 0 calc(env(safe-area-inset-bottom) + 15px);
+    padding: 25px 0 calc(env(safe-area-inset-bottom) + 25px);
 }
 
 .navBar_header-content {
@@ -48,7 +48,7 @@
 
 .navBar_header-content .navBar_header-right {
     display: flex;
-    min-width: 75px;
+    min-width: 150px;
     justify-content: space-between;
     align-items: center;
 }

@@ -18,7 +18,8 @@ interface MarketCategoryType {
 function MarketCategory({loading}:MarketCategoryType) {
 
     const handleClickCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
+        // alert("dd..")
+        // event.preventDefault();
     };
 
     const category = ["시세", "이슈", "김프", "트렌드", "선물"]
@@ -26,9 +27,9 @@ function MarketCategory({loading}:MarketCategoryType) {
 
     const categoryList = category.map((menu) => {
         if(menu === "시세") { //className={categoryKey[tabCount]
-            return(<span onClick={handleClickCategory} className = ""><strong className = "select" >시세</strong></span>)
+            return(<span onClick={handleClickCategory}><strong className = "select" >시세</strong></span>)
         }
-        return(<span onClick={handleClickCategory} className=""><strong>{menu}</strong></span>)
+        return(<span onClick={handleClickCategory}><strong>{menu}</strong></span>)
     });
 
 

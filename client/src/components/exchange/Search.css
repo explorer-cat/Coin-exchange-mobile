@@ -8,32 +8,46 @@
 }
 
 .navBar_search-box {
-    display: flex;
-    align-items: center;
     padding: 8px;
     width: 100%;
     height: 34px;
-    background: var(--bg-color-box);
     position: relative;
     bottom: 0;
+    margin:8px 0px;
+}
+
+.publicInput {
+    display: flex;
+    align-items: center;
+    width: 250px;
+    height: 32px;
+    /* bottom: 4px; */
+    margin: 0px 8px;
+    position: relative;
+    bottom: 20px;
+    background-color: var(--search-background-color);
+    border-radius: 6px;
 }
 
 .search-icon {
     width: 15px;
     height: 15px;
+    margin-left:12px;
     background: url(https://cdn.upbit.com/upbit-web/images/bg_upbit.b201e1b.png) -110px 0 no-repeat;
     background-size: 320px;
 }
 
 .search-input-box{
     display: block;
-    font-size: 14px;
-    padding: 8px;
-    margin: 0;
+    font-size: 12px;
     box-sizing: border-box;
     background: transparent;
-    color: var(--table-cell-default-font-color)
+    color: var(--table-cell-default-font-color);
+    margin-left:8px;
+}
 
+.search-input-box:focus::placeholder {
+    color:transparent;
 }
 
 

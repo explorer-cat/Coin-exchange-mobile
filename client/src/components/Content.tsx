@@ -40,7 +40,12 @@ function Content({view,loading} : ContentViewType):React.ReactElement {
                   pagination={{
                       clickable: true,
                       renderBullet: function (index, className) {
-                        return '<span class="' + className + ' 2323"><strong>시세</strong></span>';
+                        console.log("index",index)
+                        if(index === 3) {
+                            return '<span class="' + className + ' 2323"><strong>트렌드</strong></span>';
+                        } else {
+                            return '<span class="' + className + ' 2323"><strong>시세</strong></span>';
+                        }
                       },
                   }}
                   modules={[Pagination]}

@@ -19,10 +19,10 @@ function Search({loading}:SearchType) {
   } else {
     return (
       <span className = "navBar_search-box">
-        <div className = "search-icon"></div>
-        <input className = "search-input-box" placeholder='코인명/심볼검색'>
-
-        </input>
+        <div className = "publicInput">
+          <div className = "search-icon"></div>
+          <input className = "search-input-box" placeholder='코인명/심볼검색'/>
+        </div>
       </span>
   );
   }

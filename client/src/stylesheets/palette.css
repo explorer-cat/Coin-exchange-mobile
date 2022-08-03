@@ -1,19 +1,48 @@
 
 html[data-theme='dark'] {
-    --bg-color: black;
-    --color: white;
+  --bg-color: #191a1c;
+  --bg-color-box: #15181a; 
+  /* 1b1b1e */
+  --table-cell-default-font-color: #b8bfc4;
+  --table-thead-background : #15181a;
+  --light-color-box :#3a3a41;
+  --default-font-color: #ffffff;
+  --default-select-font-color: #1c2028;
+  --signature-color: #59a900;
+  --1gray-color: #edeef0;
+  --up-color: rgb(255, 108, 71);
+  --down-color: rgb(70, 124, 241);
+  --border-color: #2e2e32;
+  --footer-bg-color : #1f2127;
+  --search-background-color : #1f2127;
+  --category-btn-background : #1f2127;
+  
+  
   }
 
 html[data-theme='light'] {
-    --bg-color: white;
-    --color: rgb(7, 6, 6);
+  --bg-color: #191a1c;
+  --bg-color-box: #ffffff; 
+  --table-cell-default-font-color: #9E9E9E;
+  --table-thead-background : #fafafa;
+  --light-color-box :#3a3a41;
+  --default-font-color: #1c2028;
+  --default-select-font-color: #1c2028;
+  --signature-color: #59a900;
+  --1gray-color: #edeef0;
+  --up-color: rgb(255, 108, 71);
+  --down-color: rgb(70, 124, 241);
+  --border-color: #eee;
+  --footer-bg-color : #fafafa;
+  --search-background-color : #fafafa;
+  --category-btn-background : #f8f8f9;
+  
   }
 /* #A9ACAF sel*/ 
 /* #4E4F4F no sel*/
 :root{
-    --bg-color: #191a1c;
+    /* --bg-color: #191a1c;
     --bg-color-box: #15181a; 
-    /* 1b1b1e */
     --table-cell-default-font-color: #b8bfc4;
     --light-color-box :#3a3a41;
     --default-font-color: #ffffff;
@@ -23,6 +52,5 @@ html[data-theme='light'] {
     --up-color: rgb(255, 108, 71);
     --down-color: rgb(70, 124, 241);
     --border-color: #2e2e32;
-    --footer-bg-color : #1f2127;
-
+    --footer-bg-color : #1f2127; */
 }

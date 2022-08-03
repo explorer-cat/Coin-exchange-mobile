@@ -4,6 +4,7 @@ import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
 import '../../stylesheets/public.css'
 import Search from '../exchange/Search'
+import ThemeToggle from './ThemeToggle'
 import React from 'react';
 import {useState} from 'react'
 import CoinNews from './coinNews';
@@ -104,6 +105,7 @@ function Header({navigationMenu,loading} : HeaderProps) {
             <p>Coin King</p>
           </div>
           <div className = "navBar_header-right">
+            <ThemeToggle />
             <img className = "profile_logo" />
             <img onClick={clickSettingBtn} src = {bell} style={profileIcon}/>
           </div>

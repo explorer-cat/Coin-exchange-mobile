@@ -20,8 +20,17 @@ function App() : React.ReactElement {
   //로딩 진행중
   const [loading, setLoading] = useState(true)
 
+  
   /* 스켈레톤 로딩 시작 */
   useEffect(() => {
+    let theme = localStorage.getItem("theme");
+    if(!theme) {
+      localStorage.setItem("theme","light");
+      document.querySelector("html")?.setAttribute("data-theme","light")
+    } else {
+      document.querySelector("html")?.setAttribute("data-theme",theme)
+    }
+    
     setTimeout(()=> {
       setLoading(false)
     },1000)
