@@ -21,7 +21,7 @@ html[data-theme='dark'] {
   }
 
 html[data-theme='light'] {
-  --bg-color: #191a1c;
+  --bg-color: #eee;
   --bg-color-box: #ffffff; 
   --table-cell-default-font-color: #9E9E9E;
   --table-thead-background : #fafafa;
