@@ -13,9 +13,9 @@ interface TradeViewType {
 
 
 //pair : ExchangeMarket_KRW_Type
-function TradeView({component}:TradeViewType): React.ReactElement {
+function TradeView(): React.ReactElement {
     const loadingBg : String = "rgba(255, 255, 255, 0.13)";
-    return (<div>dfdf</div>)
+    return (<div>차트와 등등</div>)
 }
 
 
