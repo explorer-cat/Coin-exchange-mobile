@@ -6,9 +6,9 @@ import connectWS from "../../dataHandler/socket";
 import Market_KRW from "./Market_KRW";
 import getUpbitCryptoList from "../../settings/upbitCryptoSetting";
 import Search from "./Search"
-import { info } from 'console';
-import { isJSDocDeprecatedTag } from 'typescript';
 import { Skeleton } from '@mui/material';
+import TradeView from './TradeView';
+import {BrowserRouter, Route, Routes, Navigate, useNavigate} from "react-router-dom";
 
 interface ExchangeType {
     loading : Boolean
@@ -16,6 +16,7 @@ interface ExchangeType {
 
 function Exchange({loading} : ExchangeType):React.ReactElement {
     const coinList : any = getUpbitCryptoList().listing;
+    const navigate = useNavigate();
 
 
     //원화 코인들 이름만 선별
@@ -25,6 +26,7 @@ function Exchange({loading} : ExchangeType):React.ReactElement {
         // console.log("code.market.replace(/\\'KRW'/g,\"\"),",code.market.replace(/\'KRW'/g,""))
         if(code.market.indexOf("KRW-") !== -1) {
             KRW_market_listing.push({
+
                 key : code.market,
                 name : code.korean_name,
                 symbol : code.market,
@@ -33,7 +35,8 @@ function Exchange({loading} : ExchangeType):React.ReactElement {
                 percent_price : 0,
                 volume : 0,
                 premium : 0,
-                askbid : ""
+                askbid : "",
+                path : "/"+code,
             });
         }
     })
@@ -67,6 +70,8 @@ function Exchange({loading} : ExchangeType):React.ReactElement {
             })
         }
     ,[])
+
+    
 
 
 
@@ -104,8 +109,8 @@ function Exchange({loading} : ExchangeType):React.ReactElement {
                             volume = {info.volume}
                             askbid = {info.askbid}
                             loading = {loading}
-                            />
-                        )
+                            />)
+                        
                     }
                     </tbody>
                 </table>
@@ -116,5 +121,14 @@ function Exchange({loading} : ExchangeType):React.ReactElement {
     );
 }
 
+
+/**
+ *                         <BrowserRouter>
+                                                <Routes>
+                        <Route path = "/main" element = {<Market_KRW />}/>
+                        </Routes>
+                        </BrowserRouter>
+                        <Market_KRW 
+ */
 export default Exchange;
 

@@ -4,8 +4,6 @@ import Search from './exchange/Search'
 import React from 'react';
 import {useState} from 'react'
 import { tab } from '@testing-library/user-event/dist/tab';
-import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "../store/modules/counter";
 import "swiper/css/pagination";
 import { Skeleton } from '@mui/material';
 
@@ -22,7 +20,7 @@ function MarketCategory({loading}:MarketCategoryType) {
         // event.preventDefault();
     };
 
-    const category = ["시세", "이슈", "김프", "트렌드", "선물"]
+    const category = ["국내", "해외", "거래소", "추천"]
     const categoryKey = ["exchange", "issue", "premium", "trend", "ddd"]
 
     const categoryList = category.map((menu) => {

@@ -3,10 +3,9 @@ import './Market_KRW.css'
 import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
 import React, {useEffect, useState, useRef} from 'react';
-import { useDispatch, useSelector } from "react-redux"
-import { decrement, increment } from "../../store/modules/counter";
+import { Link, Route, Routes, BrowserRouter,useNavigate} from 'react-router-dom'
 import { Skeleton } from '@mui/material';
-
+import TradeView from './TradeView'
 
 
 interface Market_KRW {
@@ -32,6 +31,7 @@ function Market_KRW(props:any): React.ReactElement {
     const loadingBg : String = "rgba(255, 255, 255, 0.13)";
 
     const [priceBox, setPriceBox] = useState("")
+    const navigate = useNavigate();
 
 
     //가격 변동에 따른 박스 생성
@@ -46,13 +46,21 @@ function Market_KRW(props:any): React.ReactElement {
       },1000)
     }
 
+    //tradeView 페이지로 이동
+    const handleClickTradeView = () => {
+        alert("tradeView")
+        
+    }
+
     //price가 변경될때마다 실행
     useEffect(() => {
       handlePriceChange();
     },[price]);
 
     if(props.loading) {
-        return ( <tr>
+        return ( 
+        
+        <tr>
             <td className="icon"><Skeleton variant = "circular" sx={{
                 bgcolor: "rgba(255, 255, 255, 0.13)",
                 width : "24px",
@@ -100,7 +108,8 @@ function Market_KRW(props:any): React.ReactElement {
             </td>
         </tr>)
     } else {
-        return ( <tr>
+        return (
+        <tr onClick={ () => {navigate("/test")}}>
             <td className="icon"><img src = {cryptoImg}></img></td>
             <td className="name">
                 <strong>{props.name}</strong>
@@ -128,7 +137,8 @@ function Market_KRW(props:any): React.ReactElement {
             <td className="volume">
                 <strong>{volume}</strong><p>백만</p>
             </td>
-        </tr>)
+        </tr>
+        )
     }
 }
 

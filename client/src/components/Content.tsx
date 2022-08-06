@@ -16,12 +16,11 @@ import { Pagination } from "swiper";
 
 
 interface ContentViewType {
-    view : Number
     loading : Boolean
 }
 
 
-function Content({view,loading} : ContentViewType):React.ReactElement {
+function Content({loading} : ContentViewType):React.ReactElement {
 
 
 
@@ -36,15 +35,15 @@ function Content({view,loading} : ContentViewType):React.ReactElement {
                   // slidesPerView={1}
                   // spaceBetween={30}
                   touchRatio = {0}
-                  speed = {100}
+                  speed = {0}
                   pagination={{
                       clickable: true,
                       renderBullet: function (index, className) {
                         console.log("index",index)
                         if(index === 3) {
-                            return '<span class="' + className + ' 2323"><strong>트렌드</strong></span>';
+                            return '<span class="' + className + '"><strong>트렌드</strong></span>';
                         } else {
-                            return '<span class="' + className + ' 2323"><strong>시세</strong></span>';
+                            return '<span class="' + className + '"><strong>시세</strong></span>';
                         }
                       },
                   }}
