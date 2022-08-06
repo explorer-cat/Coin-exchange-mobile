@@ -64,7 +64,6 @@ function App() : React.ReactElement {
           
           {/* 푸터 */}
           <Footer />
-
         </div>
       </div>
   );

@@ -18,8 +18,12 @@ const logoLoading = {
 
 //pair : ExchangeMarket_KRW_Type
 function Market_KRW(props:any): React.ReactElement {
+    
+    const navigate = useNavigate();
+    const [priceBox, setPriceBox] = useState("")
+    const loadingBg : String = "rgba(255, 255, 255, 0.13)";
 
-
+    
     let symbol = props.symbol;
     let price = props.price.toLocaleString()//.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     let percent = props.percent;
@@ -28,10 +32,8 @@ function Market_KRW(props:any): React.ReactElement {
     let askbid = props.askbid;
     let cryptoImg = `https://static.upbit.com/logos/${symbol.replace("KRW-","")}.png`
     //loading Bg color;
-    const loadingBg : String = "rgba(255, 255, 255, 0.13)";
 
-    const [priceBox, setPriceBox] = useState("")
-    const navigate = useNavigate();
+
 
 
     //가격 변동에 따른 박스 생성
@@ -46,11 +48,6 @@ function Market_KRW(props:any): React.ReactElement {
       },1000)
     }
 
-    //tradeView 페이지로 이동
-    const handleClickTradeView = () => {
-        alert("tradeView")
-        
-    }
 
     //price가 변경될때마다 실행
     useEffect(() => {
@@ -59,7 +56,6 @@ function Market_KRW(props:any): React.ReactElement {
 
     if(props.loading) {
         return ( 
-        
         <tr>
             <td className="icon"><Skeleton variant = "circular" sx={{
                 bgcolor: "rgba(255, 255, 255, 0.13)",
@@ -109,7 +105,7 @@ function Market_KRW(props:any): React.ReactElement {
         </tr>)
     } else {
         return (
-        <tr onClick={ () => {navigate("/test")}}>
+        <tr onClick = {() => navigate("/market?"+symbol)}>
             <td className="icon"><img src = {cryptoImg}></img></td>
             <td className="name">
                 <strong>{props.name}</strong>

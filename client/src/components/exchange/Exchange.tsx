@@ -8,7 +8,7 @@ import getUpbitCryptoList from "../../settings/upbitCryptoSetting";
 import Search from "./Search"
 import { Skeleton } from '@mui/material';
 import TradeView from './TradeView';
-import {BrowserRouter, Route, Routes, Navigate, useNavigate} from "react-router-dom";
+import {BrowserRouter, Route, Routes, Navigate, Link} from "react-router-dom";
 
 interface ExchangeType {
     loading : Boolean
@@ -16,8 +16,6 @@ interface ExchangeType {
 
 function Exchange({loading} : ExchangeType):React.ReactElement {
     const coinList : any = getUpbitCryptoList().listing;
-    const navigate = useNavigate();
-
 
     //원화 코인들 이름만 선별
     let KRW_market_listing :any = [];
@@ -71,7 +69,6 @@ function Exchange({loading} : ExchangeType):React.ReactElement {
         }
     ,[])
 
-    
 
 
 
@@ -100,18 +97,22 @@ function Exchange({loading} : ExchangeType):React.ReactElement {
                     {
                         coinItem.map((info:any) =>
                         <Market_KRW
-                            key = {info.key}
-                            symbol = {info.symbol}
-                            name = {info.name}
-                            price = {info.price}
-                            percent = {info.percent}
-                            percent_price = {info.percent_price}
-                            volume = {info.volume}
-                            askbid = {info.askbid}
-                            loading = {loading}
-                            />)
+                                key = {info.key}
+                                symbol = {info.symbol}
+                                name = {info.name}
+                                price = {info.price}
+                                percent = {info.percent}
+                                percent_price = {info.percent_price}
+                                volume = {info.volume}
+                                askbid = {info.askbid}
+                                loading = {loading}
+                                
+                                />
+
+                            )
                         
                     }
+
                     </tbody>
                 </table>
               </div>
