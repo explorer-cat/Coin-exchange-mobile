@@ -6,8 +6,12 @@ import Content from './components/Content'
 import Footer from './components/footer/Footer'
 import {useState} from 'react'
 import './stylesheets/public.css';
-import { useDispatch, useSelector } from "react-redux";
-
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 
 function App() : React.ReactElement {
@@ -43,28 +47,26 @@ function App() : React.ReactElement {
     setNavigationMenu(active)
   }
 
-  const count = useSelector((state:any) => state.counter.number);
-
-
   return (
-    <div className="mobile-view">
-     {/*네비게이션 메뉴 미리 생성 해놓기*/}
-     <NavigationMenu view = {navigationMenu}/>
-      <div className = "wrap-container menu-active">
-        {/* 네비게이션 메뉴가 실행되면 뒷배경 회색으로 */}
-        <div className = {
-          navigationMenu ? "bg-gray-active" : "bg-gray"}>
+      <div className="mobile-view">
+      {/*네비게이션 메뉴 미리 생성 해놓기*/}
+      <NavigationMenu view = {navigationMenu}/>
+        <div className = "wrap-container menu-active">
+          {/* 네비게이션 메뉴가 실행되면 뒷배경 회색으로 */}
+          <div className = {
+            navigationMenu ? "bg-gray-active" : "bg-gray"}>
+          </div>
+
+          {/* 헤더 */}
+          <Header navigationMenu = {getNavigationMenu}  loading = {loading}/>
+          {/* 메인 */}
+          <Content loading = {loading}/>
+          
+          {/* 푸터 */}
+          <Footer />
+
         </div>
-
-        {/* 헤더 */}
-        <Header navigationMenu = {getNavigationMenu}  loading = {loading}/>
-        {/* 메인 */}
-        <Content view = {count} loading = {loading}/>
-        {/* 푸터 */}
-        <Footer />
-
       </div>
-    </div>
   );
 
 }
