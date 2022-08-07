@@ -19,8 +19,6 @@ function App() : React.ReactElement {
 
   //백그라운드 회색 처리 여부
   const [navigationMenu, setNavigationMenu] = useState<boolean>(false);
-  //무슨 마켓을 보여줄거임 0:원화 1:BTC 2:보유 3:관심
-  const [contentView, setContentView] = useState<Number>(0);
   //로딩 진행중
   const [loading, setLoading] = useState(true)
 

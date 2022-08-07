@@ -20,7 +20,7 @@ function MarketCategory({loading}:MarketCategoryType) {
         // event.preventDefault();
     };
 
-    const category = ["국내", "해외", "거래소", "추천"]
+    const category = ["시세", "즐겨찾기", "프리미엄"]
     const categoryKey = ["exchange", "issue", "premium", "trend", "ddd"]
 
     const categoryList = category.map((menu) => {

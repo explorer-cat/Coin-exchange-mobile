@@ -15,7 +15,7 @@ root.render(
   <BrowserRouter>
   <Routes>
   <Route path="/" element={<App />} />
-  <Route path="/market" element={<TradeView />} />
+  <Route path="/trade" element={<TradeView />} />
   </Routes>
   </BrowserRouter>
 );
