@@ -2,7 +2,7 @@ import './Exchange.css';
 import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
 import React, {useEffect, useState, useCallback} from 'react';
-import connectWS from "../../dataHandler/socket";
+import {connectWS} from "../../dataHandler/socket";
 import Market_KRW from "./Market_KRW";
 import getUpbitCryptoList from "../../settings/upbitCryptoSetting";
 import Search from "./Search"

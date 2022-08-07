@@ -14,8 +14,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
   <Routes>
-  <Route path="/" element={<App />} />
-  <Route path="/trade" element={<TradeView />} />
+  <Route path="/react" element={<App />} />
+  <Route path="/react/trade" element={<TradeView />} />
   </Routes>
   </BrowserRouter>
 );

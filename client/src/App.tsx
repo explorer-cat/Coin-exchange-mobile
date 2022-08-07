@@ -20,7 +20,7 @@ function App() : React.ReactElement {
   //백그라운드 회색 처리 여부
   const [navigationMenu, setNavigationMenu] = useState<boolean>(false);
   //로딩 진행중
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   
   /* 스켈레톤 로딩 시작 */
@@ -35,7 +35,7 @@ function App() : React.ReactElement {
     
     setTimeout(()=> {
       setLoading(false)
-    },1000)
+    },0)
   },[])
 
 

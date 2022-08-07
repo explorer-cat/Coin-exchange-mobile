@@ -6,18 +6,15 @@ let socket: any; // 소켓
 function connectWS(connectionType:string, callback:any) {
     if(socket != undefined){
         socket.close();
+        closeWS();
     }
 
     let listingData: Array<string> = [];
 
-    //소켓을 연결할 api type coinCodes를 불러옵니다.
-    console.log("connectionType",connectionType)
 
     if(connectionType === "upbit") {
         listingData = getUpbitCryptoList().listing;
-    } else if(connectionType === "bithumb") {
-        listingData = []
-    }
+    } 
 
     let codes :any = [];
 
@@ -67,6 +64,7 @@ function closeWS() {
 
 // 웹소켓 요청
 function filterRequest(filter:any) {
+    console.log("소켓 요청!!", socket)
     if(socket == undefined){
         alert('no connect exists');
         return;
@@ -74,4 +72,4 @@ function filterRequest(filter:any) {
     socket.send(filter);
 }
 
-export default connectWS
+export {connectWS,closeWS};
