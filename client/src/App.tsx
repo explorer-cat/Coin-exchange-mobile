@@ -46,6 +46,7 @@ function App() : React.ReactElement {
   }
 
   return (
+    
       <div className="mobile-view">
       {/*네비게이션 메뉴 미리 생성 해놓기*/}
       <NavigationMenu view = {navigationMenu}/>

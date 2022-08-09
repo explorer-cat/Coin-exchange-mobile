@@ -13,10 +13,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <BrowserRouter>
-  <Routes>
-  <Route path="/react" element={<App />} />
-  <Route path="/react/trade" element={<TradeView />} />
-  </Routes>
+    <Routes>
+      <Route path="/react" element={<App />} />
+      <Route path="/react/trade" element={<TradeView />} />
+    </Routes>
   </BrowserRouter>
 );
 
