@@ -1,7 +1,7 @@
 import './Exchange.css';
 import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState, useCallback, useMemo} from 'react';
 import {connectWS} from "../../dataHandler/socket";
 import Market_KRW from "./Market_KRW";
 import getUpbitCryptoList from "../../settings/upbitCryptoSetting";
@@ -14,34 +14,62 @@ interface ExchangeType {
     loading : Boolean
 }
 
+
 function Exchange({loading} : ExchangeType):React.ReactElement {
     const coinList : any = getUpbitCryptoList().listing;
 
     //원화 코인들 이름만 선별
     let KRW_market_listing :any = [];
 
-    coinList.map((code:any)=> {
-        // console.log("code.market.replace(/\\'KRW'/g,\"\"),",code.market.replace(/\'KRW'/g,""))
-        if(code.market.indexOf("KRW-") !== -1) {
-            KRW_market_listing.push({
 
-                key : code.market,
-                name : code.korean_name,
-                symbol : code.market,
-                price : 0,
-                percent : 0,
-                percent_price : 0,
-                volume : 0,
-                premium : 0,
-                askbid : "",
-                path : "/"+code,
-            });
-        }
-    })
+    /* 첫 컴포넌트 로드때 코인정보를 한번만 불러옵니다. */
+    useEffect(() => {
+        coinList.map((code:any)=> {
+            // console.log("code.market.replace(/\\'KRW'/g,\"\"),",code.market.replace(/\'KRW'/g,""))
+            if(code.market.indexOf("KRW-") !== -1) {
+                KRW_market_listing.push({
+    
+                    key : code.market,
+                    name : code.korean_name,
+                    symbol : code.market,
+                    price : 0,
+                    percent : 0,
+                    percent_price : 0,
+                    volume : 0,
+                    premium : 0,
+                    askbid : "",
+                    path : "/"+code,
+                });
+            }
+        })
+    },[])
 
     const [coinItem, setCoinItem] = useState(KRW_market_listing);
 
+
+
     const changeValue = (value:any) => {
+        if(value.code.indexOf('KRW-') !== -1) {
+            const findIndex = coinItem.findIndex((temp:any) => value.code === temp.symbol);
+            let copyArray = [...coinItem];
+            if(findIndex != -1) {
+                let target = copyArray[findIndex];
+                target['price'] = value.trade_price;
+                target['percent'] = ((value.trade_price - value.opening_price) / value.opening_price * 100).toFixed(2)
+                target['percent_price'] = value.trade_price - value.opening_price
+                target['volume'] = (value.acc_trade_price_24h / 1000000).toFixed(0);
+                target['askbid'] = value.ask_bid;
+                copyArray[findIndex] = target;
+                console.log("copyArray",copyArray)
+                setCoinItem(copyArray)
+            }
+        }
+    }
+
+
+
+    const add = useCallback((value:any) => {
+        console.log(value)
         if(value.code.indexOf('KRW-') !== -1) {
             const findIndex = coinItem.findIndex((temp:any) => value.code === temp.symbol);
             let copyArray = [...coinItem];
@@ -56,15 +84,19 @@ function Exchange({loading} : ExchangeType):React.ReactElement {
                 setCoinItem(copyArray)
             }
         }
-    }
+    },[])
+
+
+
+    // const test = useMemo((result:any) => changeValue(result),[result] )
 
 
 
 
-    /*컴포넌트 렌더링 후 부터 실행*/
+
     useEffect(() => {
             connectWS("upbit",(result:any) => {
-                changeValue(result);
+                add(result)
             })
         }
     ,[])

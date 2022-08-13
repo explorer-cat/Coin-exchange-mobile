@@ -18,7 +18,6 @@ const logoLoading = {
 
 //pair : ExchangeMarket_KRW_Type
 function Market_KRW(props:any): React.ReactElement {
-    
     const navigate = useNavigate();
     const [priceBox, setPriceBox] = useState("")
     const loadingBg : String = "rgba(255, 255, 255, 0.13)";
@@ -45,7 +44,7 @@ function Market_KRW(props:any): React.ReactElement {
       }
       setTimeout(()=> {
         setPriceBox("")
-      },1000)
+      },2000)
     }
 
 
