@@ -2,7 +2,7 @@ import './Exchange.css';
 import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
 import React, {useEffect, useState, useCallback} from 'react';
-import {connectWS,getSocket,requestData} from "../../dataHandler/socket";
+import {connectWS,getSocket} from "../../dataHandler/socket";
 import Market_KRW from "./Market_KRW";
 import getUpbitCryptoList from "../../settings/upbitCryptoSetting";
 import Search from "./Search"
@@ -108,10 +108,7 @@ function Exchange({loading,socket}: ExchangeType): React.ReactElement {
     }, [])
     //
     useEffect(() => {
-        console.log("도착한 소켓 ", socket)
-            requestData(socket,(result:any) => {
-                changeValue(result)
-            })
+        // console.log("도착한 소켓 ", socket)
         // if (getSocket()) {
         //     //처음 로딩할때 소켓정보를 전역에 저장했다가 계속 사용ㄹ하도록 하시오
         //     // requestData(/*socket*/,(result:any) => {

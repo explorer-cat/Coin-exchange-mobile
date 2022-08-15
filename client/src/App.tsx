@@ -8,7 +8,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import {connectWS, requestData} from "./dataHandler/socket";
+import {connectWS} from "./dataHandler/socket";
 import MainPage from "./components/exchange/MainPage";
 import TradeView from "./components/exchange/TradeView";
 
@@ -21,7 +21,7 @@ function App() : React.ReactElement {
   //백그라운드 회색 처리 여부
   const [navigationMenu, setNavigationMenu] = useState<boolean>(false);
   //로딩 진행중
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [socket, setSocket] = useState(null)
 
   /* 스켈레톤 로딩 시작 */
@@ -38,29 +38,18 @@ function App() : React.ReactElement {
     // },0)
   }, [])
 
-  // useEffect(() => {
+  useEffect(() => {
     connectWS("upbit", (result: any) => {
-      console.log("connected")
       setSocket(result)
-      return (
-          <BrowserRouter>
-            <Routes>
-              <Route path="/react" element={<MainPage loading={loading} socket={socket}/>}/>
-              <Route path="/react/trade" element={<TradeView loading={loading} socket={socket}/>}/>
-            </Routes>
-          </BrowserRouter>
-      )
     })
-  // }, [])
+  }, [])
 
-  // if (!socket) {
-  //   return <div>Loading...</div>;
-  // } else {
+
   return (
       <BrowserRouter>
         <Routes>
-          <Route path="/react" element={<MainPage loading={loading} socket={socket}/>}/>
-          <Route path="/react/trade" element={<TradeView loading={loading} socket={socket}/>}/>
+          <Route path="/react" element={<MainPage loading={loading} socket = {socket}/>}/>
+          <Route path="/react/trade" element={<TradeView loading={loading} socket = {socket}/>}/>
         </Routes>
       </BrowserRouter>
   )

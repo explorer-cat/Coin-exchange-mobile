@@ -106,7 +106,7 @@ function Market_KRW(props:any): React.ReactElement {
         </tr>)
     } else {
         return (
-        <tr>
+        <tr onClick = {() => navigate("/react/trade")}>
             <td className="icon"><img src = {cryptoImg}></img></td>
             <td className="name">
                 <strong>{props.name}</strong>

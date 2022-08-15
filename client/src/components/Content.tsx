@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Pagination } from "swiper";
-import {connectWS, requestData} from "../dataHandler/socket";
+
 
 
 interface ContentViewType {

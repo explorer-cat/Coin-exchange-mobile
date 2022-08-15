@@ -17,9 +17,9 @@ function NavigationMenu({view} : NavigationProps):React.ReactElement {
   }
 
   useEffect(() => {
-    console.log("NavigationMenu 생성");
+
     return () => {
-      console.log("컴포넌트가 사라졋다")
+
     }
   })
 

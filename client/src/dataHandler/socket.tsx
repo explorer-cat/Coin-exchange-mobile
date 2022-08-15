@@ -32,25 +32,14 @@ function connectWS(connectionType:string, callback:any) {
         filterRequest(`[
             {"ticket":"UNIQUE_TICKET"},
 			{"type":"ticker","codes":${JSON.stringify(codes)}}]`)
-        if(socket) {
-           return callback(socket)
-        }
     }
-    socket.onclose 	= function(e:any){
-        socket = undefined;
-    }
-}
-
-
-function requestData(socket:any, callback:any) {
-    console.log("request", socket)
-    socket.onmessage= async function(e:any){
+    socket.onmessage = async function (e: any) {
         let enc = new TextDecoder("utf-8");
         let arr = new Uint8Array(e.data);
         let str_d = enc.decode(arr);
         let response = JSON.parse(str_d);
 
-        switch(response.type) {
+        switch (response.type) {
             case 'ticker':
                 return callback(response)
                 break;
@@ -59,8 +48,13 @@ function requestData(socket:any, callback:any) {
                 //            console.log("res", response)
                 break;
         }
+    };
+    socket.onclose 	= function(e:any){
+        socket = undefined;
     }
 }
+
+
 
 // 웹소켓 연결 해제
 function closeWS() {
@@ -88,4 +82,4 @@ function getSocket() {
     }
 }
 
-export {connectWS,closeWS,getSocket,requestData};
+export {connectWS,closeWS,getSocket};
