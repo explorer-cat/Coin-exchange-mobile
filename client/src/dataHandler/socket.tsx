@@ -4,6 +4,7 @@ let socket: any; // 소켓
 
 // 웹소켓 연결
 function connectWS(connectionType:string, callback:any) {
+
     if(socket != undefined){
         socket.close();
         closeWS();
@@ -30,11 +31,19 @@ function connectWS(connectionType:string, callback:any) {
         // 		    {"type":"trade","codes":["KRW-BTC","KRW-ETH","KRW-XRP"]}
         filterRequest(`[
             {"ticket":"UNIQUE_TICKET"},
-			{"type":"ticker","codes":${JSON.stringify(codes)}}]`);
+			{"type":"ticker","codes":${JSON.stringify(codes)}}]`)
+        if(socket) {
+           return callback(socket)
+        }
     }
     socket.onclose 	= function(e:any){
         socket = undefined;
     }
+}
+
+
+function requestData(socket:any, callback:any) {
+    console.log("request", socket)
     socket.onmessage= async function(e:any){
         let enc = new TextDecoder("utf-8");
         let arr = new Uint8Array(e.data);
@@ -43,13 +52,12 @@ function connectWS(connectionType:string, callback:any) {
 
         switch(response.type) {
             case 'ticker':
-                 //console.log("res",response)
                 return callback(response)
                 break;
             case 'trade' :
                 return callback(response)
-    //            console.log("res", response)
-            break;
+                //            console.log("res", response)
+                break;
         }
     }
 }
@@ -72,4 +80,12 @@ function filterRequest(filter:any) {
     socket.send(filter);
 }
 
-export {connectWS,closeWS};
+function getSocket() {
+    if(socket) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+export {connectWS,closeWS,getSocket,requestData};

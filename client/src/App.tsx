@@ -12,6 +12,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import {connectWS} from "./dataHandler/socket";
 
 
 function App() : React.ReactElement {
@@ -22,7 +23,11 @@ function App() : React.ReactElement {
   //로딩 진행중
   const [loading, setLoading] = useState(false)
 
-  
+
+
+
+
+
   /* 스켈레톤 로딩 시작 */
   useEffect(() => {
     let theme = localStorage.getItem("theme");
@@ -32,6 +37,8 @@ function App() : React.ReactElement {
     } else {
       document.querySelector("html")?.setAttribute("data-theme",theme)
     }
+
+
     
     setTimeout(()=> {
       setLoading(false)

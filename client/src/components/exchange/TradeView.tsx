@@ -22,7 +22,6 @@ function TradeView(): React.ReactElement {
 
 
     //뒤로가기 버튼
-
     const handleGoBack = () => {
         navigate(-1)
     }
