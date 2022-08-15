@@ -9,14 +9,15 @@ import {connectWS , closeWS} from "../../dataHandler/socket";
 import { Link, Route, Routes, BrowserRouter,useNavigate} from 'react-router-dom'
 
 interface TradeViewType {
-    component : any,
+    socket : any,
+    loading:boolean,
 }
 
 
 
 
 //pair : ExchangeMarket_KRW_Type
-function TradeView(): React.ReactElement {
+function TradeView({socket,loading}:TradeViewType): React.ReactElement {
     const loadingBg : String = "rgba(255, 255, 255, 0.13)";
     const navigate = useNavigate();
 
@@ -26,9 +27,10 @@ function TradeView(): React.ReactElement {
         navigate(-1)
     }
 
-    // useEffect(() => {
-    //     closeWS();
-    //   },[]);
+    useEffect(() => {
+        console.log("tadeview socket", socket)
+        // closeWS();
+      },[]);
 
 
     return (

@@ -10,11 +10,12 @@ import {Skeleton} from '@mui/material';
 
 
 interface ExchangeType {
-    loading: Boolean
+    loading: Boolean,
+    socket : any
 }
 
 
-function Exchange({loading}: ExchangeType): React.ReactElement {
+function Exchange({loading,socket}: ExchangeType): React.ReactElement {
     const coinList: any = getUpbitCryptoList().listing;
 
     //원화 코인들 이름만 선별
@@ -105,25 +106,28 @@ function Exchange({loading}: ExchangeType): React.ReactElement {
         })
         // console.log("changeValuek",KRW_market_listing)
     }, [])
-
+    //
     useEffect(() => {
-        console.log("useEffect")
-        if (getSocket()) {
-            //처음 로딩할때 소켓정보를 전역에 저장했다가 계속 사용ㄹ하도록 하시오
-            // requestData(/*socket*/,(result:any) => {
-            //     changeValue(result)
-            // })
-        } else {
-            connectWS("upbit", (socket: any) => {
-                //소켓에 연결됐다면
-               if(socket) {
-                   requestData(socket,(result:any) => {
-                       changeValue(result)
-                   })
-               }
+        console.log("도착한 소켓 ", socket)
+            requestData(socket,(result:any) => {
+                changeValue(result)
             })
-        }
-    }, [])
+        // if (getSocket()) {
+        //     //처음 로딩할때 소켓정보를 전역에 저장했다가 계속 사용ㄹ하도록 하시오
+        //     // requestData(/*socket*/,(result:any) => {
+        //     //     changeValue(result)
+        //     // })
+        // } else {
+        //     connectWS("upbit", (socket: any) => {
+        //         //소켓에 연결됐다면
+        //        if(socket) {
+        //            requestData(socket,(result:any) => {
+        //                changeValue(result)
+        //            })
+        //        }
+        //     })
+        // }
+    }, [socket])
 
 
     return (

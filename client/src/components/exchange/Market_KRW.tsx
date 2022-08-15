@@ -6,6 +6,7 @@ import React, {useEffect, useState, useRef} from 'react';
 import { Link, Route, Routes, BrowserRouter,useNavigate} from 'react-router-dom'
 import { Skeleton } from '@mui/material';
 import TradeView from './TradeView'
+import Content from "../Content";
 
 
 interface Market_KRW {
@@ -46,6 +47,7 @@ function Market_KRW(props:any): React.ReactElement {
         setPriceBox("")
       },2000)
     }
+
 
 
     //price가 변경될때마다 실행
@@ -104,7 +106,7 @@ function Market_KRW(props:any): React.ReactElement {
         </tr>)
     } else {
         return (
-        <tr onClick = {() => navigate("/react/trade?"+symbol)}>
+        <tr>
             <td className="icon"><img src = {cryptoImg}></img></td>
             <td className="name">
                 <strong>{props.name}</strong>

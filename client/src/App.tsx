@@ -1,9 +1,5 @@
 import React, {ComponentProps, useEffect} from 'react';
 import './App.css';
-import Header from './components/header/Header';
-import NavigationMenu from './components/navMenu/NavigationMenu'
-import Content from './components/Content'
-import Footer from './components/footer/Footer'
 import {useState} from 'react'
 import './stylesheets/public.css';
 import {
@@ -12,69 +8,65 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import {connectWS} from "./dataHandler/socket";
+import {connectWS, requestData} from "./dataHandler/socket";
+import MainPage from "./components/exchange/MainPage";
+import TradeView from "./components/exchange/TradeView";
+
+
+//Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 
 
 function App() : React.ReactElement {
 
-
   //백그라운드 회색 처리 여부
   const [navigationMenu, setNavigationMenu] = useState<boolean>(false);
   //로딩 진행중
-  const [loading, setLoading] = useState(false)
-
-
-
-
-
+  const [loading, setLoading] = useState(true)
+  const [socket, setSocket] = useState(null)
 
   /* 스켈레톤 로딩 시작 */
   useEffect(() => {
     let theme = localStorage.getItem("theme");
-    if(!theme) {
-      localStorage.setItem("theme","light");
-      document.querySelector("html")?.setAttribute("data-theme","light")
+    if (!theme) {
+      localStorage.setItem("theme", "light");
+      document.querySelector("html")?.setAttribute("data-theme", "light")
     } else {
-      document.querySelector("html")?.setAttribute("data-theme",theme)
+      document.querySelector("html")?.setAttribute("data-theme", theme)
     }
+    // setTimeout(()=> {
+    //   setLoading(false)
+    // },0)
+  }, [])
 
+  // useEffect(() => {
+    connectWS("upbit", (result: any) => {
+      console.log("connected")
+      setSocket(result)
+      return (
+          <BrowserRouter>
+            <Routes>
+              <Route path="/react" element={<MainPage loading={loading} socket={socket}/>}/>
+              <Route path="/react/trade" element={<TradeView loading={loading} socket={socket}/>}/>
+            </Routes>
+          </BrowserRouter>
+      )
+    })
+  // }, [])
 
-    
-    setTimeout(()=> {
-      setLoading(false)
-    },0)
-  },[])
-
-
-
-  //navigation menu 실행
-  const getNavigationMenu = (active:boolean) => {
-    setNavigationMenu(active)
-  }
-
+  // if (!socket) {
+  //   return <div>Loading...</div>;
+  // } else {
   return (
-    
-      <div className="mobile-view">
-      {/*네비게이션 메뉴 미리 생성 해놓기*/}
-      <NavigationMenu view = {navigationMenu}/>
-        <div className = "wrap-container menu-active">
-          {/* 네비게이션 메뉴가 실행되면 뒷배경 회색으로 */}
-          <div className = {
-            navigationMenu ? "bg-gray-active" : "bg-gray"}>
-          </div>
-
-          {/* 헤더 */}
-          <Header navigationMenu = {getNavigationMenu}  loading = {loading}/>
-          {/* 메인 */}
-          <Content loading = {loading}/>
-          
-          {/* 푸터 */}
-          <Footer />
-        </div>
-      </div>
-  );
-
+      <BrowserRouter>
+        <Routes>
+          <Route path="/react" element={<MainPage loading={loading} socket={socket}/>}/>
+          <Route path="/react/trade" element={<TradeView loading={loading} socket={socket}/>}/>
+        </Routes>
+      </BrowserRouter>
+  )
 }
+
+
 
 
 

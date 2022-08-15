@@ -13,15 +13,16 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Pagination } from "swiper";
+import {connectWS, requestData} from "../dataHandler/socket";
 
 
 interface ContentViewType {
-    loading : Boolean
+    loading : Boolean,
+    socket : any
 }
 
 
-function Content({loading} : ContentViewType):React.ReactElement {
-
+function Content({loading,socket} : ContentViewType):React.ReactElement {
 
 
     return (
@@ -50,7 +51,7 @@ function Content({loading} : ContentViewType):React.ReactElement {
                   modules={[Pagination]}
                   className="mySwiper"
               >
-                  <SwiperSlide><Exchange loading = {loading} /></SwiperSlide>
+                  <SwiperSlide><Exchange loading = {loading} socket = {socket} /></SwiperSlide>
                   <SwiperSlide><Issue /></SwiperSlide>
                   <SwiperSlide><Premium /></SwiperSlide>
                   <SwiperSlide><Premium /></SwiperSlide>
