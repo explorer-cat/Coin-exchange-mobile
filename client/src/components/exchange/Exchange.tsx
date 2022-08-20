@@ -11,12 +11,13 @@ import {Skeleton} from '@mui/material';
 
 interface ExchangeType {
     loading: Boolean,
-    socket : any
+    socket : any,
+    coinList: any,
 }
 
 
-function Exchange({loading,socket}: ExchangeType): React.ReactElement {
-    const coinList: any = getUpbitCryptoList().listing;
+function Exchange({loading,socket,coinList}: ExchangeType): React.ReactElement {
+
 
     //원화 코인들 이름만 선별
     let KRW_market_listing: any = [];
@@ -24,47 +25,6 @@ function Exchange({loading,socket}: ExchangeType): React.ReactElement {
 
 
     const [coinItem, setCoinItem] = useState(KRW_market_listing);
-
-
-
-    const getCoinList = () => {
-        coinList.map((code: any) => {
-            if (code.market.indexOf("KRW-") !== -1) {
-                KRW_market_listing.push({
-                    key: code.market,
-                    name: code.korean_name,
-                    symbol: code.market,
-                    price: 0,
-                    percent: 0,
-                    percent_price: 0,
-                    volume: 0,
-                    premium: 0,
-                    askbid: "",
-                    path: "/" + code,
-                });
-            }
-        })
-    }
-
-
-    /*
-        const changeValue = (value:any) => {
-            if(value.code.indexOf('KRW-') !== -1) {
-                const findIndex = coinItem.findIndex((temp:any) => value.code === temp.symbol);
-                let copyArray = [...coinItem];
-                if(findIndex != -1) {
-                    let target = copyArray[findIndex];
-                    target['price'] = value.trade_price;
-                    target['percent'] = ((value.trade_price - value.opening_price) / value.opening_price * 100).toFixed(2)
-                    target['percent_price'] = value.trade_price - value.opening_price
-                    target['volume'] = (value.acc_trade_price_24h / 1000000).toFixed(0);
-                    target['askbid'] = value.ask_bid;
-                    copyArray[findIndex] = target;
-                    setCoinItem(copyArray)
-                }
-            }
-        }
-     */
 
 
     const changeValue = useCallback((value: any) => {
@@ -84,30 +44,32 @@ function Exchange({loading,socket}: ExchangeType): React.ReactElement {
         }
     }, [])
 
-
-
     /* 첫 컴포넌트 로드때 코인정보를 한번만 불러옵니다. */
     useEffect(() => {
-        coinList.map((code: any) => {
-            if (code.market.indexOf("KRW-") !== -1) {
-                KRW_market_listing.push({
-                    key: code.market,
-                    name: code.korean_name,
-                    symbol: code.market,
-                    price: 0,
-                    percent: 0,
-                    percent_price: 0,
-                    volume: 0,
-                    premium: 0,
-                    askbid: "",
-                    path: "/" + code,
-                });
+        // coinList.map((code: any) => {
+        fetch("https://api.upbit.com/v1/ticker?markets=KRW-BTC").then((response) => response.json()).then(result => {
+            console.log("result1221",result)
+            for(const coinList of result) {
+                if (coinList.market.indexOf("KRW-") !== -1) {
+                    KRW_market_listing.push({
+                        key: coinList.market,
+                        name: coinList.korean_name,
+                        symbol: coinList.market,
+                        price: coinList.prev_closing_price,
+                        percent: ((coinList.trade_price - coinList.opening_price) / coinList.opening_price * 100).toFixed(2),
+                        percent_price: coinList.trade_price - coinList.opening_price,
+                        volume: (coinList.acc_trade_price_24h / 1000000).toFixed(0),
+                        premium: 0,
+                        askbid: "",
+                    });
+                }
             }
+            console.log(":KRW_market_listing",KRW_market_listing)
         })
-        // console.log("changeValuek",KRW_market_listing)
     }, [])
     //
     useEffect(() => {
+        // changeValue(socket)
         // console.log("도착한 소켓 ", socket)
         // if (getSocket()) {
         //     //처음 로딩할때 소켓정보를 전역에 저장했다가 계속 사용ㄹ하도록 하시오
@@ -156,7 +118,7 @@ function Exchange({loading,socket}: ExchangeType): React.ReactElement {
                     <table className="exchange-public-table">
                         <tbody>
                         {
-                            coinItem.map((info: any) =>
+                            KRW_market_listing.map((info: any) =>
                                 <Market_KRW
                                     key={info.key}
                                     symbol={info.symbol}

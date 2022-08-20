@@ -18,11 +18,12 @@ import { Pagination } from "swiper";
 
 interface ContentViewType {
     loading : Boolean,
-    socket : any
+    socket : any,
+    coinList: any,
 }
 
 
-function Content({loading,socket} : ContentViewType):React.ReactElement {
+function Content({loading,socket,coinList} : ContentViewType):React.ReactElement {
 
 
     return (
@@ -51,7 +52,7 @@ function Content({loading,socket} : ContentViewType):React.ReactElement {
                   modules={[Pagination]}
                   className="mySwiper"
               >
-                  <SwiperSlide><Exchange loading = {loading} socket = {socket} /></SwiperSlide>
+                  <SwiperSlide><Exchange loading = {loading} socket = {socket} coinList = {coinList} /></SwiperSlide>
                   <SwiperSlide><Issue /></SwiperSlide>
                   <SwiperSlide><Premium /></SwiperSlide>
                   <SwiperSlide><Premium /></SwiperSlide>

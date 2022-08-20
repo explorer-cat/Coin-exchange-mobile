@@ -21,9 +21,10 @@ import {
 interface MainPage {
     loading : boolean,
     socket : any,
+    coinList : any,
 }
 
-function MainPage({loading,socket}:MainPage) : React.ReactElement {
+function MainPage({loading,socket,coinList}:MainPage) : React.ReactElement {
 
 
     //백그라운드 회색 처리 여부
@@ -49,7 +50,7 @@ function MainPage({loading,socket}:MainPage) : React.ReactElement {
                 {/* 헤더 */}
                 <Header navigationMenu = {getNavigationMenu}  loading = {loading}/>
                 {/* 메인 */}
-                <Content loading = {loading} socket = {socket} />
+                <Content loading = {loading} socket = {socket} coinList = {coinList}/>
                 {/* 푸터 */}
                 <Footer />
             </div>

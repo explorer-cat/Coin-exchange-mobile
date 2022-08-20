@@ -11,6 +11,7 @@ import {
 import {connectWS} from "./dataHandler/socket";
 import MainPage from "./components/exchange/MainPage";
 import TradeView from "./components/exchange/TradeView";
+import getUpbitCryptoList from "./settings/upbitCryptoSetting";
 
 
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
@@ -23,6 +24,7 @@ function App() : React.ReactElement {
   //로딩 진행중
   const [loading, setLoading] = useState(false)
   const [socket, setSocket] = useState(null)
+  const [coinList, setCoinList] = useState(null)
 
   /* 스켈레톤 로딩 시작 */
   useEffect(() => {
@@ -39,17 +41,24 @@ function App() : React.ReactElement {
   }, [])
 
   useEffect(() => {
+    fetch("https://api.upbit.com/v1/market/all").then((response) => response.json()).then(result => {
+      console.log("result",result)
+      setCoinList(result);
+    })
     connectWS("upbit", (result: any) => {
       setSocket(result)
     })
-  }, [])
+  },[])
+
+
+
 
 
   return (
       <BrowserRouter>
         <Routes>
-          <Route path="/react" element={<MainPage loading={loading} socket = {socket}/>}/>
-          <Route path="/react/trade" element={<TradeView loading={loading} socket = {socket}/>}/>
+          <Route path="/react" element={<MainPage loading={loading} socket = {socket} coinList = {coinList}/>}/>
+          {/*<Route path="/react/trade" element={<TradeView loading={loading} socket = {socket}/>}/>*/}
         </Routes>
       </BrowserRouter>
   )
