@@ -6,13 +6,11 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Link
+  Link, useLocation
 } from "react-router-dom";
 import {connectWS} from "./dataHandler/socket";
 import MainPage from "./components/exchange/MainPage";
-import TradeView from "./components/exchange/TradeView";
-import getUpbitCryptoList from "./settings/upbitCryptoSetting";
-
+import DetailView from "./components/exchange/cryptoDetail/DetailView";
 
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 
@@ -40,14 +38,35 @@ function App() : React.ReactElement {
     // },0)
   }, [])
 
-  useEffect(() => {
+  //업비트 전체 자산 정보 가져오기
+  const getAllUpbitCryptoList = (callback:any) => {
+    let allSymbol:any = []
     fetch("https://api.upbit.com/v1/market/all").then((response) => response.json()).then(result => {
-      console.log("result",result)
-      setCoinList(result);
+
+      result.map((info: any) => {
+        allSymbol.push(info.market);
+      })
+      return callback(allSymbol);
     })
-    connectWS("upbit", (result: any) => {
-      setSocket(result)
-    })
+  }
+
+
+  useEffect(() => {
+
+    //업비트 전체 정보를 불러옵니다.
+    getAllUpbitCryptoList((result:any) => {
+      //모든 심볼 기준 restApi 요청해서 테이블 세팅 시키기
+      fetch(`https://api.upbit.com/v1/ticker?markets=${result}`).then((response) => response.json()).then(result => {
+        setCoinList(result);
+        //새팅완료돠ㅣ면 소켓 연결 요청해서 실시간
+        connectWS("upbit", (result: any) => {
+          setSocket(result)
+        })
+
+      })
+    });
+
+
   },[])
 
 
@@ -58,7 +77,7 @@ function App() : React.ReactElement {
       <BrowserRouter>
         <Routes>
           <Route path="/react" element={<MainPage loading={loading} socket = {socket} coinList = {coinList}/>}/>
-          {/*<Route path="/react/trade" element={<TradeView loading={loading} socket = {socket}/>}/>*/}
+          <Route path="/react/trade" element={<DetailView socket = {socket}/>}/>
         </Routes>
       </BrowserRouter>
   )

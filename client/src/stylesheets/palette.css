@@ -1,9 +1,9 @@
 
 html[data-theme='dark'] {
   --bg-color: #191a1c;
-  --bg-color-box: #15181a; 
+  --bg-color-box: #15181a;
   /* 1b1b1e */
-  --table-cell-default-font-color: #b8bfc4;
+  --table-cell-default-font-color: #ffffff;
   --table-thead-background : #15181a;
   --light-color-box :#3a3a41;
   --default-font-color: #ffffff;
@@ -16,14 +16,14 @@ html[data-theme='dark'] {
   --footer-bg-color : #1f2127;
   --search-background-color : #1f2127;
   --category-btn-background : #1f2127;
-  
-  
+
+
   }
 
 html[data-theme='light'] {
   --bg-color: #eee;
-  --bg-color-box: #ffffff; 
-  --table-cell-default-font-color: #9E9E9E;
+  --bg-color-box: #ffffff;
+  --table-cell-default-font-color: #1c2028;
   --table-thead-background : #fafafa;
   --light-color-box :#3a3a41;
   --default-font-color: #1c2028;
@@ -36,13 +36,14 @@ html[data-theme='light'] {
   --footer-bg-color : #fafafa;
   --search-background-color : #fafafa;
   --category-btn-background : #f8f8f9;
-  
+
   }
-/* #A9ACAF sel*/ 
+/* #A9ACAF sel*/
 /* #4E4F4F no sel*/
+
 :root{
     /* --bg-color: #191a1c;
-    --bg-color-box: #15181a; 
+    --bg-color-box: #15181a;
     --table-cell-default-font-color: #b8bfc4;
     --light-color-box :#3a3a41;
     --default-font-color: #ffffff;
