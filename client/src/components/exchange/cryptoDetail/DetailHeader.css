@@ -1,0 +1,40 @@
+.detailView_Header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 48px);
+    height: 40px;
+    color: var(--default-font-color);
+    font-size: 12px;
+    padding: 0px 24px;
+    padding-top: calc(env(safe-area-inset-bottom) + 25px);
+}
+
+.arrow_back {
+    width: 18px;
+    height: 18px;
+    transform: scaleX(-1);
+    content: url("../../../images/arrow_icon.png");
+}
+
+
+.bookMark {
+    width: 18px;
+    height: 18px;
+    transform: scaleX(-1);
+    content: url("../../../images/bookmark.png");
+}
+
+.bookMark {
+    width: 18px;
+    height: 18px;
+    content: url("../../../images/bookmark.png");
+}
+
+.bookMark_select {
+    width: 18px;
+    height: 18px;
+    content: url("../../../images/bookmark_selected.png");
+}
+
+

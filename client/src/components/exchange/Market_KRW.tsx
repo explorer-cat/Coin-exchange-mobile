@@ -5,8 +5,6 @@ import '../../stylesheets/palette.css'
 import React, {useEffect, useState, useRef} from 'react';
 import { Link, Route, Routes, BrowserRouter,useNavigate} from 'react-router-dom'
 import { Skeleton } from '@mui/material';
-import TradeView from './TradeView'
-import Content from "../Content";
 
 
 interface Market_KRW {
@@ -23,7 +21,7 @@ function Market_KRW(props:any): React.ReactElement {
     const [priceBox, setPriceBox] = useState("")
     const loadingBg : String = "rgba(255, 255, 255, 0.13)";
 
-    
+
     let symbol = props.symbol;
     let price = props.price.toLocaleString()//.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     let percent = props.percent;
@@ -56,7 +54,7 @@ function Market_KRW(props:any): React.ReactElement {
     },[price]);
 
     if(props.loading) {
-        return ( 
+        return (
         <tr>
             <td className="icon"><Skeleton variant = "circular" sx={{
                 bgcolor: "rgba(255, 255, 255, 0.13)",
@@ -106,7 +104,7 @@ function Market_KRW(props:any): React.ReactElement {
         </tr>)
     } else {
         return (
-        <tr onClick = {() => navigate("/react/trade")}>
+        <tr onClick = {() => navigate("/react/trade?"+symbol)}>
             <td className="icon"><img src = {cryptoImg}></img></td>
             <td className="name">
                 <strong>{props.name}</strong>

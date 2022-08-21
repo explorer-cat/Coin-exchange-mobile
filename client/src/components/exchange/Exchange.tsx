@@ -23,12 +23,12 @@ function Exchange({loading,socket,coinList}: ExchangeType): React.ReactElement {
     let KRW_market_listing: any = [];
 
 
-
     const [coinItem, setCoinItem] = useState(KRW_market_listing);
 
 
-    const changeValue = useCallback((value: any) => {
-        if (value.code.indexOf('KRW-') !== -1) {
+    const changeValue = ((value: any) => {
+        // console.log("value ",value)
+        if (value && value.code.indexOf('KRW-') !== -1) {
             const findIndex = coinItem.findIndex((temp: any) => value.code === temp.symbol);
             let copyArray = [...coinItem];
             if (findIndex != -1) {
@@ -39,54 +39,43 @@ function Exchange({loading,socket,coinList}: ExchangeType): React.ReactElement {
                 target['volume'] = (value.acc_trade_price_24h / 1000000).toFixed(0);
                 target['askbid'] = value.ask_bid;
                 copyArray[findIndex] = target;
+                console.log("copyArray",copyArray)
                 setCoinItem(copyArray)
             }
         }
-    }, [])
+    })
 
     /* 첫 컴포넌트 로드때 코인정보를 한번만 불러옵니다. */
     useEffect(() => {
-        // coinList.map((code: any) => {
-        fetch("https://api.upbit.com/v1/ticker?markets=KRW-BTC").then((response) => response.json()).then(result => {
-            console.log("result1221",result)
-            for(const coinList of result) {
-                if (coinList.market.indexOf("KRW-") !== -1) {
+        if(coinList) {
+            console.log("coinList",coinList)
+            for(const list of coinList) {
+                if (list.market.indexOf("KRW-") !== -1) {
                     KRW_market_listing.push({
-                        key: coinList.market,
-                        name: coinList.korean_name,
-                        symbol: coinList.market,
-                        price: coinList.prev_closing_price,
-                        percent: ((coinList.trade_price - coinList.opening_price) / coinList.opening_price * 100).toFixed(2),
-                        percent_price: coinList.trade_price - coinList.opening_price,
-                        volume: (coinList.acc_trade_price_24h / 1000000).toFixed(0),
+                        key: list.market,
+                        name: list.korean_name,
+                        symbol: list.market,
+                        price: list.prev_closing_price,
+                        percent: ((list.trade_price - list.opening_price) / list.opening_price * 100).toFixed(2),
+                        percent_price: list.trade_price - list.opening_price,
+                        volume: (list.acc_trade_price_24h / 1000000).toFixed(0),
                         premium: 0,
                         askbid: "",
                     });
                 }
             }
-            console.log(":KRW_market_listing",KRW_market_listing)
-        })
-    }, [])
+            setCoinItem(KRW_market_listing);
+        }
+
+    }, [coinList])
     //
+
     useEffect(() => {
-        // changeValue(socket)
-        // console.log("도착한 소켓 ", socket)
-        // if (getSocket()) {
-        //     //처음 로딩할때 소켓정보를 전역에 저장했다가 계속 사용ㄹ하도록 하시오
-        //     // requestData(/*socket*/,(result:any) => {
-        //     //     changeValue(result)
-        //     // })
-        // } else {
-        //     connectWS("upbit", (socket: any) => {
-        //         //소켓에 연결됐다면
-        //        if(socket) {
-        //            requestData(socket,(result:any) => {
-        //                changeValue(result)
-        //            })
-        //        }
-        //     })
-        // }
+        if(socket) {
+            changeValue(socket)
+        }
     }, [socket])
+
 
 
     return (
@@ -118,7 +107,7 @@ function Exchange({loading,socket,coinList}: ExchangeType): React.ReactElement {
                     <table className="exchange-public-table">
                         <tbody>
                         {
-                            KRW_market_listing.map((info: any) =>
+                            coinItem.map((info: any) =>
                                 <Market_KRW
                                     key={info.key}
                                     symbol={info.symbol}
