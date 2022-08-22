@@ -8,14 +8,15 @@ import {useLocation} from "react-router-dom";
 
 
 interface CryptoChartType {
-    socket: any,
+    chartViewOption : any,
 }
 
 
 //pair : ExchangeMarket_KRW_Type
-function CryptoChart({socket}: CryptoChartType): React.ReactElement {
+function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
     const [options,setOption] = useState({})
 
+    console.log("chartViewOption",chartViewOption)
 
     const location = useLocation().search
     let tradeCode = location.replace("?", "")
@@ -27,13 +28,18 @@ function CryptoChart({socket}: CryptoChartType): React.ReactElement {
     let high_price: any = []
 
 
-
-
     //24시간 차트
-    const get_24hour_priceInfo = () => {
+    const getLineChartInfo = () => {
         let allSymbol: any = []
-        fetch(`https://api.upbit.com/v1/candles/minutes/30?market=${tradeCode}&count=200`).then((response) => response.json()).then(result => {
-            console.log("result", result)
+        let minute : String;
+        let count : String;
+
+        minute = chartViewOption.minute
+        count = chartViewOption.candleCount
+
+
+        fetch(`https://api.upbit.com/v1/candles/minutes/${minute}?market=${tradeCode}&count=${count}`).then((response) => response.json()).then(result => {
+
 
             result.map((info: any) => {
                 //최저가와 최저가를 찾아보자
@@ -55,7 +61,7 @@ function CryptoChart({socket}: CryptoChartType): React.ReactElement {
                     panning: true,
                     panKey: 'shift',
                     margin: [0, 0, 0, 0],
-                    height:300,
+                    height:250,
                     scrollablePlotArea: {
                         minWidth: 10
                     }
@@ -114,14 +120,13 @@ function CryptoChart({socket}: CryptoChartType): React.ReactElement {
     }
 
     useEffect(() => {
-        get_24hour_priceInfo()
-    }, [])
+        console.log("render")
+        getLineChartInfo()
+    }, [chartViewOption])
 
 
         return (<div>
-            <div className = "ChartOptionArea">
 
-            </div>
 
             <HighchartsReact
                 highcharts={Highcharts}

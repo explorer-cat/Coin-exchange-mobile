@@ -12,6 +12,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import {connectWS} from "../../dataHandler/socket";
 // import {connectWS, requestData} from "./dataHandler/socket";
 // import TradeView from "./components/exchange/TradeView";
 
@@ -36,6 +37,7 @@ function MainPage({loading,socket,coinList}:MainPage) : React.ReactElement {
     const getNavigationMenu = (active:boolean) => {
         setNavigationMenu(active)
     }
+
 
     return (
         <div className="mobile-view">

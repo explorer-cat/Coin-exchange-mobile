@@ -1,3 +1,6 @@
-.ChartOptionArea{
-    height: 40px;
+.MuiTabs-flexContainer{
+    background: #efefef;
+    border-radius: 23px;
+    width: calc(100% - 24px);
+    margin: 0px 12px;
 }
