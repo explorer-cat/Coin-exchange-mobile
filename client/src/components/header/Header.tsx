@@ -15,10 +15,10 @@ import bell from '../../images/bell_icon.png'
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 interface HeaderProps {
     navigationMenu : any
-    loading : boolean
+    coinList : boolean
 }
 
-function Header({navigationMenu,loading} : HeaderProps) {
+function Header({navigationMenu,coinList} : HeaderProps) {
 
   const [navMenu , setNavMenu] = useState<boolean>(false)
 
@@ -53,7 +53,7 @@ function Header({navigationMenu,loading} : HeaderProps) {
   }
 
    const test = 1;
-  if(loading) {
+  if(!coinList) {
       return (    <header>
           <div className = {navMenu ? "navBar_header-setting-btn active-3" : "navBar_header-setting-btn"} onClick={clickSettingBtn}>
               <span></span>

@@ -10,10 +10,10 @@ import { Skeleton } from '@mui/material';
 
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 interface MarketCategoryType {
-    loading : Boolean,
+    coinList : any,
 }
 
-function MarketCategory({loading}:MarketCategoryType) {
+function MarketCategory({coinList}:MarketCategoryType) {
 
     const handleClickCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
         // alert("dd..")
@@ -36,7 +36,7 @@ function MarketCategory({loading}:MarketCategoryType) {
     });
 
 
-    if(loading) {
+    if(!coinList) {
         return (
             <div className = "market-category-div">
                 {loadingList}

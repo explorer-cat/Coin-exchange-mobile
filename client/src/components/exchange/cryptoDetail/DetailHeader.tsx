@@ -3,7 +3,7 @@ import '../../../stylesheets/initialization.css'
 import '../../../stylesheets/palette.css'
 import '../../../stylesheets/public.css'
 import React, {useEffect} from 'react';
-import { Link, Route, Routes, BrowserRouter,useNavigate} from 'react-router-dom'
+import {Link, Route, Routes, BrowserRouter, useNavigate, useLocation} from 'react-router-dom'
 
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 interface HeaderProps {
@@ -14,6 +14,8 @@ interface HeaderProps {
 
 
 function DetailHeader() {
+    const location = useLocation().search
+    let tradeCode = location.replace("?", "")
 
     const navigate = useNavigate();
 
@@ -29,8 +31,8 @@ function DetailHeader() {
             </div>
 
             <div className = "detailTitle">
-                <span>프로톤</span>
-                <span>XRP/KRW</span>
+                <span>{tradeCode}</span>
+                {/*<span>tradeCode/KRW</span>*/}
             </div>
 
             <div className = "favoriteCrpyto">

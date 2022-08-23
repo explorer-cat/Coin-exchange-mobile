@@ -3,11 +3,11 @@ import '../../stylesheets/initialization.css'
 import { Skeleton } from '@mui/material';
 
 interface SearchType {
-  loading : Boolean
+    coinList : any
 }
 
-function Search({loading}:SearchType) {
-  if(loading) {
+function Search({coinList}:SearchType) {
+  if(!coinList) {
     return (
       <span className = "navBar_search-box">
         <div className = "publicInput">

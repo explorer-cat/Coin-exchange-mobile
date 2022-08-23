@@ -20,7 +20,7 @@ function App() : React.ReactElement {
   //백그라운드 회색 처리 여부
   const [navigationMenu, setNavigationMenu] = useState<boolean>(false);
   //로딩 진행중
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
 
   // /* 스켈레톤 로딩 시작 */
@@ -34,7 +34,7 @@ function App() : React.ReactElement {
     }
     // setTimeout(()=> {
     //   setLoading(false)
-    // },0)
+    // },3000)
   }, [])
 
 
@@ -62,10 +62,6 @@ function App() : React.ReactElement {
             fetch(`https://api.upbit.com/v1/ticker?markets=${result}`).then((response) => response.json()).then(result => {
                 setCoinList(result);
                 //새팅완료돠ㅣ면 소켓 연결 요청해서 실시간
-                connectWS("upbit", (result: any) => {
-                    setSocket(result)
-                })
-
             })
         });
     },[])
@@ -74,7 +70,7 @@ function App() : React.ReactElement {
   return (
       <BrowserRouter>
         <Routes>
-          <Route path="/react" element={<MainPage loading={loading} socket = {socket} coinList={coinList}/>}/>
+          <Route path="/react" element={<MainPage coinList={coinList}/>}/>
           <Route path="/react/trade" element={<DetailView />}/>
         </Routes>
       </BrowserRouter>

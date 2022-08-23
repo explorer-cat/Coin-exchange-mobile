@@ -20,13 +20,12 @@ import {connectWS} from "../../dataHandler/socket";
 
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 interface MainPage {
-    loading : boolean,
-    socket : any,
     coinList : any,
 }
 
-function MainPage({loading,socket,coinList}:MainPage) : React.ReactElement {
+function MainPage({coinList}:MainPage) : React.ReactElement {
 
+    console.log("coinList",coinList)
 
     //백그라운드 회색 처리 여부
     const [navigationMenu, setNavigationMenu] = useState<boolean>(false);
@@ -50,9 +49,9 @@ function MainPage({loading,socket,coinList}:MainPage) : React.ReactElement {
                 </div>
 
                 {/* 헤더 */}
-                <Header navigationMenu = {getNavigationMenu}  loading = {loading}/>
+                <Header navigationMenu = {getNavigationMenu}  coinList = {coinList}/>
                 {/* 메인 */}
-                <Content loading = {loading} socket = {socket} coinList = {coinList}/>
+                <Content coinList = {coinList}/>
                 {/* 푸터 */}
                 <Footer />
             </div>

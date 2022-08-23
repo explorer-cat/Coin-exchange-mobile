@@ -17,20 +17,18 @@ import { Pagination } from "swiper";
 
 
 interface ContentViewType {
-    loading : Boolean,
-    socket : any,
     coinList: any,
 }
 
 
-function Content({loading,socket,coinList} : ContentViewType):React.ReactElement {
+function Content({coinList} : ContentViewType):React.ReactElement {
 
 
     return (
         <main>
             {/* 카테고리 */}
             <div className = "category-view">
-                <MarketCategory loading = {loading}/>
+                <MarketCategory coinList = {coinList}/>
             </div>
           <div className = "content-view">
               <Swiper
@@ -52,7 +50,7 @@ function Content({loading,socket,coinList} : ContentViewType):React.ReactElement
                   modules={[Pagination]}
                   className="mySwiper"
               >
-                  <SwiperSlide><Exchange loading = {loading} socket = {socket} coinList = {coinList} /></SwiperSlide>
+                  <SwiperSlide><Exchange coinList = {coinList} /></SwiperSlide>
                   <SwiperSlide><Issue /></SwiperSlide>
                   <SwiperSlide><Premium /></SwiperSlide>
                   <SwiperSlide><Premium /></SwiperSlide>
