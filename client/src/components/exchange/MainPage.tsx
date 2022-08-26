@@ -23,9 +23,9 @@ interface MainPage {
     coinList : any,
 }
 
-function MainPage({coinList}:MainPage) : React.ReactElement {
+function MainPage() : React.ReactElement {
 
-    console.log("coinList",coinList)
+
 
     //백그라운드 회색 처리 여부
     const [navigationMenu, setNavigationMenu] = useState<boolean>(false);
@@ -49,9 +49,9 @@ function MainPage({coinList}:MainPage) : React.ReactElement {
                 </div>
 
                 {/* 헤더 */}
-                <Header navigationMenu = {getNavigationMenu}  coinList = {coinList}/>
+                <Header navigationMenu = {getNavigationMenu}  />
                 {/* 메인 */}
-                <Content coinList = {coinList}/>
+                <Content />
                 {/* 푸터 */}
                 <Footer />
             </div>

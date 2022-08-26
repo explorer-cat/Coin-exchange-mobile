@@ -15,10 +15,9 @@ import bell from '../../images/bell_icon.png'
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 interface HeaderProps {
     navigationMenu : any
-    coinList : boolean
 }
 
-function Header({navigationMenu,coinList} : HeaderProps) {
+function Header({navigationMenu} : HeaderProps) {
 
   const [navMenu , setNavMenu] = useState<boolean>(false)
 
@@ -53,43 +52,43 @@ function Header({navigationMenu,coinList} : HeaderProps) {
   }
 
    const test = 1;
-  if(!coinList) {
-      return (    <header>
-          <div className = {navMenu ? "navBar_header-setting-btn active-3" : "navBar_header-setting-btn"} onClick={clickSettingBtn}>
-              <span></span>
-              <span></span>
-              <span></span>
-          </div>
-          <div className = "fixed-header">
-              <div className ="navBar_header-content">
-                  <div className ="navBar_header-left">
-                      <Skeleton sx={{
-                          bgcolor: "rgba(255, 255, 255, 0.13)",
-                          width : "65px",
-                          height : "50px",
-                      }}/>
-                  </div>
-                  <div className = "navBar_header-right">
-                      <Skeleton sx={{
-                          bgcolor: "rgba(255, 255, 255, 0.13)",
-                          width : "65px",
-                          height : "50px",
-                      }}/>
-                  </div>
-              </div>
-              <div style = {searchSkeleton}>
-                  {/* 검색창 */}
-                  <Skeleton sx={{
-                      bgcolor: "rgba(255, 255, 255, 0.13)",
-                      width : "80%",
-                      height : "50px",
-                      display : "flex",
-                      justifyContent: 'center',
-                  }}/>
-              </div>
-          </div>
-      </header>)
-  }
+  // if(!coinList) {
+  //     return (    <header>
+  //         <div className = {navMenu ? "navBar_header-setting-btn active-3" : "navBar_header-setting-btn"} onClick={clickSettingBtn}>
+  //             <span></span>
+  //             <span></span>
+  //             <span></span>
+  //         </div>
+  //         <div className = "fixed-header">
+  //             <div className ="navBar_header-content">
+  //                 <div className ="navBar_header-left">
+  //                     <Skeleton sx={{
+  //                         bgcolor: "rgba(255, 255, 255, 0.13)",
+  //                         width : "65px",
+  //                         height : "50px",
+  //                     }}/>
+  //                 </div>
+  //                 <div className = "navBar_header-right">
+  //                     <Skeleton sx={{
+  //                         bgcolor: "rgba(255, 255, 255, 0.13)",
+  //                         width : "65px",
+  //                         height : "50px",
+  //                     }}/>
+  //                 </div>
+  //             </div>
+  //             <div style = {searchSkeleton}>
+  //                 {/* 검색창 */}
+  //                 <Skeleton sx={{
+  //                     bgcolor: "rgba(255, 255, 255, 0.13)",
+  //                     width : "80%",
+  //                     height : "50px",
+  //                     display : "flex",
+  //                     justifyContent: 'center',
+  //                 }}/>
+  //             </div>
+  //         </div>
+  //     </header>)
+  // }
   return (
     <header>
 

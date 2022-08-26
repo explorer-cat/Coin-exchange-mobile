@@ -13,7 +13,7 @@ interface MarketCategoryType {
     coinList : any,
 }
 
-function MarketCategory({coinList}:MarketCategoryType) {
+function MarketCategory() {
 
     const handleClickCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
         // alert("dd..")
@@ -36,13 +36,13 @@ function MarketCategory({coinList}:MarketCategoryType) {
     });
 
 
-    if(!coinList) {
-        return (
-            <div className = "market-category-div">
-                {loadingList}
-            </div>
-      );
-    } else {
+    // if(!coinList) {
+    //     return (
+    //         <div className = "market-category-div">
+    //             {loadingList}
+    //         </div>
+    //   );
+    // } else {
         return (
             <div className = "market-category-div">
                 {/*<div className = "swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">*/}
@@ -50,7 +50,7 @@ function MarketCategory({coinList}:MarketCategoryType) {
                 {/*</div>*/}
             </div>
       );
-    }
+    // }
 }
 
 export default MarketCategory;

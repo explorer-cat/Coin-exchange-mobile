@@ -21,14 +21,14 @@ interface ContentViewType {
 }
 
 
-function Content({coinList} : ContentViewType):React.ReactElement {
+function Content():React.ReactElement {
 
 
     return (
         <main>
             {/* 카테고리 */}
             <div className = "category-view">
-                <MarketCategory coinList = {coinList}/>
+                <MarketCategory />
             </div>
           <div className = "content-view">
               <Swiper
@@ -50,7 +50,7 @@ function Content({coinList} : ContentViewType):React.ReactElement {
                   modules={[Pagination]}
                   className="mySwiper"
               >
-                  <SwiperSlide><Exchange coinList = {coinList} /></SwiperSlide>
+                  <SwiperSlide><Exchange /></SwiperSlide>
                   <SwiperSlide><Issue /></SwiperSlide>
                   <SwiperSlide><Premium /></SwiperSlide>
                   <SwiperSlide><Premium /></SwiperSlide>
