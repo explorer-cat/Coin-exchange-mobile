@@ -14,75 +14,14 @@ interface Market_KRW_Type {
 
 
 //pair : ExchangeMarket_KRW_Type
-function Market_KRW(): React.ReactElement {
-    // console.log("info", coinList)
+function Market_KRW({coinList}: Market_KRW_Type): React.ReactElement {
     const navigate = useNavigate();
     const [priceBox, setPriceBox] = useState("")
     const loadingBg: String = "rgba(255, 255, 255, 0.13)";
     const [item, setItem] = useState([]);
 
 
-    //업비트 전체 자산 정보 가져오기
-    // const getAllUpbitCryptoList = (callback:any) => {
-    //     let allSymbol:any = []
-    //     fetch("https://api.upbit.com/v1/market/all").then((response) => response.json()).then(result => {
-    //
-    //         result.map((info: any) => {
-    //             allSymbol.push(info.market);
-    //         })
-    //         return callback(allSymbol)
-    //     })
-    // }
-
-    // let symbol = coinList.symbol;
-    // // let price = coinList.price//.toLocaleString()//.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-    // let percent = coinList.percent;
-    // let percent_price = coinList.percent_price//.toLocaleString()//.toFixed(0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-    // let volume = Number(coinList.volume)//.toLocaleString()//.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-    // let askbid = coinList.askbid;
-    // let cryptoImg:string
-    // symbol ? cryptoImg = `https://static.upbit.com/logos/${symbol.replace("KRW-", "")}.png` : cryptoImg = ""
-
-
-    let [price,setPrice] = useState(0);
-    // //loading Bg color;
-    //
-    //
-    //
-    //
-
-    //업비트 전체 자산 정보 가져오기
-    const getAllUpbitCryptoList = (callback:any) => {
-        let allSymbol:any = []
-        fetch("https://api.upbit.com/v1/market/all").then((response) => response.json()).then(result => {
-            result.map((info: any) => {
-               // if(info.market.indexOf("KRW-") >= 1) {
-                    allSymbol.push(info.market);
-               // }
-            })
-            return callback(result,allSymbol);
-        })
-    }
-    let initCoinList:any = []
-
-    useEffect(() => {
-        //업비트 전체 정보를 불러옵니다.
-        getAllUpbitCryptoList((coinItem:any,symbol:any) => {
-            //모든 심볼 기준 restApi 요청해서 테이블 세팅 시키기
-            fetch(`https://api.upbit.com/v1/ticker?markets=${symbol}`).then((response) => response.json()).then(result => {
-
-                result.map((item:any,index:any) => {
-                    initCoinList.push(Object.assign(result[index],coinItem[index]))
-                })
-
-                setItem(initCoinList)
-                console.log("result",initCoinList)
-                //setItem(result);
-                //새팅완료돠ㅣ면 소켓 연결 요청해서 실시간
-            })
-        });
-    },[])
-
+    console.log("initCoinList", coinList)
 
     // const changeValue = ((value: any) => {
     //     console.log("value ",value)
@@ -105,30 +44,30 @@ function Market_KRW(): React.ReactElement {
     // })
     //
     //
-    useEffect(() => {
-        if(item.length > 0) {
-            console.log("테이블 세팅 완료!")
-        }
+    // useEffect(() => {
+    //     if(item.length > 0) {
+    //         console.log("테이블 세팅 완료!")
+    //     }
 
-       // setItem(coinList)
-       // if(item.length > 1) {
-           // setItem(item)
-           //
-           // connectWS("upbit", (result: any) => {
-           //     if (result) {
-           //         changeValue(result)
-           //     }
-           //
-           //     //consol
-           //     // coinList.filter((number:any,index:any,src:any) => {
-           //     //     console.log("number",number)
-           //     //     console.log("index",index)
-           //     //     console.log("src", src)
-           //     // })
-           // })
-       // }
-       // }
-    }, [item])
+    // setItem(coinList)
+    // if(item.length > 1) {
+    // setItem(item)
+    //
+    // connectWS("upbit", (result: any) => {
+    //     if (result) {
+    //         changeValue(result)
+    //     }
+    //
+    //     //consol
+    //     // coinList.filter((number:any,index:any,src:any) => {
+    //     //     console.log("number",number)
+    //     //     console.log("index",index)
+    //     //     console.log("src", src)
+    //     // })
+    // })
+    // }
+    // }
+    // }, [item])
 
     // //가격 변동에 따른 박스 생성
     // const handlePriceChange = () => {
@@ -150,7 +89,7 @@ function Market_KRW(): React.ReactElement {
     // },[price]);
 
     // console.log("props.loadingprops.loading",props.loading)
-    if (!item || item === []) {
+    if (!coinList || coinList === []) {
         return (
             <tr>
                 <td className="icon"><Skeleton variant="circular" sx={{
@@ -201,41 +140,57 @@ function Market_KRW(): React.ReactElement {
             </tr>)
     } else {
 
-        const table = item.map((data: any) => (
-            <tr>
-                <td>{data.korean_name}</td>
-            </tr>
 
-            // <tr>
-            //     <td className="icon"><img src={data.cryptoImg}></img></td>
-            //     <td className="name">
-            //         <strong>{data.name}</strong>
-            //         <p>{data.symbol.replace("KRW-", "")}</p>
-            //     </td>
-            //     {/* 가격 표시 박스 */}
-            //     {data.percent > 0 ?
-            //         <td className={"price up"}>
-            //             <p className={priceBox}>{data.price}</p>
-            //         </td> :
-            //         <td className={"price down"}>
-            //             <p className={priceBox}>{data.price}</p>
-            //         </td>
-            //     }
-            //     {/* 퍼센트 표시 박스 */}
-            //     {data.percent > 0 ?
-            //         <td className="percent up">
-            //             <p>{data.percent}%</p>
-            //             <p>{data.percent_price}</p>
-            //         </td> :
-            //         <td className="percent down">
-            //             <p>{data.percent}%</p><p>{data.percent_price}</p>
-            //         </td>}
-            //
-            //     <td className="volume">
-            //         <strong>{data.volume}</strong><p>백만</p>
-            //     </td>
-            // </tr>
-        ))
+        const table = coinList.map((data: any) => (
+            <tr onClick = {() => navigate("/react/trade?"+data.market)}>
+                <td className="icon">
+                    <img src={data.icon}></img>
+                </td>
+                <td className="name">
+                    <strong>{data.korean_name}</strong>
+                    <p>{data.market.replace("KRW-", "")}</p>
+                </td>
+                <td>
+                    <p className = "price">{data.trade_price.toLocaleString()}원</p>
+                </td>
+                <td className="percent up">
+                    <p>{(data.signed_change_rate * 100).toFixed(2)}%</p>
+                    <p>{(data.trade_price - data.opening_price).toLocaleString()}</p>
+                </td>
+                <td className="volume">
+                    <strong>{((data.acc_trade_price_24h / 1000000).toFixed(0)).toLocaleString()}</strong><p>백만</p>
+                </td>
+            </tr>))
+
+        // <tr>
+        //     <td className="icon"><img src={data.cryptoImg}></img></td>
+        //     <td className="name">
+        //         <strong>{data.name}</strong>
+        //         <p>{data.symbol.replace("KRW-", "")}</p>
+        //     </td>
+        //     {/* 가격 표시 박스 */}
+        //     {data.percent > 0 ?
+        //         <td className={"price up"}>
+        //             <p className={priceBox}>{data.price}</p>
+        //         </td> :
+        //         <td className={"price down"}>
+        //             <p className={priceBox}>{data.price}</p>
+        //         </td>
+        //     }
+        //     {/* 퍼센트 표시 박스 */}
+        //     {data.percent > 0 ?
+        //         <td className="percent up">
+        //             <p>{data.percent}%</p>
+        //             <p>{data.percent_price}</p>
+        //         </td> :
+        //         <td className="percent down">
+        //             <p>{data.percent}%</p><p>{data.percent_price}</p>
+        //         </td>}
+        //
+        //     <td className="volume">
+        //         <strong>{data.volume}</strong><p>백만</p>
+        //     </td>
+        // </tr>
 
 
         return (

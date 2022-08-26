@@ -7,6 +7,7 @@ import Market_KRW from "./Market_KRW";
 import getUpbitCryptoList from "../../settings/upbitCryptoSetting";
 import Search from "./Search"
 import {Skeleton} from '@mui/material';
+import {useNavigate} from "react-router-dom";
 
 
 interface ExchangeType {
@@ -15,39 +16,74 @@ interface ExchangeType {
 
 
 function Exchange(): React.ReactElement {
+    // console.log("info", coinList)
+    const navigate = useNavigate();
+    const [priceBox, setPriceBox] = useState("")
+    const loadingBg: String = "rgba(255, 255, 255, 0.13)";
+    const [item, setItem] = useState([]);
 
 
-    //원화 코인들 이름만 선별
-    let KRW_market_listing: any = [];
-
-
-    const [coinItem, setCoinItem] = useState(KRW_market_listing);
-    const [cryptoLoading, setCryptoLoading] = useState(false);
-
-
-    /* 첫 컴포넌트 로드때 코인정보를 한번만 불러옵니다. */
-    // useEffect(() => {
-    //     if(coinList) {
-    //         for (const list of coinList) {
-    //             if (list.market.indexOf("KRW-") !== -1) {
-    //                 KRW_market_listing.push({
-    //                     key: list.market,
-    //                     name: list.korean_name,
-    //                     symbol: list.market,
-    //                     price: list.prev_closing_price,
-    //                     percent: ((list.trade_price - list.opening_price) / list.opening_price * 100).toFixed(2),
-    //                     percent_price: list.trade_price - list.opening_price,
-    //                     volume: (list.acc_trade_price_24h / 1000000).toFixed(0),
-    //                     premium: 0,
-    //                     askbid: "",
-    //                 });
-    //             }
-    //         }
-    //     }
-    //         setCoinItem(KRW_market_listing);
-    //         // setCryptoLoading(true)
-    // }, [coinList])
+    //업비트 전체 자산 정보 가져오기
+    // const getAllUpbitCryptoList = (callback:any) => {
+    //     let allSymbol:any = []
+    //     fetch("https://api.upbit.com/v1/market/all").then((response) => response.json()).then(result => {
     //
+    //         result.map((info: any) => {
+    //             allSymbol.push(info.market);
+    //         })
+    //         return callback(allSymbol)
+    //     })
+    // }
+
+    // let symbol = coinList.symbol;
+    // // let price = coinList.price//.toLocaleString()//.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    // let percent = coinList.percent;
+    // let percent_price = coinList.percent_price//.toLocaleString()//.toFixed(0).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    // let volume = Number(coinList.volume)//.toLocaleString()//.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    // let askbid = coinList.askbid;
+    // let cryptoImg:string
+    // symbol ? cryptoImg = `https://static.upbit.com/logos/${symbol.replace("KRW-", "")}.png` : cryptoImg = ""
+
+
+    let [price,setPrice] = useState(0);
+    // //loading Bg color;
+    //
+    //
+    //
+    //
+
+    //업비트 전체 자산 정보 가져오기
+    const getAllUpbitCryptoList = (callback:any) => {
+        let allSymbol:any = []
+        fetch("https://api.upbit.com/v1/market/all").then((response) => response.json()).then(result => {
+            result.map((info: any) => {
+                // if(info.market.indexOf("KRW-") >= 1) {
+                allSymbol.push(info.market);
+                // }
+            })
+            return callback(result,allSymbol);
+        })
+    }
+    let krwMarketList :any = []
+    let btcMarketList :any = []
+
+    useEffect(() => {
+        //업비트 전체 정보를 불러옵니다.
+        getAllUpbitCryptoList((coinItem:any,symbol:any) => {
+            //모든 심볼 기준 restApi 요청해서 테이블 세팅 시키기
+            fetch(`https://api.upbit.com/v1/ticker?markets=${symbol}`).then((response) => response.json()).then(result => {
+
+                result.map((item:any,index:any) => {
+                    //원화 usdt btc 구분해서 push
+                    result[index]["icon"] = `https://static.upbit.com/logos/${result[index].market.replace("KRW-", "")}.png`
+                    if(result[index].market.indexOf("KRW") !== -1) {
+                        krwMarketList.push(Object.assign(result[index],coinItem[index]))
+                    }
+                })
+                setItem(krwMarketList)
+            })
+        });
+    },[])
 
 
 
@@ -71,7 +107,7 @@ function Exchange(): React.ReactElement {
                     <div className="scroll-table">
                         <table className="exchange-public-table">
                             <tbody>
-                          <Market_KRW />
+                          <Market_KRW coinList = {item}/>
 
 
                             {/*{*/}
