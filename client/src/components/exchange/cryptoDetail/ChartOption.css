@@ -1,0 +1,16 @@
+.ChartOptionArea{
+    background: var(--bg-color-box);
+}
+
+.MuiToggleButtonGroup-root,
+.MuiButtonBase-root{
+    background: var(--category-btn-background);
+    color: var(--default-font-color) !important;
+    border: 1px solid var(--1gray-color);
+    border-left: 1px solid var(--1gray-color) !important;
+
+}
+
+.Mui-selecte{
+    background-color: var(--default-select-font-color) !important;
+}
