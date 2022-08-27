@@ -10,11 +10,16 @@ import CrpytoChart from "./CrpytoChart";
 import ChartOption from "./ChartOption"
 import CrpytoInfoTable from "./CrpytoInfoTable";
 import {useLocation} from "react-router-dom";
+import {closeWS, getSocket} from "../../../dataHandler/socket";
 
 
 //pair : ExchangeMarket_KRW_Type
 function DetailView(): React.ReactElement {
     // console.log("render",socket)
+
+    useEffect(() => {
+        closeWS()
+    },[])
 
     const [chartOption, setChartOption] = useState({
         type : "24hour",

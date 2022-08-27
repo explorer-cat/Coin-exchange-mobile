@@ -48,4 +48,8 @@
     padding: 4px;
 }
 
+.market-category-div > span > .not_select {
+    color: var(--default-font-color) !important;
+    padding: 4px;
+}
 

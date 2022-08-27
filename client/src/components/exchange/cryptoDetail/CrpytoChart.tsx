@@ -15,6 +15,7 @@ interface CryptoChartType {
 //pair : ExchangeMarket_KRW_Type
 function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
     const [options,setOption] = useState({})
+    const [theme, setTheme] = useState(localStorage.getItem("theme"))
 
     console.log("chartViewOption",chartViewOption)
 
@@ -62,6 +63,7 @@ function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
                     panKey: 'shift',
                     margin: [0, 0, 0, 0],
                     height:250,
+                    backgroundColor: theme === "light" ? "#ffffff" : "#15181a",
                     scrollablePlotArea: {
                         minWidth: 10
                     }
@@ -109,9 +111,9 @@ function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
                 },
                 series: [{
                     data: priceData,
-                    lineColor: "#C0C0C0",
-                    color: "#E0E0E0",
-                    fillOpacity: 0.2,
+                    lineColor: theme === "light" ? "#C0C0C0" : "rgb(255, 108, 71)",
+                    color: theme === "light" ? "#ffffff" : "#15181a",
+                    // fillOpacity: 0.2,
                     name: '종가',
                 }]
             })

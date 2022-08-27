@@ -4,6 +4,7 @@ import React, {useEffect, useState, useCallback} from 'react';
 import Box from '@mui/material/Box';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import './ChartOption.css'
 interface ChartOptionType {
     changeChartOption:any,
 }

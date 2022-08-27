@@ -20,14 +20,14 @@ function MarketCategory() {
         // event.preventDefault();
     };
 
-    const category = ["시세", "즐겨찾기", "프리미엄"]
+    const category = ["KRW", "BTC", "즐겨찾기"]
     const categoryKey = ["exchange", "issue", "premium", "trend", "ddd"]
 
     const categoryList = category.map((menu) => {
         if(menu === "시세") { //className={categoryKey[tabCount]
             return(<span onClick={handleClickCategory}><strong className = "select" >시세</strong></span>)
         }
-        return(<span onClick={handleClickCategory}><strong>{menu}</strong></span>)
+        return(<span onClick={handleClickCategory}><strong className = "not_select">{menu}</strong></span>)
     });
 
 

@@ -4,3 +4,21 @@
     width: calc(100% - 24px);
     margin: 0px 12px;
 }
+
+.crytoInfo,.MuiBox-root{
+    background-color: var(--bg-color-box) !important;
+}
+.MuiTabs-flexContainer {
+    background-color: var(--footer-bg-color);
+}
+
+.crytoInfo > .MuiButtonBase-root,MuiTouchRipple-root {
+    /*background-color;*/
+    background-color: red !important;
+    border-radius: 6px;
+}
+
+.crytoInfo .MuiToggleButtonGroup-root,
+.crytoInfo .MuiButtonBase-root {
+    border: 1px solid transparent !important;
+}

@@ -5,18 +5,6 @@ import NavigationMenu from '../navMenu/NavigationMenu'
 import Content from '../Content'
 import Footer from '../footer/Footer'
 import {useState} from 'react'
-// import './stylesheets/public.css';
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Link
-} from "react-router-dom";
-import {connectWS} from "../../dataHandler/socket";
-// import {connectWS, requestData} from "./dataHandler/socket";
-// import TradeView from "./components/exchange/TradeView";
-
-
 
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 interface MainPage {
