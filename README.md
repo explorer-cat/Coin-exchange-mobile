@@ -6,13 +6,13 @@ ReactJS와 TypeScript를 사용하여 거래소 어플리케이션을 클론코�
 
 # 배포 링크
 
-http://13.209.3.55:3000/  (모바일 웹브라우저 사이즈에 최적화 되어있습니다)
-
-![ㅇㄹㅇㄹㅇ](https://user-images.githubusercontent.com/55500077/180814275-925c0ee7-967f-469a-8157-b92b983fe8e4.jpeg)
+앱 출시 전입니다 ^_^
 
 
-# 경험
-
+![KakaoTalk_Photo_2022-08-28-00-48-40 003](https://user-images.githubusercontent.com/55500077/187037686-4b5b285d-a19a-4f27-9cab-0f0884979eba.jpeg){: width="190" height="422"}
+![KakaoTalk_Photo_2022-08-28-00-48-40 001](https://user-images.githubusercontent.com/55500077/187037702-fe450a77-78b0-4886-95e6-58926b2b63c4.jpeg){: width="190" height="422"}
+![KakaoTalk_Photo_2022-08-28-00-48-40 002](https://user-images.githubusercontent.com/55500077/187037707-1034e195-572c-4471-8985-609e57862afc.jpeg){: width="190" height="422"}
+![KakaoTalk_Photo_2022-08-28-00-48-40 004](https://user-images.githubusercontent.com/55500077/187037713-289d2ad7-fbbf-45ce-bf96-8898cfd8a1c9.jpeg){: width="190" height="422"}
 
 
 # 사용 스킬
