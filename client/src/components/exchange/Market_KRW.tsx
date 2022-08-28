@@ -29,16 +29,14 @@ function Market_KRW({coinList,updateItem}: Market_KRW_Type): React.ReactElement 
       },1000)
     }
 
-    useEffect(() => {
-        coinList.map((data: any) => {
-            if(data.market === updateItem.code) {
-                updateItem.ask_bid === "ASK" ? setPriceBox("isAsk") : setPriceBox("isBid")
-            }
-        })
-        setTimeout(()=> {
-            setPriceBox("")
-        },1000)
-    },[updateItem])
+    // useEffect(() => {
+    //     coinList.map((data: any) => {
+    //         if(data.market === updateItem.code) {
+    //             setItem()
+    //         }
+    //     }
+    //     handlePriceChange();
+    // },[updateItem])
 
 
 
@@ -114,8 +112,6 @@ function Market_KRW({coinList,updateItem}: Market_KRW_Type): React.ReactElement 
 
             coinList.map((data: any) => {
                 // console.log("data",data.updateIndex)
-
-
                 if(data.market.indexOf("KRW-") !== -1) {
                     list.push(
                         <tr onClick={() => navigate("/react/trade?" + data.market)}>
@@ -128,10 +124,10 @@ function Market_KRW({coinList,updateItem}: Market_KRW_Type): React.ReactElement 
                         </td>
                             {data.change === "RISE" ?
                                 <td className={"price up"}>
-                                    <p className={priceBox}>{data.trade_price.toLocaleString()}</p>
+                                    <p className={updateItem.code === data.market ? (data.ask_bid === "ASK" ? "isAsk" : "isBid") : ""}>{data.trade_price.toLocaleString()}</p>
                                 </td> :
                                 <td className={"price down"}>
-                                    <p className={priceBox}>{data.trade_price.toLocaleString()}</p>
+                                    <p className={updateItem.code === data.market ? (data.ask_bid === "ASK" ? "isAsk" : "isBid") : ""}>{data.trade_price.toLocaleString()}</p>
                                 </td>
                             }
                         {data.signed_change_rate * 100 > 0 ?
