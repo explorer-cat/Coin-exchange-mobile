@@ -1,4 +1,3 @@
-
 import './Market_KRW.css'
 import '../../stylesheets/initialization.css'
 import '../../stylesheets/palette.css'
@@ -11,86 +10,36 @@ import Search from "./Search";
 
 interface Market_KRW_Type {
     coinList: any,
+    updateItem : any,
 }
 
 
 //pair : ExchangeMarket_KRW_Type
-function Market_KRW({coinList}: Market_KRW_Type): React.ReactElement {
+function Market_KRW({coinList,updateItem}: Market_KRW_Type): React.ReactElement {
     const navigate = useNavigate();
     const [priceBox, setPriceBox] = useState("")
     // const loadingBg: String = "rgba(255, 255, 255, 0.13)";
     // const [item, setItem] = useState([]);
     // const [loading, setLoading] = useState(false);
 
-
-    // console.log("initCoinList", coinList)
-
-    // const changeValue = ((value: any) => {
-    //     console.log("value ",value)
-    //     if (value && value.code.indexOf('KRW-') !== -1) {
-    //         const findIndex = coinList.findIndex((temp: any) => value.code === temp.symbol);
-    //         let copyArray:any = [...coinList];
-    //         if (findIndex != -1) {
-    //             let target = copyArray[findIndex];
-    //             target['cryptoImg'] = `https://static.upbit.com/logos/${value.replace("KRW-", "")}.png`
-    //             target['name'] = "비트딱"
-    //             target['price'] = value.trade_price;
-    //             target['percent'] = ((value.trade_price - value.opening_price) / value.opening_price * 100).toFixed(2)
-    //             target['percent_price'] = value.trade_price - value.opening_price
-    //             target['volume'] = (value.acc_trade_price_24h / 1000000).toFixed(0);
-    //             target['askbid'] = value.ask_bid;
-    //             copyArray[findIndex] = target;
-    //             setItem(copyArray)
-    //         }
-    //     }
-    // })
-    //
-    //
-    // useEffect(() => {
-    //     if(item.length > 0) {
-    //         console.log("테이블 세팅 완료!")
-    //     }
-
-    // setItem(coinList)
-    // if(item.length > 1) {
-    // setItem(item)
-    //
-    // connectWS("upbit", (result: any) => {
-    //     if (result) {
-    //         changeValue(result)
-    //     }
-    //
-    //     //consol
-    //     // coinList.filter((number:any,index:any,src:any) => {
-    //     //     console.log("number",number)
-    //     //     console.log("index",index)
-    //     //     console.log("src", src)
-    //     // })
-    // })
-    // }
-    // }
-    // }, [item])
-
     //가격 변동에 따른 박스 생성
-    // const handlePriceChange = () => {
-    //   if(coinList.ask_bid === "BID") {
-    //     setPriceBox("isBid")
-    //   } else {
-    //     setPriceBox("isAsk")
-    //   }
-    //   setTimeout(()=> {
-    //     setPriceBox("")
-    //   },2000)
-    // }
-    //
-    //
-    // //price가 변경될때마다 실행
-    // useEffect(() => {
-    //   handlePriceChange();
-    // },[coinList]);
+    const handlePriceChange = () => {
+      setTimeout(()=> {
+        setPriceBox("")
+      },1000)
+    }
 
+    useEffect(() => {
+        coinList.map((data: any) => {
+            if(data.market === updateItem.code) {
+                updateItem.ask_bid === "ASK" ? setPriceBox("isAsk") : setPriceBox("isBid")
+            }
+        })
+        setTimeout(()=> {
+            setPriceBox("")
+        },1000)
+    },[updateItem])
 
-    //  console.log("props.loadingprops.loading", coinList)
 
 
     if (coinList.length === 0) {
@@ -148,19 +97,6 @@ function Market_KRW({coinList}: Market_KRW_Type): React.ReactElement {
             return temp;
         };
         return(<>
-
-            <div className="exchange-view">
-                <table className="exchange-public-table">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th className="title">가상자산명</th>
-                        <th className="price">현재가</th>
-                        <th className="percent">전일대비</th>
-                        <th className="tradecost">거래대금</th>
-                    </tr>
-                    </thead>
-                </table>
                 <div className="scroll-table">
                     <table className="exchange-public-table">
                         <tbody>
@@ -168,7 +104,6 @@ function Market_KRW({coinList}: Market_KRW_Type): React.ReactElement {
                         </tbody>
                     </table>
                 </div>
-            </div>
             {/*{rendering()}*/}
         </>)
 
@@ -176,7 +111,11 @@ function Market_KRW({coinList}: Market_KRW_Type): React.ReactElement {
 
         const table = () => {
             const list:any = [];
+
             coinList.map((data: any) => {
+                // console.log("data",data.updateIndex)
+
+
                 if(data.market.indexOf("KRW-") !== -1) {
                     list.push(
                         <tr onClick={() => navigate("/react/trade?" + data.market)}>
@@ -187,13 +126,14 @@ function Market_KRW({coinList}: Market_KRW_Type): React.ReactElement {
                             <strong>{data.korean_name}</strong>
                             <p>{data.market.replace("KRW-", "")}</p>
                         </td>
-                        {data.change === "RISE" ?
-                            <td className={"price up"}>
-                                <p className={priceBox}>{data.trade_price.toLocaleString()}</p>
-                            </td> :
-                            <td className={"price down"}>
-                                <p className={priceBox}>{data.trade_price.toLocaleString()}</p>
-                            </td>}
+                            {data.change === "RISE" ?
+                                <td className={"price up"}>
+                                    <p className={priceBox}>{data.trade_price.toLocaleString()}</p>
+                                </td> :
+                                <td className={"price down"}>
+                                    <p className={priceBox}>{data.trade_price.toLocaleString()}</p>
+                                </td>
+                            }
                         {data.signed_change_rate * 100 > 0 ?
                             <td className="percent up">
                                 <p>{(data.signed_change_rate * 100).toFixed(2)}%</p>
@@ -205,7 +145,7 @@ function Market_KRW({coinList}: Market_KRW_Type): React.ReactElement {
                             </td>
                         }
                         <td className="volume">
-                            <strong>{Number((data.acc_trade_price_24h / 1000000).toFixed(0).toLocaleString())}</strong><p>백만</p>
+                            <strong>{Number((data.acc_trade_price_24h / 1000000).toFixed(0)).toLocaleString()}</strong><p>백만</p>
                         </td>
                     </tr>)
                 }
@@ -213,18 +153,18 @@ function Market_KRW({coinList}: Market_KRW_Type): React.ReactElement {
             return list;
         }
         return (<>
-                <div className="exchange-view">
-                    <table className="exchange-public-table">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th className="title">가상자산명</th>
-                            <th className="price">현재가</th>
-                            <th className="percent">전일대비</th>
-                            <th className="tradecost">거래대금</th>
-                        </tr>
-                        </thead>
-                    </table>
+                {/*<div className="exchange-view">*/}
+                {/*    <table className="exchange-public-table">*/}
+                {/*        <thead>*/}
+                {/*        <tr>*/}
+                {/*            <th></th>*/}
+                {/*            <th className="title">가상자산명</th>*/}
+                {/*            <th className="price">현재가</th>*/}
+                {/*            <th className="percent">전일대비</th>*/}
+                {/*            <th className="tradecost">거래대금</th>*/}
+                {/*        </tr>*/}
+                {/*        </thead>*/}
+                {/*    </table>*/}
                     <div className="scroll-table">
                         <table className="exchange-public-table">
                             <tbody>
@@ -232,7 +172,7 @@ function Market_KRW({coinList}: Market_KRW_Type): React.ReactElement {
                             </tbody>
                         </table>
                     </div>
-                </div>
+                {/*</div>*/}
             </>
 
             // {

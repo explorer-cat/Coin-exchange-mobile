@@ -55,9 +55,9 @@
 .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
     display: flex;
     position: fixed;
-    top: 96px;
+    top: 160px;
     height: 26px;
-    z-index: 300;
+    z-index: 999;
     left: 1px !important;
 }
 
@@ -92,4 +92,49 @@
 .swiper-pagination-bullet-active {
     border-bottom: 2px solid var(--default-font-color);
     color: var(--default-font-color) !important;
+}
+
+.swiper-pagination-clickable .swiper-pagination-bullet{
+    cursor: pointer;
+    width: 74px;
+    height: 30px;
+    border-radius: 0px;
+}
+
+
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction{
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    top: 93px;
+    opacity: 0;
+}
+
+.swiper-pagination,
+.swiper-pagination-bullet-active{
+    opacity: 0 !important;
+}
+
+
+.table_sort_down {
+    width:12px;
+    height:12px;
+    margin-top:-6px;
+    margin-left:4px;
+    content:url("../images/table_sort_default.png")
+}
+
+.table_sort_up {
+    width:12px;
+    height:12px;
+    margin-left:4px;
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    content:url("../images/table_sort_default.png")
+}
+
+.table_sort_btn_group{
+    display: flex;
+    flex-direction: column;
 }

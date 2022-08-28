@@ -17,6 +17,7 @@
     "@types/react-dom": "^18.0.5",
     "classnames": "^2.3.1",
     "highcharts-react-official": "^3.1.0",
+    "jquery": "^3.6.1",
     "react": "^18.2.0",
     "react-classlist": "^1.1.2",
     "react-dom": "^18.2.0",

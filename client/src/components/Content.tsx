@@ -1,18 +1,16 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import Issue from './Issue/Issue';
 import Premium from './premium/Premium';
-import Slider from "react-slick";
 import "./Content.css"
 import "./exchange/Search.css"
 import MarketCategory from './MarketCategory';
-import { Swiper, SwiperSlide } from "swiper/react";
+import {Swiper, SwiperSlide} from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import { Pagination } from "swiper";
+import {Pagination} from "swiper";
 // import Market_BTC from "./Market_BTC";
 import {connectWS} from "../dataHandler/socket";
 import Market_KRW from "./exchange/Market_KRW";
@@ -24,8 +22,15 @@ interface ContentViewType {
 }
 
 
-function Content():React.ReactElement {
+function Content(): React.ReactElement {
     const [item, setItem] = useState([]);
+    const [updateItem,setUpdateItem] = useState();
+
+    const handleTableSort = (e: React.MouseEvent) => {
+
+    }
+
+
 
 
 
@@ -61,27 +66,31 @@ function Content():React.ReactElement {
                     // }
                 })
                 connectWS(symbol, (result: any) => {
-                    let findIndex = krwMarketList.findIndex((data: any) => result.code === data.market)
+                    // console.log("result",result)
+                    if(result) {
+                        setUpdateItem(result);
 
-                    let copyArray: any = [...krwMarketList];
+                        let findIndex = krwMarketList.findIndex((data: any) => data.market === result.code)
+                        let copyArray: any = [...krwMarketList];
 
-                    if (findIndex !== -1) {
-                        let target = copyArray[findIndex];
-                        //현재 가격
-                        target.trade_price = result.trade_price;
-                        //등락률
-                        target.signed_change_rate = result.signed_change_rate;
-                        //24시간 거래량
-                        target.acc_trade_price_24h = result.acc_trade_price_24h;
-                        //단기 상승 하락
-                        target.ask_bid = result.ask_bid;
-                        //금일 상승 하락
-                        target.change = result.change;
-                        copyArray[findIndex] = target;
-                        setItem(copyArray)
+                        if (findIndex !== -1) {
+                            let target = copyArray[findIndex];
+                            //현재 가격
+                            target.trade_price = result.trade_price;
+                            //등락률
+                            target.signed_change_rate = result.signed_change_rate;
+                            //24시간 거래량
+                            target.acc_trade_price_24h = result.acc_trade_price_24h;
+                            //단기 상승 하락
+                            target.ask_bid = result.ask_bid;
+                            //금일 상승 하락
+                            target.change = result.change;
+                            target.updateIndex = result.code;
+                            copyArray[findIndex] = target;
+                            setItem(copyArray)
+                        }
                     }
                 })
-
                 // setItem(krwMarketList)
             })
         });
@@ -90,39 +99,74 @@ function Content():React.ReactElement {
     return (
         <main>
             {/* 카테고리 */}
-            <div className = "category-view">
-                <MarketCategory />
+            <div className="category-view">
+                <MarketCategory/>
             </div>
             <div className="exchange-search">
-                <Search />
+                <Search/>
             </div>
-          <div className = "content-view">
-              <Swiper
-                  // slidesPerView={1}
-                  // spaceBetween={30}
-                  touchRatio = {0}
-                  speed = {200}
-                  pagination={{
-                      clickable: true,
-                      renderBullet: function (index, className) {
-                        console.log("index",index)
-                        if(index === 3) {
-                            return '<span class="' + className + '"><strong>트렌드</strong></span>';
-                        } else {
-                            return '<span class="' + className + '"><strong>시세</strong></span>';
-                        }
-                      },
-                  }}
-                  modules={[Pagination]}
-                  className="mySwiper"
-              >
-                  <SwiperSlide><Market_KRW coinList={item}/></SwiperSlide>
-                  <SwiperSlide><Market_BTC coinList={item}/></SwiperSlide>
-                  <SwiperSlide><Premium /></SwiperSlide>
-                  <SwiperSlide><Premium /></SwiperSlide>
-                  <SwiperSlide><Premium /></SwiperSlide>
-              </Swiper>
-          </div>
+            <div className="content-view">
+                <div className="exchange-view">
+                    <table className="exchange-public-table">
+                        <thead>
+                        <tr>
+                            <th className="defalut_th"></th>
+                            <th className="title" onClick={handleTableSort}>
+                                가상자산명
+                                <div className="table_sort_btn_group">
+                                    <img className="table_sort_up"/>
+                                    <img className="table_sort_down"/>
+                                </div>
+                            </th>
+                            <th className="price" onClick={handleTableSort}>현재가
+                                <div className="table_sort_btn_group">
+                                    <img className="table_sort_up"/>
+                                    <img className="table_sort_down"/>
+                                </div>
+                            </th>
+                            <th className="percent" onClick={handleTableSort}>전일대비
+                                <div className="table_sort_btn_group">
+                                    <img className="table_sort_up"/>
+                                    <img className="table_sort_down"/>
+                                </div>
+                            </th>
+                            <th className="tradecost" onClick={handleTableSort}>거래대금
+                                <div className="table_sort_btn_group">
+                                    <img className="table_sort_up"/>
+                                    <img className="table_sort_down"/>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                    </table>
+
+                    <Swiper
+                        // slidesPerView={1}
+                        // spaceBetween={30}
+                        touchRatio={0}
+                        speed={200}
+                        pagination={{
+                            clickable: true,
+                            renderBullet: function (index, className) {
+                                console.log("index", index)
+                                if (index === 3) {
+                                    return '<span class="' + className + '"><strong>트렌드</strong></span>';
+                                } else {
+                                    return '<span class="' + className + '"><strong>시세</strong></span>';
+                                }
+                            },
+                        }}
+                        modules={[Pagination]}
+                        className="mySwiper"
+                    >
+                        <SwiperSlide><Market_KRW coinList={item} updateItem = {updateItem}/></SwiperSlide>
+                        <SwiperSlide><Market_BTC coinList={item} updateItem = {updateItem}/></SwiperSlide>
+                        <SwiperSlide><Premium/></SwiperSlide>
+                        <SwiperSlide><Premium/></SwiperSlide>
+                        <SwiperSlide><Premium/></SwiperSlide>
+                    </Swiper>
+                </div>
+            </div>
         </main>
 
     );

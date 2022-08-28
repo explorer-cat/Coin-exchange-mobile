@@ -25,7 +25,7 @@ function MarketCategory() {
 
     const categoryList = category.map((menu) => {
         if(menu === "시세") { //className={categoryKey[tabCount]
-            return(<span onClick={handleClickCategory}><strong className = "select" >시세</strong></span>)
+            return(<span onClick={handleClickCategory}><strong className = "not_select" >{menu}</strong></span>)
         }
         return(<span onClick={handleClickCategory}><strong className = "not_select">{menu}</strong></span>)
     });
