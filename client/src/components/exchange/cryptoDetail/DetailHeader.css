@@ -37,4 +37,24 @@
     content: url("../../../images/bookmark_selected.png");
 }
 
+.detailView_page_Info{
+    display:flex;
+    flex-direction: column;
+    margin:24px;
+}
 
+.detailView_page_Info > span:nth-child(1),
+.detailView_page_Info > span:nth-child(2){
+    font-size: 18px;
+    margin-top:6px;
+    color: var(--default-font-color);
+    transition: all 0.3s;
+}
+
+
+.detailView_page_Info > span:nth-child(3){
+    font-size: 12px;
+    margin-top:2px;
+    color: var(--up-color);
+    transition: all 2s;
+}

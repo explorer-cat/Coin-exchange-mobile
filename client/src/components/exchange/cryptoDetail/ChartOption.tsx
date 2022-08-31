@@ -4,14 +4,19 @@ import React, {useEffect, useState, useCallback} from 'react';
 import Box from '@mui/material/Box';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import './ChartOption.css'
+import './ChartOption.css';
+import {Skeleton} from '@mui/material';
+
 interface ChartOptionType {
     changeChartOption:any,
+    loading : boolean,
 }
 
 
-function ChartOption({changeChartOption}:ChartOptionType): React.ReactElement {
+function ChartOption({changeChartOption,loading}:ChartOptionType): React.ReactElement {
+    // const [loading, setLoading] = useState(false)
     const [alignment, setAlignment] = React.useState('left');
+
 
 
     const handleChange = (
@@ -25,26 +30,23 @@ function ChartOption({changeChartOption}:ChartOptionType): React.ReactElement {
 
     const children = [
         <ToggleButton value="1hour" key="1hour" >
-            1시간
+            1일
         </ToggleButton>,
         <ToggleButton value="4hour" key="4hour" >
-            4시간
+            1주
         </ToggleButton>,
         <ToggleButton value="24hour" key="24hour" >
-            24시간
+            3달
         </ToggleButton>,
         <ToggleButton value="7day" key="7day">
-            7일
+            1년
         </ToggleButton>,
         <ToggleButton value="30day" key="30day">
-            30일
+            5년
         </ToggleButton>,
-        // <ToggleButton value="180day" key="180day">
-        //     180일
-        // </ToggleButton>,
-        // <ToggleButton value="allday" key="allday">
-        //     전체
-        // </ToggleButton>,
+        <ToggleButton value="candle" key="candle">
+            캔들
+        </ToggleButton>,
     ];
 
     const control = {
@@ -53,23 +55,39 @@ function ChartOption({changeChartOption}:ChartOptionType): React.ReactElement {
         exclusive: true,
     };
 
-    return (
-        <div className = "ChartOptionArea">
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    // TODO Replace with Stack
-                    '& > :not(style) + :not(style)': { mt: 2 },
-                }}
-            >
-                <ToggleButtonGroup size="small" {...control} aria-label="Small sizes">
-                    {children}
-                </ToggleButtonGroup>
-            </Box>
-        </div>
-    );
+    if(!loading) {
+        return (
+            <div className="ChartOptionAreaLoading">
+                <Skeleton sx={{
+                    bgcolor: "rgba(255, 255, 255, 0.13)",
+                    width: "70%",
+                    height: "60px",
+                    margin: "0px 0px 0px 0px",
+                }}/>
+            </div>
+        )
+
+    }
+    else {
+        return (
+            <div className = "ChartOptionArea">
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        // TODO Replace with Stack
+                        '& > :not(style) + :not(style)': { mt: 2 },
+                    }}
+                >
+                    <ToggleButtonGroup size="small" {...control} aria-label="Small sizes">
+                        {children}
+                    </ToggleButtonGroup>
+                </Box>
+            </div>
+        );
+    }
+
 }
 
 

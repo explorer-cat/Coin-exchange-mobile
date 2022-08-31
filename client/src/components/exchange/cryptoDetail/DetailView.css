@@ -6,9 +6,18 @@
 }
 
 .miniChart {
-    width: 100%;
+    width: calc(100% - 36px);
     height: 270px;
+    padding: 18px;
+    background: var(--table-thead-background);
 }
+
+.miniChart div,
+.miniChart g,
+.miniChart rect {
+    background: var(--table-thead-background) !important;
+}
+
 
 
 .crytoInfo{

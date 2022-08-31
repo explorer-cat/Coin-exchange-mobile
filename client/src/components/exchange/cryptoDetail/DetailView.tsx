@@ -21,6 +21,12 @@ function DetailView(): React.ReactElement {
         closeWS()
     },[])
 
+    const [loading, setLoading] = useState(false);
+
+    const changeLoading = (loadingProps:boolean) => {
+        setLoading(loadingProps)
+    }
+
     const [chartOption, setChartOption] = useState({
         type : "24hour",
         minute : "30",
@@ -74,20 +80,20 @@ function DetailView(): React.ReactElement {
     return (
         <header className = "DetailView_Content">
             <div className = "DetailHeader">
-                <DetailHeader />
-            </div>
-
-            <div className = "ChartOptionArea">
-                <ChartOption changeChartOption = {changeChartOption} />
+                <DetailHeader loadingFuc = {changeLoading}/>
             </div>
 
             <div className = "miniChart">
                 <CrpytoChart  chartViewOption = {chartOption}/>
             </div>
 
-            <div className = "crytoInfo">
-                <CrpytoInfoTable />
+            <div className = "ChartOptionArea">
+                <ChartOption changeChartOption = {changeChartOption} loading = {loading} />
             </div>
+
+            {/*<div className = "crytoInfo">*/}
+            {/*    <CrpytoInfoTable />*/}
+            {/*</div>*/}
         </header>
 
     )

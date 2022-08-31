@@ -5,15 +5,25 @@ import React, {useEffect, useState, useRef} from 'react';
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import {useLocation} from "react-router-dom";
-
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 interface CryptoChartType {
     chartViewOption : any,
 }
 
 
+let chartLoading = {
+    width : "100%",
+    height : "270px"
+}
+
+
+
+
 //pair : ExchangeMarket_KRW_Type
 function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
+    const [loading,setLoading] = useState(false)
     const [options,setOption] = useState({})
     const [theme, setTheme] = useState(localStorage.getItem("theme"))
 
@@ -62,6 +72,7 @@ function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
                     panning: true,
                     panKey: 'shift',
                     margin: [0, 0, 0, 0],
+                    width: 400,
                     height:250,
                     backgroundColor: theme === "light" ? "#ffffff" : "#15181a",
                     scrollablePlotArea: {
@@ -117,27 +128,39 @@ function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
                     name: '종가',
                 }]
             })
-
         })
     }
 
+
+    //옵션이 변경되었다면 로딩창 제거
     useEffect(() => {
-        console.log("render")
-        getLineChartInfo()
+        if(options.hasOwnProperty("chart")) {
+            //차트 생성 요청 한 뒤에 0.3초에 한번씩 차트가 그려졌는지 체크해서 로딩창 유지할지 결정함
+            setLoading(true)
+        }
+    },[options])
+
+    //차트 세팅 시작!
+    useEffect( () => {
+         getLineChartInfo()
     }, [chartViewOption])
 
 
+    if(!loading) {
         return (<div>
-
-
+            <Box sx={{ display: 'flex', width: '100%',  height : '270px', justifyContent: "center", alignItems : "center"}}>
+                <CircularProgress />
+            </Box>
+        </div>)
+    } else {
+        return (<div>
             <HighchartsReact
                 highcharts={Highcharts}
                 options={options}
             />
 
         </div>)
-
-
+    }
 }
 
 

@@ -1,3 +1,13 @@
 .ChartOptionArea{
-    height: 40px;
+    height: 65px;
+    border-bottom: 1px solid var(--category-btn-background);
+}
+
+
+#highcharts-91nd7i1-0{
+    width:100%;
+}
+
+.highcharts-root {
+    width: calc(100% - 48px) !important;
 }
