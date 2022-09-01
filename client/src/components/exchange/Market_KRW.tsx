@@ -4,7 +4,7 @@ import '../../stylesheets/palette.css'
 import React, {useEffect, useState, useRef} from 'react';
 import {Link, Route, Routes, BrowserRouter, useNavigate} from 'react-router-dom'
 import {Skeleton} from '@mui/material';
-import {connectWS} from "../../dataHandler/socket";
+import {closeWS, connectWS} from "../../dataHandler/socket";
 import Search from "./Search";
 
 
@@ -29,14 +29,9 @@ function Market_KRW({coinList,updateItem}: Market_KRW_Type): React.ReactElement 
       },1000)
     }
 
-    // useEffect(() => {
-    //     coinList.map((data: any) => {
-    //         if(data.market === updateItem.code) {
-    //             setItem()
-    //         }
-    //     }
-    //     handlePriceChange();
-    // },[updateItem])
+    useEffect(() => {
+        closeWS()
+    },[])
 
 
 
