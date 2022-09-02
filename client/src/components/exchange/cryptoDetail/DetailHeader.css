@@ -8,6 +8,7 @@
     font-size: 12px;
     padding: 0px 24px;
     padding-top: calc(env(safe-area-inset-bottom) + 25px);
+    background: var(--content-box);
 }
 
 .arrow_back {
@@ -40,7 +41,8 @@
 .detailView_page_Info{
     display:flex;
     flex-direction: column;
-    margin:24px;
+    padding:24px;
+    background: var(--content-box);
 }
 
 .detailView_page_Info > span:nth-child(1),

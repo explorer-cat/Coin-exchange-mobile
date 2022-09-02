@@ -1,0 +1,36 @@
+.makeStyles-root-1{
+    background: var(--content-box) !important;
+}
+
+.MuiAppBar-root{
+    margin:0px 60px;
+    width: calc(100% - 120px) !important;
+}
+
+.MuiAppBar-colorPrimary{
+    background: var(--content-box) !important;
+    /*border-bottom: 1px solid var(--default-font-color) !important;*/
+}
+
+
+.MuiPaper-elevation4{
+    box-shadow: 0px 0px 0px 0px !important;
+}
+
+.MuiTabs-flexContainer{
+    /*justify-content: center;*/
+}
+.PrivateTabIndicator-colorSecondary-4{
+    background-color: var(--default-font-color)!important;
+}
+
+#simple-tabpanel-0,
+#simple-tabpanel-1,
+#simple-tabpanel-2 {
+    border-top: 1px solid var(--1gray-color);
+    opacity: 0.2;
+}
+/*.MuiBox-root{*/
+/*    border-top: 1px solid var(--1gray-color);*/
+/*}*/
+

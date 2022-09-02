@@ -1,5 +1,7 @@
 .ChartOptionArea{
-    background: var(--bg-color-box);
+    background: var(--content-box);
+    border-bottom-left-radius: 26px;
+    border-bottom-right-radius: 26px;
 }
 
 .ChartOptionAreaLoading{

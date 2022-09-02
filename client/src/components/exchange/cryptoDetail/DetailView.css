@@ -3,19 +3,20 @@
 }
 .DetailHeader{
     padding-top: calc(env(safe-area-inset-bottom) + 25px);
+    background: var(--content-box);
 }
 
 .miniChart {
     width: calc(100% - 36px);
     height: 270px;
     padding: 18px;
-    background: var(--table-thead-background);
+    background: var(--content-box);
 }
 
 .miniChart div,
 .miniChart g,
 .miniChart rect {
-    background: var(--table-thead-background) !important;
+    background: var(--content-box) !important;
 }
 
 

@@ -8,6 +8,7 @@ import './DetailView.css'
 import DetailHeader from "./DetailHeader";
 import CrpytoChart from "./CrpytoChart";
 import ChartOption from "./ChartOption"
+import DetailContent from "./content/DetailContent";
 import CrpytoInfoTable from "./CrpytoInfoTable";
 import {useLocation} from "react-router-dom";
 import {closeWS, getSocket} from "../../../dataHandler/socket";
@@ -91,9 +92,9 @@ function DetailView(): React.ReactElement {
                 <ChartOption changeChartOption = {changeChartOption} loading = {loading} />
             </div>
 
-            {/*<div className = "crytoInfo">*/}
-            {/*    <CrpytoInfoTable />*/}
-            {/*</div>*/}
+            <div className = "cryptoContent">
+                <DetailContent />
+            </div>
         </header>
 
     )

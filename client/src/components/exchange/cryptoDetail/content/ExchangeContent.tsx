@@ -5,17 +5,17 @@ import CategoryToggle from './ContentCategoryToggle'
 import React, {useEffect, useState, useCallback} from 'react';
 
 
-function DetailContent(): React.ReactElement {
+function ExchangeContent(): React.ReactElement {
     const [loading, setLoading] = useState(false)
 
 
     return (<>
-                <CategoryToggle />
+            하이용
           </>
 
     );
 }
 
 
-export default DetailContent;
+export default ExchangeContent;
 

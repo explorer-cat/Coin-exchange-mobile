@@ -16,6 +16,7 @@ html[data-theme='dark'] {
   --footer-bg-color : #1f2127;
   --search-background-color : #1f2127;
   --category-btn-background : #1f2127;
+  --content-box : #1B1E21;
 
 
   }
@@ -36,7 +37,7 @@ html[data-theme='light'] {
   --footer-bg-color : #fafafa;
   --search-background-color : #fafafa;
   --category-btn-background : #f8f8f9;
-
+  --content-box : #1B1E21;
   }
 /* #A9ACAF sel*/
 /* #4E4F4F no sel*/

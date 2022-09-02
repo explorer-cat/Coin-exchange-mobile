@@ -8,46 +8,13 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import {Skeleton} from '@mui/material';
+import ExchangeContent from './ExchangeContent';
+import './ContentCategoryToggle.css'
 
 interface ChartOptionType {
     changeChartOption:any,
 }
 
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: any;
-    value: any;
-}
-
-
-function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box p={3}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-
-
-import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -92,8 +59,8 @@ function a11yProps(index: any) {
 }
 
 
-function DetailContent(): React.ReactElement {
-    const [loading,setLoading] = useState(false)
+function ContentCategoryToggle(): React.ReactElement {
+    const [loading,setLoading] = useState(true)
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -120,13 +87,13 @@ function DetailContent(): React.ReactElement {
             <div className={classes.root}>
                 <AppBar position="static">
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                        <Tab label="Item One" {...a11yProps(0)} />
-                        <Tab label="Item Two" {...a11yProps(1)} />
-                        <Tab label="Item Three" {...a11yProps(2)} />
+                        <Tab label="코인 가격 정보" {...a11yProps(0)} />
+                        <Tab label="상장 거래소" {...a11yProps(1)} />
+                        <Tab label="관련 뉴스" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    Item One
+                    <ExchangeContent />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     Item Two
@@ -141,5 +108,5 @@ function DetailContent(): React.ReactElement {
 }
 
 
-export default DetailContent;
+export default ContentCategoryToggle;
 

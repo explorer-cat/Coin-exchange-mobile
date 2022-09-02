@@ -74,7 +74,7 @@ function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
                     margin: [0, 0, 0, 0],
                     width: 400,
                     height:250,
-                    backgroundColor: theme === "light" ? "#ffffff" : "#15181a",
+                    backgroundColor: theme === "light" ? "#ffffff" : "#1B1E21",
                     scrollablePlotArea: {
                         minWidth: 10
                     }
@@ -123,7 +123,7 @@ function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
                 series: [{
                     data: priceData,
                     lineColor: theme === "light" ? "#C0C0C0" : "rgb(255, 108, 71)",
-                    color: theme === "light" ? "#ffffff" : "#15181a",
+                    color: theme === "light" ? "#ffffff" : "#1B1E21",
                     // fillOpacity: 0.2,
                     name: '종가',
                 }]
