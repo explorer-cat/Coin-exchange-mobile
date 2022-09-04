@@ -1,0 +1,21 @@
+import '../../../../stylesheets/initialization.css'
+import '../../../../stylesheets/palette.css'
+import './DetailContent.css'
+import CategoryToggle from './ContentCategoryToggle'
+import React, {useEffect, useState, useCallback} from 'react';
+
+
+function InvestmentInfo(): React.ReactElement {
+    const [loading, setLoading] = useState(false)
+
+
+    return (<div className = "content-title">
+            투자 정보
+          </div>
+
+    );
+}
+
+
+export default InvestmentInfo;
+
