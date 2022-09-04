@@ -1,21 +1,60 @@
-import '../../../../stylesheets/initialization.css'
-import '../../../../stylesheets/palette.css'
-import './DetailContent.css'
-import CategoryToggle from './ContentCategoryToggle'
-import React, {useEffect, useState, useCallback} from 'react';
-
-
-function InvestmentInfo(): React.ReactElement {
-    const [loading, setLoading] = useState(false)
-
-
-    return (<div className = "content-title">
-            투자 정보
-          </div>
-
-    );
+.content-title {
+    font-size:16px;
+    color: var(--default-font-color);
 }
 
+.content-info {
+    font-size:12px;
+    color: var(--default-font-color);
+    margin-top:18px;
+}
 
-export default InvestmentInfo;
+.content-info .subTitle {
+    color: var(--table-cell-default-font-color);
+}
 
+.investContent {
+    display: flex;
+}
+
+.content-left,.content-right {
+    width:50%;
+    /*padding:12px;*/
+}
+.content-left > ul,
+.content-right > ul{
+    display: flex;
+    padding:4px 0px;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--default-font-color);
+}
+
+.content-left > ul {
+    margin-right: 12px;
+}
+.content-right > ul {
+    margin-left: 12px;
+}
+
+.content-full {
+    width: 100%;
+}
+
+.content-full > ul {
+    display: flex;
+    padding:4px 0px;
+}
+.content-full ul li:nth-child(1) {
+    margin-right: 18px;
+    min-width: 85px;
+}
+.content-full ul li:nth-child(2) {
+    text-align: left;
+    min-width: 70px;
+}
+
+.content-full ul li > span{
+    font-size: 10px;
+    color: var(--table-cell-default-font-color);
+    margin-left:4px;
+}

@@ -1,8 +1,9 @@
 .cryptoContent {
     margin-top:18px;
+    height: 100%;
 }
 
 .makeStyles-root-1{
-    border-top-left-radius: 18px;
-    border-top-right-radius: 18px;
+    /*border-top-left-radius: 18px;*/
+    /*border-top-right-radius: 18px;*/
 }

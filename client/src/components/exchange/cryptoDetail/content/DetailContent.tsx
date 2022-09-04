@@ -10,8 +10,8 @@ function DetailContent(): React.ReactElement {
 
 
     return (<>
-                <CategoryToggle />
-          </>
+            <CategoryToggle/>
+        </>
 
     );
 }

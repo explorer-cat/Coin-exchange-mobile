@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import {Skeleton} from '@mui/material';
 import ExchangeContent from './ExchangeContent';
+import InvestmentInfo from './InvestmentInfo';
 import './ContentCategoryToggle.css'
 
 interface ChartOptionType {
@@ -87,16 +88,16 @@ function ContentCategoryToggle(): React.ReactElement {
             <div className={classes.root}>
                 <AppBar position="static">
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                        <Tab label="코인 가격 정보" {...a11yProps(0)} />
-                        <Tab label="상장 거래소" {...a11yProps(1)} />
+                        <Tab label="가격 정보" {...a11yProps(0)} />
+                        <Tab label="거래소" {...a11yProps(1)} />
                         <Tab label="관련 뉴스" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    <ExchangeContent />
+                    <InvestmentInfo />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    Item Two
+                    <ExchangeContent />
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     Item Three

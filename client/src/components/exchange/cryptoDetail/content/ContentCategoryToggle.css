@@ -1,5 +1,9 @@
-.makeStyles-root-1{
+.cryptoContent > div {
     background: var(--content-box) !important;
+}
+
+.MuiTabs-fixed{
+  overflow: unset !important;
 }
 
 .MuiAppBar-root{
@@ -18,17 +22,17 @@
 }
 
 .MuiTabs-flexContainer{
-    /*justify-content: center;*/
+    justify-content: center;
 }
-.PrivateTabIndicator-colorSecondary-4{
+.MuiTabs-indicator{
     background-color: var(--default-font-color)!important;
 }
 
 #simple-tabpanel-0,
 #simple-tabpanel-1,
 #simple-tabpanel-2 {
-    border-top: 1px solid var(--1gray-color);
-    opacity: 0.2;
+    /*border-top: 1px solid var(--1gray-color);*/
+
 }
 /*.MuiBox-root{*/
 /*    border-top: 1px solid var(--1gray-color);*/
