@@ -2,14 +2,19 @@ import '../../../../stylesheets/initialization.css'
 import '../../../../stylesheets/palette.css'
 import './DetailContent.css'
 import './InvestmentInfo.css'
+import '../DetailView.css'
 import CategoryToggle from './ContentCategoryToggle'
 import React, {useEffect, useState, useCallback} from 'react';
 
+interface InvestmentInfoType {
+    props : any,
+}
 
-function InvestmentInfo(): React.ReactElement {
+function InvestmentInfo({props}:InvestmentInfoType): React.ReactElement {
     const [loading, setLoading] = useState(false)
 
 
+    console.log("propsprops",props)
     return (
         <div className = "InvestInfoArea">
             <div className = "content-title">
@@ -19,20 +24,36 @@ function InvestmentInfo(): React.ReactElement {
                 <div className = "content-full">
                     <ul>
                         <li className = "subTitle"> 1일 최고가</li>
-                        <li> 27,034,300원</li>
+                        <li className = "up">{props.high_price.toLocaleString()}원<span>(업비트)</span></li>
+                    </ul>
+                    <ul>
+                        <li className = "subTitle"> 1일 최저가</li>
+                        <li className = "down">{props.low_price.toLocaleString()}원<span>(업비트)</span></li>
                     </ul>
                     <ul>
                         <li className = "subTitle"> 52주 최고가</li>
-                        <li> 85,200,730원<span>(2021.03.16)</span></li>
+                        <li className = "up">{props.highest_52_week_price.toLocaleString()}원<span>({props.highest_52_week_date})</span></li>
                     </ul>
                     <ul>
                         <li className = "subTitle"> 52주 최저가</li>
-                        <li> 23,293,000원<span>(2022.01.22)</span></li>
+                        <li className = "down">{props.lowest_52_week_price.toLocaleString()}원<span>({props.lowest_52_week_date})</span></li>
+                    </ul>
+                    <ul>
+                        <li className = "subTitle"> 24시간 거래량</li>
+                        <li>{props.acc_trade_volume_24h.toFixed(2)}개<span>(업비트)</span></li>
                     </ul>
                     <ul>
                         <li className = "subTitle"> 24시간 거래대금</li>
-                        <li> 20,123,293,000원</li>
+                        <li>{Number(props.acc_trade_price_24h.toFixed(0)).toLocaleString()}원<span>(업비트)</span></li>
                     </ul>
+                    {/*<ul>*/}
+                    {/*    <li className = "subTitle"> 1년 전 대비</li>*/}
+                    {/*    <li>{Number(props.acc_trade_price_24h.toFixed(0)).toLocaleString()}원<span>(업비트)</span></li>*/}
+                    {/*</ul>*/}
+                    {/*<ul>*/}
+                    {/*    <li className = "subTitle"> 3년 전 대비</li>*/}
+                    {/*    <li>{Number(props.acc_trade_price_24h.toFixed(0)).toLocaleString()}원<span>(업비트)</span></li>*/}
+                    {/*</ul>*/}
                 </div>
                 {/*<div className = "content-right">*/}
                 {/*    <ul>*/}

@@ -42,8 +42,10 @@
 
 .content-full > ul {
     display: flex;
-    padding:4px 0px;
+    padding:12px 0px;
+    border-bottom: 1px solid var(--table-cell-default-font-color);
 }
+
 .content-full ul li:nth-child(1) {
     margin-right: 18px;
     min-width: 85px;

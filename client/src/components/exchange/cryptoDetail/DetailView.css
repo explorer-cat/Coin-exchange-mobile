@@ -1,5 +1,7 @@
 .DetailView_Content{
     height:100%;
+    overflow: auto;
+
 }
 .DetailHeader{
     padding-top: calc(env(safe-area-inset-bottom) + 25px);
@@ -24,4 +26,13 @@
 .crytoInfo{
     width: 100%;
     height: 100%;
+}
+
+
+.up {
+    color: var(--up-color);
+
+}
+.down {
+    color: var(--down-color)
 }

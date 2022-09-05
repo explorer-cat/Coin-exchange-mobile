@@ -28,6 +28,9 @@ function DetailView(): React.ReactElement {
         setLoading(loadingProps)
     }
 
+    /* 현재 접속한 페이지의 코인 이름을 가져옵니다.*/
+
+
     const [chartOption, setChartOption] = useState({
         type : "24hour",
         minute : "30",

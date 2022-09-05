@@ -1,6 +1,6 @@
 .cryptoContent {
     margin-top:18px;
-    height: 100%;
+    height: calc(100% - 707px);
 }
 
 .makeStyles-root-1{

@@ -41,7 +41,7 @@ function MainPage() : React.ReactElement {
                 {/* 메인 */}
                 <Content />
                 {/* 푸터 */}
-                <Footer />
+                {/*<Footer />*/}
             </div>
         </div>
     );

@@ -12,8 +12,8 @@ import ExchangeContent from './ExchangeContent';
 import InvestmentInfo from './InvestmentInfo';
 import './ContentCategoryToggle.css'
 
-interface ChartOptionType {
-    changeChartOption:any,
+interface contentType {
+    investInfo:any,
 }
 
 
@@ -60,7 +60,7 @@ function a11yProps(index: any) {
 }
 
 
-function ContentCategoryToggle(): React.ReactElement {
+function ContentCategoryToggle({investInfo} : contentType): React.ReactElement {
     const [loading,setLoading] = useState(true)
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
@@ -94,7 +94,7 @@ function ContentCategoryToggle(): React.ReactElement {
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    <InvestmentInfo />
+                    <InvestmentInfo props = {investInfo}/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <ExchangeContent />
