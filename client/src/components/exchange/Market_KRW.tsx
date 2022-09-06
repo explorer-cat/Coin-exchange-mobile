@@ -11,11 +11,12 @@ import Search from "./Search";
 interface Market_KRW_Type {
     coinList: any,
     updateItem : any,
+    search : String,
 }
 
 
 //pair : ExchangeMarket_KRW_Type
-function Market_KRW({coinList,updateItem}: Market_KRW_Type): React.ReactElement {
+function Market_KRW({coinList,updateItem,search}: Market_KRW_Type): React.ReactElement {
     const navigate = useNavigate();
     const [priceBox, setPriceBox] = useState("")
     // const loadingBg: String = "rgba(255, 255, 255, 0.13)";
@@ -108,37 +109,39 @@ function Market_KRW({coinList,updateItem}: Market_KRW_Type): React.ReactElement 
             coinList.map((data: any) => {
                 // console.log("data",data.updateIndex)
                 if(data.market.indexOf("KRW-") !== -1) {
-                    list.push(
-                        <tr onClick={() => navigate("/react/trade?" + data.market)}>
-                        <td className="icon">
-                            <img src={data.icon}></img>
-                        </td>
-                        <td className="name">
-                            <strong>{data.korean_name}</strong>
-                            <p>{data.market.replace("KRW-", "")}</p>
-                        </td>
-                            {data.change === "RISE" ?
-                                <td className={"price up"}>
-                                    <p className={updateItem.code === data.market ? (data.ask_bid === "ASK" ? "isAsk" : "isBid") : ""}>{data.trade_price.toLocaleString()}</p>
-                                </td> :
-                                <td className={"price down"}>
-                                    <p className={updateItem.code === data.market ? (data.ask_bid === "ASK" ? "isAsk" : "isBid") : ""}>{data.trade_price.toLocaleString()}</p>
+                        list.push(
+                            <tr onClick={() => navigate("/react/trade?" + data.market)}>
+                                <td className="icon">
+                                    <img src={data.icon}></img>
                                 </td>
-                            }
-                        {data.signed_change_rate * 100 > 0 ?
-                            <td className="percent up">
-                                <p>{(data.signed_change_rate * 100).toFixed(2)}%</p>
-                                <p>{(data.trade_price - data.opening_price).toLocaleString()}</p>
-                            </td> :
-                            <td className="percent down">
-                                <p>{(data.signed_change_rate * 100).toFixed(2)}%</p>
-                                <p>{(data.trade_price - data.opening_price).toLocaleString()}</p>
-                            </td>
-                        }
-                        <td className="volume">
-                            <strong>{Number((data.acc_trade_price_24h / 1000000).toFixed(0)).toLocaleString()}</strong><p>백만</p>
-                        </td>
-                    </tr>)
+                                <td className="name">
+                                    <strong>{data.korean_name}</strong>
+                                    <p>{data.market.replace("KRW-", "")}</p>
+                                </td>
+                                {data.change === "RISE" ?
+                                    <td className={"price up"}>
+                                        <p className={updateItem.code === data.market ? (data.ask_bid === "ASK" ? "isAsk" : "isBid") : ""}>{data.trade_price.toLocaleString()}</p>
+                                    </td> :
+                                    <td className={"price down"}>
+                                        <p className={updateItem.code === data.market ? (data.ask_bid === "ASK" ? "isAsk" : "isBid") : ""}>{data.trade_price.toLocaleString()}</p>
+                                    </td>
+                                }
+                                {data.signed_change_rate * 100 > 0 ?
+                                    <td className="percent up">
+                                        <p>{(data.signed_change_rate * 100).toFixed(2)}%</p>
+                                        <p>{(data.trade_price - data.opening_price).toLocaleString()}</p>
+                                    </td> :
+                                    <td className="percent down">
+                                        <p>{(data.signed_change_rate * 100).toFixed(2)}%</p>
+                                        <p>{(data.trade_price - data.opening_price).toLocaleString()}</p>
+                                    </td>
+                                }
+                                <td className="volume">
+                                    <strong>{Number((data.acc_trade_price_24h / 1000000).toFixed(0)).toLocaleString()}</strong>
+                                    <p>백만</p>
+                                </td>
+                            </tr>)
+
                 }
             })
             return list;

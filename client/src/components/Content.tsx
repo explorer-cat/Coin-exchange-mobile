@@ -25,13 +25,16 @@ interface ContentViewType {
 function Content(): React.ReactElement {
     const [item, setItem] = useState([]);
     const [updateItem,setUpdateItem] = useState();
+    const [searchKeyword, setSearchKeyword] = useState("");
 
     const handleTableSort = (e: React.MouseEvent) => {
 
     }
 
-
-
+    //검색 키워드 props
+    const setCrpytoSearch = (e:any) => {
+        setSearchKeyword(searchKeyword);
+     }
 
 
     //업비트 전체 자산 정보 가져오기
@@ -103,7 +106,7 @@ function Content(): React.ReactElement {
                 <MarketCategory/>
             </div>
             <div className="exchange-search">
-                <Search/>
+                <Search inputValue = {setCrpytoSearch} />
             </div>
             <div className="content-view">
                 <div className="exchange-view">
@@ -159,8 +162,8 @@ function Content(): React.ReactElement {
                         modules={[Pagination]}
                         className="mySwiper"
                     >
-                        <SwiperSlide><Market_KRW coinList={item} updateItem = {updateItem}/></SwiperSlide>
-                        <SwiperSlide><Market_BTC coinList={item} updateItem = {updateItem}/></SwiperSlide>
+                        <SwiperSlide><Market_KRW coinList={item} updateItem = {updateItem} search = {searchKeyword}/></SwiperSlide>
+                        <SwiperSlide><Market_BTC coinList={item} updateItem = {updateItem} search = {searchKeyword}/></SwiperSlide>
                         <SwiperSlide><Premium/></SwiperSlide>
                         <SwiperSlide><Premium/></SwiperSlide>
                         <SwiperSlide><Premium/></SwiperSlide>

@@ -1,12 +1,19 @@
 import './Search.css';
 import '../../stylesheets/initialization.css'
 import { Skeleton } from '@mui/material';
+import React, {useEffect, useState} from 'react';
 
 interface SearchType {
-    coinList : any
+    inputValue : any,
 }
 
-function Search() {
+function Search({inputValue} : SearchType) {
+
+    const handleKeyPress = (e:any) => {
+        inputValue("zz")
+    }
+
+
   // if(!coinList) {
   //   return (
   //     <span className = "navBar_search-box">
@@ -21,7 +28,7 @@ function Search() {
       <span className = "navBar_search-box">
         <div className = "publicInput">
           <div className = "search-icon"></div>
-          <input className = "search-input-box" placeholder='코인명/심볼검색'/>
+          <input className = "search-input-box" onChange={handleKeyPress}  placeholder='코인명/심볼검색'/>
         </div>
       </span>
   );

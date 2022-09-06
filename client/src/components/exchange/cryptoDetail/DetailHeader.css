@@ -9,6 +9,8 @@
     padding: 0px 24px;
     padding-top: calc(env(safe-area-inset-bottom) + 25px);
     background: var(--content-box);
+    position: fixed;
+    z-index: 999;
 }
 
 .arrow_back {

@@ -13,6 +13,7 @@ import Search from "./Search";
 interface Market_BTC_Type {
     coinList: any,
     updateItem : any,
+    search : String,
 }
 
 

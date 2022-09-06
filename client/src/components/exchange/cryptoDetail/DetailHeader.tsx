@@ -73,14 +73,6 @@ function DetailHeader({loadingFuc}: HeaderProps) {
         })
     }
 
-    //         // setItem(krwMarketList)
-    //     })
-    // }
-
-    //
-    // useEffect(() => {
-    //     setCryptoInfo();
-    // },[])
 
 
     useEffect(() => {
@@ -178,17 +170,13 @@ function DetailHeader({loadingFuc}: HeaderProps) {
                         <div className="backToHome">
                             <img className="arrow_back" onClick={handleGoBack}/>
                         </div>
-                        {/*<div className="detailTitle">*/}
-                        {/*    <span>{detailInfo.}</span>*/}
-                        {/*    /!*<span>tradeCode/KRW</span>*!/*/}
-                        {/*</div>*/}
                         <div className="favoriteCrpyto">
                             <img className="bookMark"/>
                         </div>
                     </div>
                     <div className="detailView_page_Info">
                         <span className="name">{detailInfo.korean}</span>
-                        <span className="price">{detailInfo.price.toLocaleString()}원</span>
+                        <span className="price">{detailInfo.price.toLocaleString()}{tradeCode.indexOf("BTC-") !== -1 ? " btc" : "원"}</span>
                         <span
                             className="name">{detailInfo.change_price.toLocaleString()} ({(detailInfo.change_rate).toFixed(2)}%)</span>
                     </div>
