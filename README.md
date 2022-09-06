@@ -8,13 +8,7 @@ ReactJS와 TypeScript를 사용하여 거래소 어플리케이션을 클론코�
 
 앱 출시 전입니다 ^_^
 
-<img src = "https://user-images.githubusercontent.com/55500077/187037686-4b5b285d-a19a-4f27-9cab-0f0884979eba.jpeg" style = "width:230px; height:422px; margin-right:4px"><img src = "https://user-images.githubusercontent.com/55500077/187037707-1034e195-572c-4471-8985-609e57862afc.jpeg" style = "width:230px; height:422px;margin-right:4px"><img src = "https://user-images.githubusercontent.com/55500077/187037713-289d2ad7-fbbf-45ce-bf96-8898cfd8a1c9.jpeg" style = "width:230px; height:422px;margin-right:4px"><img src = "https://user-images.githubusercontent.com/55500077/187037702-fe450a77-78b0-4886-95e6-58926b2b63c4.jpeg" style = "width:230px; height:422px">
-
-<!-- ![KakaoTalk_Photo_2022-08-28-00-48-40 003](https://user-images.githubusercontent.com/55500077/187037686-4b5b285d-a19a-4f27-9cab-0f0884979eba.jpeg){: width="190" height="422"}
-![KakaoTalk_Photo_2022-08-28-00-48-40 001](https://user-images.githubusercontent.com/55500077/187037702-fe450a77-78b0-4886-95e6-58926b2b63c4.jpeg){: width="190" height="422"}
-![KakaoTalk_Photo_2022-08-28-00-48-40 002](https://user-images.githubusercontent.com/55500077/187037707-1034e195-572c-4471-8985-609e57862afc.jpeg){: width="190" height="422"}
-![KakaoTalk_Photo_2022-08-28-00-48-40 004](https://user-images.githubusercontent.com/55500077/187037713-289d2ad7-fbbf-45ce-bf96-8898cfd8a1c9.jpeg){: width="190" height="422"} -->
-
+<img src = "../../Desktop/KakaoTalk_Photo_2022-09-06-23-35-33 002.jpeg" style = "width:235px; height:480px; margin-right:4px"><img src = "../../Desktop/KakaoTalk_Photo_2022-09-06-23-35-33 003.jpeg" style = "width:235px; height:480px;margin-right:4px"><img src = "../../Desktop/KakaoTalk_Photo_2022-09-06-23-35-33 004.jpeg" style = "width:235px; height:480px;margin-right:4px"><img src = "../../Desktop/KakaoTalk_Photo_2022-09-06-23-35-33 001.jpeg" style = "width:235px; height:480px">
 
 # 사용 스킬
 
