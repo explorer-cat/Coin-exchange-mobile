@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 
 interface CryptoChartType {
     chartViewOption : any,
+    crpytoInfo : any,
 }
 
 
@@ -22,7 +23,7 @@ let chartLoading = {
 
 
 //pair : ExchangeMarket_KRW_Type
-function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
+function CryptoChart({chartViewOption,crpytoInfo}: CryptoChartType): React.ReactElement {
     const [loading,setLoading] = useState(false)
     const [options,setOption] = useState({})
     const [theme, setTheme] = useState(localStorage.getItem("theme"))
@@ -50,8 +51,6 @@ function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
 
 
         fetch(`https://api.upbit.com/v1/candles/minutes/${minute}?market=${tradeCode}&count=${count}`).then((response) => response.json()).then(result => {
-
-
             result.map((info: any) => {
                 //최저가와 최저가를 찾아보자
                 low_price.unshift(info.low_price)
@@ -72,7 +71,7 @@ function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
                     panning: true,
                     panKey: 'shift',
                     margin: [0, 0, 0, 0],
-                    width: 400,
+                    // width: 400,
                     height:250,
                     backgroundColor: theme === "light" ? "#ffffff" : "#1B1E21",
                     scrollablePlotArea: {
@@ -122,7 +121,7 @@ function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
                 },
                 series: [{
                     data: priceData,
-                    lineColor: theme === "light" ? "#C0C0C0" : "rgb(255, 108, 71)",
+                    lineColor: crpytoInfo.change === "FALL" ? "rgb(70, 124, 241)" : "rgb(255, 108, 71)",
                     color: theme === "light" ? "#ffffff" : "#1B1E21",
                     // fillOpacity: 0.2,
                     name: '종가',
@@ -142,8 +141,12 @@ function CryptoChart({chartViewOption}: CryptoChartType): React.ReactElement {
 
     //차트 세팅 시작!
     useEffect( () => {
-         getLineChartInfo()
-    }, [chartViewOption])
+        if(crpytoInfo) {
+            getLineChartInfo()
+        }
+    }, [chartViewOption,crpytoInfo])
+
+
 
 
     if(!loading) {

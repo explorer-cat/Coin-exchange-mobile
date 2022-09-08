@@ -2,6 +2,7 @@ import './DetailHeader.css';
 import '../../../stylesheets/initialization.css'
 import '../../../stylesheets/palette.css'
 import '../../../stylesheets/public.css'
+import '../Market_KRW.css'
 import React, {useEffect, useState} from 'react';
 import {Link, Route, Routes, BrowserRouter, useNavigate, useLocation} from 'react-router-dom'
 import {connectWS, getSocket} from "../../../dataHandler/socket";
@@ -9,7 +10,8 @@ import {Skeleton} from '@mui/material';
 
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 interface HeaderProps {
-    loadingFuc: any
+    loadingFuc: any,
+    crpytoInfo : any
 }
 
 
@@ -22,7 +24,7 @@ let headerLoading = {
 //뒤로가기 버튼
 
 
-function DetailHeader({loadingFuc}: HeaderProps) {
+function DetailHeader({loadingFuc,crpytoInfo}: HeaderProps) {
     const [loading, setLoading] = useState(false);
     const [detailInfo, setDetailInfo] = useState({
         market: '',
@@ -101,7 +103,7 @@ function DetailHeader({loadingFuc}: HeaderProps) {
 
     useEffect(() => {
         if (detailInfo.price !== 0 && !loading) {
-            //로딩완료.
+            crpytoInfo(detailInfo)
             setLoading(true)
         }
     }, [detailInfo])
@@ -109,7 +111,6 @@ function DetailHeader({loadingFuc}: HeaderProps) {
 
     useEffect(() => {
         setCrpytoInfo()
-        console.log(detailInfo)
     }, [])
 
     /**
@@ -177,8 +178,7 @@ function DetailHeader({loadingFuc}: HeaderProps) {
                     <div className="detailView_page_Info">
                         <span className="name">{detailInfo.korean}</span>
                         <span className="price">{detailInfo.price.toLocaleString()}{tradeCode.indexOf("BTC-") !== -1 ? " btc" : "원"}</span>
-                        <span
-                            className="name">{detailInfo.change_price.toLocaleString()} ({(detailInfo.change_rate).toFixed(2)}%)</span>
+                        <span className={detailInfo.change === "FALL" ? "down" : "up"}>{detailInfo.change_price.toLocaleString()} ({(detailInfo.change_rate).toFixed(2)}%)</span>
                     </div>
                 </div>
 

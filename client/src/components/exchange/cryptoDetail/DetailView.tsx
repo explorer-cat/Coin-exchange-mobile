@@ -23,10 +23,18 @@ function DetailView(): React.ReactElement {
     },[])
 
     const [loading, setLoading] = useState(false);
+    const [pageCrpytoInfo, setPageCrpytoInfo] = useState(null);
 
     const changeLoading = (loadingProps:boolean) => {
         setLoading(loadingProps)
     }
+
+    const changeCrpytoInfo = (props:any) => {
+        setPageCrpytoInfo(props)
+    }
+
+    useEffect(() => {
+    },[pageCrpytoInfo])
 
     /* 현재 접속한 페이지의 코인 이름을 가져옵니다.*/
 
@@ -84,11 +92,11 @@ function DetailView(): React.ReactElement {
     return (
         <header className = "DetailView_Content">
             <div className = "DetailHeader">
-                <DetailHeader loadingFuc = {changeLoading}/>
+                <DetailHeader loadingFuc = {changeLoading} crpytoInfo = {changeCrpytoInfo}/>
             </div>
 
             <div className = "miniChart">
-                <CrpytoChart  chartViewOption = {chartOption}/>
+                <CrpytoChart  chartViewOption = {chartOption} crpytoInfo = {pageCrpytoInfo}/>
             </div>
 
             <div className = "ChartOptionArea">

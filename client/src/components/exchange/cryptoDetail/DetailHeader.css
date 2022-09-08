@@ -59,6 +59,5 @@
 .detailView_page_Info > span:nth-child(3){
     font-size: 12px;
     margin-top:2px;
-    color: var(--up-color);
     transition: all 2s;
 }
