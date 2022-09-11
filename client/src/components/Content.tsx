@@ -32,8 +32,8 @@ function Content(): React.ReactElement {
     }
 
     //검색 키워드 props
-    const setCrpytoSearch = (e:any) => {
-        setSearchKeyword(searchKeyword);
+    const setCrpytoSearch = (search:any) => {
+        setSearchKeyword(search);
      }
 
 

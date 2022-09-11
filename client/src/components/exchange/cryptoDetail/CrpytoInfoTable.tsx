@@ -18,8 +18,8 @@ function CrpytoInfoTable(): React.ReactElement {
         <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
             <Tabs value={value} onChange={handleChange} centered>
                 <Tab label="코인 정보" />
-                <Tab label="상장 거래소" />
-                <Tab label="관련 뉴스" />
+                {/*<Tab label="상장 거래소" />*/}
+                {/*<Tab label="관련 뉴스" />*/}
             </Tabs>
         </Box>
     );

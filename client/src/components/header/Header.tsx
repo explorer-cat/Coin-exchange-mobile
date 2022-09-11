@@ -104,9 +104,9 @@ function Header({navigationMenu} : HeaderProps) {
             <p>Coin King</p>
           </div>
           <div className = "navBar_header-right">
-            <ThemeToggle />
-            <img className = "profile_logo" />
-            <img onClick={clickSettingBtn} src = {bell} style={profileIcon}/>
+            {/*<ThemeToggle />*/}
+            {/*<img className = "profile_logo" />*/}
+            {/*<img onClick={clickSettingBtn} src = {bell} style={profileIcon}/>*/}
           </div>
         </div>
         {/* <div className ="navBar_news-content">

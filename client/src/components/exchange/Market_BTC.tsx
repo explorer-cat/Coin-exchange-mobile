@@ -13,18 +13,26 @@ import Search from "./Search";
 interface Market_BTC_Type {
     coinList: any,
     updateItem : any,
-    search : String,
+    search : any,
 }
 
 
 //pair : ExchangeMarket_KRW_Type
-function Market_BTC({coinList, updateItem}: Market_BTC_Type): React.ReactElement {
+function Market_BTC({coinList, updateItem, search}: Market_BTC_Type): React.ReactElement {
     const navigate = useNavigate();
     const [priceBox, setPriceBox] = useState("")
     // const loadingBg: String = "rgba(255, 255, 255, 0.13)";
     // const [item, setItem] = useState([]);
     // const [loading, setLoading] = useState(false);
 
+
+    const getSearchCrpytoList = (korean_name:string,symbol:string) => {
+        //이름 검색키워드에 포함되지않는 코인들은 숨기기.
+        if(korean_name.indexOf(search) === -1 && symbol.indexOf(search.toUpperCase()) === -1) {
+            return "none"
+        }
+        return ""
+    }
 
     // console.log("initCoinList", coinList)
 
@@ -175,7 +183,7 @@ function Market_BTC({coinList, updateItem}: Market_BTC_Type): React.ReactElement
                 if(data.market.indexOf("BTC-") !== -1) {
                  //   console.log("DATA",data);
                     list.push(
-                        <tr onClick={() => navigate("/react/trade?" + data.market)}>
+                        <tr className = {getSearchCrpytoList(data.korean_name,data.market)}onClick={() => navigate("/react/trade?" + data.market)}>
                             <td className="icon">
                                 <img src={data.icon}></img>
                             </td>

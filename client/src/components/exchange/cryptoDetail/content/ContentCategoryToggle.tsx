@@ -89,19 +89,19 @@ function ContentCategoryToggle({investInfo} : contentType): React.ReactElement {
                 <AppBar position="static">
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
                         <Tab label="가격 정보" {...a11yProps(0)} />
-                        <Tab label="거래소" {...a11yProps(1)} />
-                        <Tab label="관련 뉴스" {...a11yProps(2)} />
+                        {/*<Tab label="거래소" {...a11yProps(1)} />*/}
+                        {/*<Tab label="관련 뉴스" {...a11yProps(2)} />*/}
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
                     <InvestmentInfo props = {investInfo}/>
                 </TabPanel>
-                <TabPanel value={value} index={1}>
-                    <ExchangeContent />
-                </TabPanel>
-                <TabPanel value={value} index={2}>
-                    Item Three
-                </TabPanel>
+                {/*<TabPanel value={value} index={1}>*/}
+                {/*    <ExchangeContent />*/}
+                {/*</TabPanel>*/}
+                {/*<TabPanel value={value} index={2}>*/}
+                {/*    Item Three*/}
+                {/*</TabPanel>*/}
             </div>
         );
     }

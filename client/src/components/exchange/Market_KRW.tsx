@@ -11,28 +11,31 @@ import Search from "./Search";
 interface Market_KRW_Type {
     coinList: any,
     updateItem : any,
-    search : String,
+    search : any,
 }
 
 
 //pair : ExchangeMarket_KRW_Type
 function Market_KRW({coinList,updateItem,search}: Market_KRW_Type): React.ReactElement {
+    console.log("search",search)
     const navigate = useNavigate();
     const [priceBox, setPriceBox] = useState("")
     // const loadingBg: String = "rgba(255, 255, 255, 0.13)";
     // const [item, setItem] = useState([]);
     // const [loading, setLoading] = useState(false);
 
-    //가격 변동에 따른 박스 생성
-    const handlePriceChange = () => {
-      setTimeout(()=> {
-        setPriceBox("")
-      },1000)
-    }
 
     useEffect(() => {
         closeWS()
     },[])
+
+    const getSearchCrpytoList = (korean_name:string,symbol:string) => {
+        //이름 검색키워드에 포함되지않는 코인들은 숨기기.
+        if(korean_name.indexOf(search) === -1 && symbol.indexOf(search.toUpperCase()) === -1) {
+            return "none"
+        }
+        return ""
+    }
 
 
 
@@ -110,7 +113,8 @@ function Market_KRW({coinList,updateItem,search}: Market_KRW_Type): React.ReactE
                 // console.log("data",data.updateIndex)
                 if(data.market.indexOf("KRW-") !== -1) {
                         list.push(
-                            <tr onClick={() => navigate("/react/trade?" + data.market)}>
+                            <tr className = {getSearchCrpytoList(data.korean_name,data.market)} onClick={() => navigate("/react/trade?" + data.market)}>
+                                {/*  <tr className = {data.korean_name.indexOf(search) === -1 ? "none" : ""} onClick={() => navigate("/react/trade?" + data.market)}>*/}
                                 <td className="icon">
                                     <img src={data.icon}></img>
                                 </td>

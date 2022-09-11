@@ -44,9 +44,6 @@ function ChartOption({changeChartOption,loading}:ChartOptionType): React.ReactEl
         <ToggleButton value="30day" key="30day">
             5년
         </ToggleButton>,
-        <ToggleButton value="candle" key="candle">
-            캔들
-        </ToggleButton>,
     ];
 
     const control = {
