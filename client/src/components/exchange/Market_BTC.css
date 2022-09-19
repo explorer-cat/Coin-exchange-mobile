@@ -33,7 +33,7 @@ tr > .name > p {
 
 
 .exchange-public-table > thead > tr > th:nth-child(1) {
-    width: 50px;
+    width: 40px;
     
 }
 
@@ -45,14 +45,19 @@ tr > .name > p {
     align-items: center;
     justify-content: flex-start;
     height: 36px;
-    width:23%;
+    max-width: 215px;
+    min-width: 65px;
+    width: calc(25% - 10px);
+    /*width:25%;*/
 }
 .exchange-public-table > thead > tr > .price {
     display: flex;
     height: 36px;
     align-items: center;
     justify-content: flex-end;
-    width: 20%;
+    max-width: 215px;
+    min-width: 65px;
+    width: calc(25% - 10px);
 }
 
 .defalut_th{
@@ -64,7 +69,9 @@ tr > .name > p {
     height: 36px;
     align-items: center;
     justify-content: flex-end;
-    width: 20%;
+    max-width: 215px;
+    min-width: 65px;
+    width: calc(25% - 10px);
 }
 
 .exchange-public-table > thead > tr > .tradecost{
@@ -72,7 +79,7 @@ tr > .name > p {
     height: 36px;
     align-items: center;
     justify-content: flex-end;
-    width: 22%;
+    width: calc(25% - 10px);
 }
 .exchange-public-table > thead > tr > .price,
 .exchange-public-table > thead > tr > .percent,
@@ -111,13 +118,13 @@ tr > .name > p {
 /*}*/
 
 .exchange-public-table > tbody > tr > td:nth-child(1) {
-    width: 50px;
+    width: 40px;
 }
 
 .exchange-public-table > tbody > tr > .icon > img {
     width: 20px;
     height: 20px;
-    margin-left: 15px;
+    margin-left: 8px;
     
 }
 
@@ -153,7 +160,7 @@ tr > .name > p {
 
 .exchange-public-table > tbody > tr > .percent {
     text-align: right;
-    padding-right: 14px;
+    /*padding-right: 14px;*/
 }
 
 .exchange-public-table > tbody > tr > .percent > p:nth-child(2) {
@@ -230,6 +237,7 @@ tr > .name > p {
     position: relative;
     border: 1;
     table-layout: fixed;
+    z-index: 9999;
 }
 
 .scroll-table{

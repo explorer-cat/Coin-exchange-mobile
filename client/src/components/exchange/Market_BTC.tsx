@@ -14,11 +14,12 @@ interface Market_BTC_Type {
     coinList: any,
     updateItem : any,
     search : any,
+    sort : any,
 }
 
 
 //pair : ExchangeMarket_KRW_Type
-function Market_BTC({coinList, updateItem, search}: Market_BTC_Type): React.ReactElement {
+function Market_BTC({sort, coinList, updateItem, search}: Market_BTC_Type): React.ReactElement {
     const navigate = useNavigate();
     const [priceBox, setPriceBox] = useState("")
     // const loadingBg: String = "rgba(255, 255, 255, 0.13)";
@@ -33,6 +34,29 @@ function Market_BTC({coinList, updateItem, search}: Market_BTC_Type): React.Reac
         }
         return ""
     }
+
+    const handleSortTable = (coinList:any) => {
+        coinList.sort(function (a: any, b: any) {
+            if (sort.sortTradePrice === 1) {
+                return a.trade_price - b.trade_price
+            } else if(sort.sortTradePrice === 2){
+                return b.trade_price - a.trade_price
+            }
+
+            if (sort.sortTradePercent === 1) {
+                return a.signed_change_rate - b.signed_change_rate
+            } else if(sort.sortTradePercent === 2){
+                return b.signed_change_rate - a.signed_change_rate
+            }
+
+            if (sort.sortTradeMoney === 1) {
+                return a.acc_trade_price_24h - b.acc_trade_price_24h
+            } else if(sort.sortTradeMoney === 2){
+                return b.acc_trade_price_24h - a.acc_trade_price_24h
+            }
+        })
+    }
+
 
     // console.log("initCoinList", coinList)
 
@@ -174,10 +198,22 @@ function Market_BTC({coinList, updateItem, search}: Market_BTC_Type): React.Reac
         const table = () => {
             const list:any = [];
             let btcPrice = 0;
+
+            if(sort.sortTradePrice === 0 && sort.sortTradePercent === 0 && sort.sortTradeMoney === 0 && sort.default) {
+                coinList.sort(function (a: any, b: any) {
+                    return b.acc_trade_price_24h - a.acc_trade_price_24h
+                })
+            } else if(!sort.default) {
+                handleSortTable(coinList);
+            }
+
+
             coinList.map((data: any) => {
                 if(data.market === "KRW-BTC") {
                     btcPrice = data.trade_price;
                 }
+
+
 
 
                 if(data.market.indexOf("BTC-") !== -1) {

@@ -117,7 +117,7 @@ tr > .name > p {
 
 .exchange-public-table > tbody > tr > .percent {
     text-align: right;
-    padding-right: 14px;
+    /*padding-right: 14px;*/
 }
 
 .exchange-public-table > tbody > tr > .percent > p:nth-child(2) {

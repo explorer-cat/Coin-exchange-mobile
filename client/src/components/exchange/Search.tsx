@@ -14,12 +14,12 @@ function Search({inputValue} : SearchType) {
         inputValue(e.target.value)
     }
     return (
-      <span className = "navBar_search-box">
+      // <span className = "navBar_search-box">
         <div className = "publicInput">
           <div className = "search-icon"></div>
           <input className = "search-input-box" onChange={handleKeyPress}  placeholder='코인명/심볼검색'/>
         </div>
-      </span>
+      // </span>
   );
   // }
 }

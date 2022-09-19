@@ -26,8 +26,91 @@ function Content(): React.ReactElement {
     const [item, setItem] = useState([]);
     const [updateItem,setUpdateItem] = useState();
     const [searchKeyword, setSearchKeyword] = useState("");
+    const [sort, setSort] = useState({
+        sortTradeMoney : 0, //기본 정렬 거래대금순
+        sortTradePrice : 0,
+        sortTradePercent : 0,
+        default : true,
+    });
 
-    const handleTableSort = (e: React.MouseEvent) => {
+    const handleSortTable = (e: any) => {
+        switch (e.target.className) {
+            case "price":
+                if(sort.sortTradePrice === 2) {
+                    setSort({
+                        sortTradeMoney: 0,
+                        sortTradePrice: 0,
+                        sortTradePercent: 0,
+                        default : true,
+                    })
+                } else if(sort.sortTradePrice === 0) {
+                    setSort({
+                        sortTradeMoney: 0,
+                        sortTradePrice: 1,
+                        sortTradePercent: 0,
+                        default : false,
+                    })
+                } else if(sort.sortTradePrice === 1) {
+                    setSort({
+                        sortTradeMoney: 0,
+                        sortTradePrice: 2,
+                        sortTradePercent: 0,
+                        default : false,
+                    })
+                }
+                break;
+
+            case "percent":
+                if(sort.sortTradePercent === 2) {
+                    setSort({
+                        sortTradeMoney: 0,
+                        sortTradePrice: 0,
+                        sortTradePercent: 0,
+                        default : true,
+                    })
+                } else if(sort.sortTradePercent === 0) {
+                    setSort({
+                        sortTradeMoney: 0,
+                        sortTradePrice: 0,
+                        sortTradePercent: 1,
+                        default : false,
+                    })
+                } else if(sort.sortTradePercent === 1) {
+                    setSort({
+                        sortTradeMoney: 0,
+                        sortTradePrice: 0,
+                        sortTradePercent: 2,
+                        default : false,
+                    })
+                }
+                break;
+
+
+            case "tradecost":
+                if(sort.sortTradeMoney === 2) {
+                    setSort({
+                        sortTradeMoney: 0,
+                        sortTradePrice: 0,
+                        sortTradePercent: 0,
+                        default : true,
+                    })
+                } else if(sort.sortTradeMoney === 0) {
+                    setSort({
+                        sortTradeMoney: 1,
+                        sortTradePrice: 0,
+                        sortTradePercent: 0,
+                        default : false,
+                    })
+                } else if(sort.sortTradeMoney === 1) {
+                    setSort({
+                        sortTradeMoney: 2,
+                        sortTradePrice: 0,
+                        sortTradePercent: 0,
+                        default : false,
+                    })
+                }
+                break;
+        }
 
     }
 
@@ -114,26 +197,26 @@ function Content(): React.ReactElement {
                         <thead>
                         <tr>
                             <th className="defalut_th"></th>
-                            <th className="title" onClick={handleTableSort}>
+                            <th className="title">
                                 가상자산명
                                 <div className="table_sort_btn_group">
                                     <img className="table_sort_up"/>
                                     <img className="table_sort_down"/>
                                 </div>
                             </th>
-                            <th className="price" onClick={handleTableSort}>현재가
+                            <th className="price" onClick={handleSortTable}>현재가
                                 <div className="table_sort_btn_group">
                                     <img className="table_sort_up"/>
                                     <img className="table_sort_down"/>
                                 </div>
                             </th>
-                            <th className="percent" onClick={handleTableSort}>전일대비
+                            <th className="percent" onClick={handleSortTable}>전일대비
                                 <div className="table_sort_btn_group">
                                     <img className="table_sort_up"/>
                                     <img className="table_sort_down"/>
                                 </div>
                             </th>
-                            <th className="tradecost" onClick={handleTableSort}>거래대금
+                            <th className="tradecost" onClick={handleSortTable}>거래대금
                                 <div className="table_sort_btn_group">
                                     <img className="table_sort_up"/>
                                     <img className="table_sort_down"/>
@@ -162,8 +245,8 @@ function Content(): React.ReactElement {
                         modules={[Pagination]}
                         className="mySwiper"
                     >
-                        <SwiperSlide><Market_KRW coinList={item} updateItem = {updateItem} search = {searchKeyword}/></SwiperSlide>
-                        <SwiperSlide><Market_BTC coinList={item} updateItem = {updateItem} search = {searchKeyword}/></SwiperSlide>
+                        <SwiperSlide><Market_KRW sort = {sort} coinList={item} updateItem = {updateItem} search = {searchKeyword}/></SwiperSlide>
+                        <SwiperSlide><Market_BTC sort = {sort}  coinList={item} updateItem = {updateItem} search = {searchKeyword}/></SwiperSlide>
                         <SwiperSlide><Premium/></SwiperSlide>
                         <SwiperSlide><Premium/></SwiperSlide>
                         <SwiperSlide><Premium/></SwiperSlide>

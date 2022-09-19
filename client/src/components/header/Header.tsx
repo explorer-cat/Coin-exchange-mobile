@@ -92,11 +92,11 @@ function Header({navigationMenu} : HeaderProps) {
   return (
     <header>
 
-      {/* <div className = {navMenu ? "navBar_header-setting-btn active-3" : "navBar_header-setting-btn"} onClick={clickSettingBtn}> */}
-              {/* <span></span>
-              <span></span>
-              <span></span> */}
-     {/* </div> */}
+      {/* <div className = {navMenu ? "navBar_header-setting-btn active-3" : "navBar_header-setting-btn"} onClick={clickSettingBtn}>*/}
+      {/*        <span></span>*/}
+      {/*        <span></span>*/}
+      {/*        <span></span>*/}
+      {/*</div>*/}
       <div className = "fixed-header">
         <div className ="navBar_header-content">
           <div className ="navBar_header-left">
@@ -104,7 +104,7 @@ function Header({navigationMenu} : HeaderProps) {
             <p>Coin King</p>
           </div>
           <div className = "navBar_header-right">
-            {/*<ThemeToggle />*/}
+            <ThemeToggle />
             {/*<img className = "profile_logo" />*/}
             {/*<img onClick={clickSettingBtn} src = {bell} style={profileIcon}/>*/}
           </div>
