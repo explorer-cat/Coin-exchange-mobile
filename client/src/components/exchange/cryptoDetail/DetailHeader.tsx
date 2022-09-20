@@ -7,7 +7,7 @@ import React, {useEffect, useState} from 'react';
 import {Link, Route, Routes, BrowserRouter, useNavigate, useLocation} from 'react-router-dom'
 import {connectWS, getSocket} from "../../../dataHandler/socket";
 import {Skeleton} from '@mui/material';
-import {ColorAlerts} from "../../public"
+// import {ColorAlerts} from "../../public"
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 interface HeaderProps {
     loadingFuc: any,
