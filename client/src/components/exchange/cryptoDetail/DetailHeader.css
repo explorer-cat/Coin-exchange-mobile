@@ -7,9 +7,9 @@
     color: var(--default-font-color);
     font-size: 12px;
     padding: 0px 20px;
-    padding-top: calc(env(safe-area-inset-bottom) + 25px);
+    padding-top: calc(env(safe-area-inset-bottom) + 30px);
     background: var(--content-box);
-    position: relative;
+    position: fixed;
     z-index: 999;
 }
 
@@ -39,7 +39,7 @@
     display: flex;
     flex-direction: column;
     padding: 0px 24px;
-    /* padding-top: calc(env(safe-area-inset-bottom) + 25px); */
+    padding-top: calc(env(safe-area-inset-bottom) + 80px);
     background: var(--content-box);
 
 

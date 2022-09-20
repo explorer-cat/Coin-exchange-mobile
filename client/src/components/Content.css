@@ -134,6 +134,24 @@
     content:url("../images/table_sort_default.png")
 }
 
+.table_select_sort_up {
+    width:12px;
+    height:12px;
+    margin-left:4px;
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    content:url("../images/select_arrow.png")
+}
+
+.table_select_sort_down {
+    width:12px;
+    height:12px;
+    margin-top:-6px;
+    margin-left:4px;
+    content:url("../images/select_arrow.png")
+}
+
 .table_sort_btn_group{
     display: flex;
     flex-direction: column;

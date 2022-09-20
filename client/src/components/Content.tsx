@@ -207,26 +207,26 @@ function Content(): React.ReactElement {
                             <th className="title">
                                 가상자산명
                                 <div className="table_sort_btn_group">
-                                    <img className="table_sort_up"/>
-                                    <img className="table_sort_down"/>
+                                    {/*<img className="table_sort_up"/>*/}
+                                    {/*<img className="table_sort_down"/>*/}
                                 </div>
                             </th>
                             <th className="price" onClick={handleSortTable}>현재가
                                 <div className="table_sort_btn_group">
-                                    <img className="table_sort_up"/>
-                                    <img className="table_sort_down"/>
+                                    <img className= {sort.sortTradePrice !== 1 ? "table_sort_up" : "table_select_sort_up"}/>
+                                    <img className= {sort.sortTradePrice !== 2 ? "table_sort_down" : "table_select_sort_down"}/>
                                 </div>
                             </th>
                             <th className="percent" onClick={handleSortTable}>전일대비
                                 <div className="table_sort_btn_group">
-                                    <img className="table_sort_up"/>
-                                    <img className="table_sort_down"/>
+                                    <img className= {sort.sortTradePercent !== 1 ? "table_sort_up" : "table_select_sort_up"}/>
+                                    <img className= {sort.sortTradePercent !== 2 ? "table_sort_down" : "table_select_sort_down"}/>
                                 </div>
                             </th>
                             <th className="tradecost" onClick={handleSortTable}>거래대금
                                 <div className="table_sort_btn_group">
-                                    <img className="table_sort_up"/>
-                                    <img className="table_sort_down"/>
+                                    <img className= {sort.sortTradeMoney !== 1 ? "table_sort_up" : "table_select_sort_up"}/>
+                                    <img className= {sort.sortTradeMoney !== 2 ? "table_sort_down" : "table_select_sort_down"}/>
                                 </div>
                             </th>
                         </tr>
