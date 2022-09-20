@@ -141,6 +141,8 @@ function CryptoChart({chartViewOption,crpytoInfo}: CryptoChartType): React.React
 
     //차트 세팅 시작!
     useEffect( () => {
+        console.log("chartViewOptionchartViewOption",chartViewOption)
+        console.log("crpytoInfocrpytoInfo",crpytoInfo)
         if(crpytoInfo) {
             getLineChartInfo()
         }

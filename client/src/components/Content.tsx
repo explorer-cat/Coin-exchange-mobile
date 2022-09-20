@@ -15,6 +15,7 @@ import {Pagination} from "swiper";
 import {connectWS} from "../dataHandler/socket";
 import Market_KRW from "./exchange/Market_KRW";
 import Market_BTC from "./exchange/Market_BTC";
+import Market_BookMark from "./exchange/Market_BookMark";
 import Search from "./exchange/Search";
 
 interface ContentViewType {
@@ -26,6 +27,7 @@ function Content(): React.ReactElement {
     const [item, setItem] = useState([]);
     const [updateItem,setUpdateItem] = useState();
     const [searchKeyword, setSearchKeyword] = useState("");
+    const [selectCategory, setSelectCategory] = useState( 0)
     const [sort, setSort] = useState({
         sortTradeMoney : 0, //기본 정렬 거래대금순
         sortTradePrice : 0,
@@ -119,6 +121,10 @@ function Content(): React.ReactElement {
         setSearchKeyword(search);
      }
 
+     const handleClickCategory = (e:any) => {
+        console.log("ezsdsds",e.target.key)
+     }
+
 
     //업비트 전체 자산 정보 가져오기
     const getAllUpbitCryptoList = (callback: any) => {
@@ -180,6 +186,7 @@ function Content(): React.ReactElement {
                 // setItem(krwMarketList)
             })
         });
+
     }, [])
 
     return (
@@ -231,10 +238,16 @@ function Content(): React.ReactElement {
                         // spaceBetween={30}
                         touchRatio={0}
                         speed={200}
+                        // initialSlide = {0}
+                        initialSlide = {sessionStorage.getItem("current_category") ? Number(sessionStorage.getItem("current_category")) : selectCategory}
+                        onSlideChange={(swiper:any) => {
+                            sessionStorage.setItem("current_category", swiper.activeIndex)
+                            setSelectCategory(swiper.activeIndex);
+                        }}
                         pagination={{
                             clickable: true,
                             renderBullet: function (index, className) {
-                                console.log("index", index)
+
                                 if (index === 3) {
                                     return '<span class="' + className + '"><strong>트렌드</strong></span>';
                                 } else {
@@ -242,14 +255,16 @@ function Content(): React.ReactElement {
                                 }
                             },
                         }}
+
                         modules={[Pagination]}
                         className="mySwiper"
+
                     >
-                        <SwiperSlide><Market_KRW sort = {sort} coinList={item} updateItem = {updateItem} search = {searchKeyword}/></SwiperSlide>
+                        <SwiperSlide key = "KRW_Makret" onClick={handleClickCategory}><Market_KRW sort = {sort} coinList={item} updateItem = {updateItem} search = {searchKeyword}/></SwiperSlide>
                         <SwiperSlide><Market_BTC sort = {sort}  coinList={item} updateItem = {updateItem} search = {searchKeyword}/></SwiperSlide>
-                        <SwiperSlide><Premium/></SwiperSlide>
-                        <SwiperSlide><Premium/></SwiperSlide>
-                        <SwiperSlide><Premium/></SwiperSlide>
+                        <SwiperSlide><Market_BookMark sort = {sort}  coinList={item} updateItem = {updateItem} search = {searchKeyword}/></SwiperSlide>
+                        {/*<SwiperSlide><Premium/></SwiperSlide>*/}
+                        {/*<SwiperSlide><Premium/></SwiperSlide>*/}
                     </Swiper>
                 </div>
             </div>

@@ -33,8 +33,8 @@ function DetailView(): React.ReactElement {
         setPageCrpytoInfo(props)
     }
 
-    useEffect(() => {
-    },[pageCrpytoInfo])
+    // useEffect(() => {
+    // },[pageCrpytoInfo])
 
     /* 현재 접속한 페이지의 코인 이름을 가져옵니다.*/
 

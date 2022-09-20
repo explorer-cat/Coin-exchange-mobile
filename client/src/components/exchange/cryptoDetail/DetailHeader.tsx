@@ -7,7 +7,7 @@ import React, {useEffect, useState} from 'react';
 import {Link, Route, Routes, BrowserRouter, useNavigate, useLocation} from 'react-router-dom'
 import {connectWS, getSocket} from "../../../dataHandler/socket";
 import {Skeleton} from '@mui/material';
-
+import {ColorAlerts} from "../../public"
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 interface HeaderProps {
     loadingFuc: any,
@@ -36,6 +36,7 @@ function DetailHeader({loadingFuc,crpytoInfo}: HeaderProps) {
         change_price: 0,
         change_rate: 0,
     })
+    const [bookMark,setBookMark] = useState("");
 
     const location = useLocation().search
     let tradeCode = location.replace("?", "")
@@ -45,6 +46,16 @@ function DetailHeader({loadingFuc,crpytoInfo}: HeaderProps) {
 
     const handleGoBack = () => {
         navigate(-1)
+    }
+
+    const setFavoriteCrpyto = () => {
+        console.log("localStorage.getItem(detailInfo.market)",localStorage.getItem(detailInfo.market))
+        if(bookMark === "bookmark") {
+            localStorage.removeItem(detailInfo.market)
+        } else {
+            localStorage.setItem(detailInfo.market, "bookmark")
+        }
+        setBookMark(localStorage.getItem(detailInfo.market) ? "bookmark" : "no_bookmark");
     }
 
 
@@ -64,7 +75,7 @@ function DetailHeader({loadingFuc,crpytoInfo}: HeaderProps) {
                                 price: res[0].trade_price,
                                 change: res[0].change,
                                 change_price: res[0].trade_price - res[0].opening_price,
-                                change_rate: res[0].signed_change_rate * 100
+                                change_rate: res[0].signed_change_rate * 100,
                             })
                         } else {
                             console.error("REST API 요청에 실패 했습니다.")
@@ -106,6 +117,9 @@ function DetailHeader({loadingFuc,crpytoInfo}: HeaderProps) {
             crpytoInfo(detailInfo)
             setLoading(true)
         }
+        if (loading && bookMark.length < 1) {
+            setBookMark(localStorage.getItem(detailInfo.market) ? "bookmark" : "no_bookmark")
+        }
     }, [detailInfo])
 
 
@@ -133,7 +147,7 @@ function DetailHeader({loadingFuc,crpytoInfo}: HeaderProps) {
                     {/*    /!*<span>tradeCode/KRW</span>*!/*/}
                     {/*</div>*/}
                     <div className="favoriteCrpyto">
-                        <img className="bookMark"/>
+                        <img className="bookMark" onClick={setFavoriteCrpyto}/>
                     </div>
                 </div>
                 <div className="detailView_page_Info">
@@ -172,7 +186,7 @@ function DetailHeader({loadingFuc,crpytoInfo}: HeaderProps) {
                             <img className="arrow_back" onClick={handleGoBack}/>
                         </div>
                         <div className="favoriteCrpyto">
-                            <img className="bookMark"/>
+                            <img className={bookMark === "bookmark" ? "active_bookMark" : "disable_bookMark"} onClick={setFavoriteCrpyto}/>
                         </div>
                     </div>
                     <div className="detailView_page_Info">

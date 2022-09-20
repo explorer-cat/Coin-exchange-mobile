@@ -8,7 +8,7 @@ import {closeWS, connectWS} from "../../dataHandler/socket";
 import Search from "./Search";
 
 
-interface Market_KRW_Type {
+interface Market_BookMark_Type {
     coinList: any,
     updateItem: any,
     search: any,
@@ -17,8 +17,7 @@ interface Market_KRW_Type {
 
 
 //pair : ExchangeMarket_KRW_Type
-function Market_KRW({sort, coinList, updateItem, search}: Market_KRW_Type): React.ReactElement {
-    console.log("search", search)
+function Market_BookMark({sort, coinList, updateItem, search}: Market_BookMark_Type): React.ReactElement {
     const navigate = useNavigate();
     const [priceBox, setPriceBox] = useState("")
     const [sortComplete, setSortComplete] = useState(false);
@@ -142,7 +141,7 @@ function Market_KRW({sort, coinList, updateItem, search}: Market_KRW_Type): Reac
 
             coinList.map((data: any) => {
                 // console.log("data",data.updateIndex)
-                if (data.market.indexOf("KRW-") !== -1) {
+                if (localStorage.getItem(data.market) === "bookmark") {
                     list.push(
                         <tr className={getSearchCrpytoList(data.korean_name, data.market)}
                             onClick={() => navigate("/react/trade?" + data.market)}>
@@ -248,4 +247,4 @@ function Market_KRW({sort, coinList, updateItem, search}: Market_KRW_Type): Reac
 }
 
 
-export default Market_KRW;
+export default Market_BookMark;

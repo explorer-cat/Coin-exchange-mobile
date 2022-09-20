@@ -7,13 +7,13 @@ import {Skeleton} from '@mui/material';
 import {closeWS, connectWS} from "../../dataHandler/socket";
 import Search from "./Search";
 
-
 interface Market_KRW_Type {
     coinList: any,
     updateItem: any,
     search: any,
     sort: any,
 }
+
 
 
 //pair : ExchangeMarket_KRW_Type

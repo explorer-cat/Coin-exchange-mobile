@@ -16,16 +16,16 @@ interface MarketCategoryType {
 function MarketCategory() {
 
     const handleClickCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
-        // alert("dd..")
-        // event.preventDefault();
+        console.log("event",event.target)
+        console.log("touch!!!")
     };
 
     const category = ["KRW", "BTC", "즐겨찾기"]
     const categoryKey = ["exchange", "issue", "premium", "trend", "ddd"]
 
     const categoryList = category.map((menu) => {
-        if(menu === "시세") { //className={categoryKey[tabCount]
-            return(<span onClick={handleClickCategory}><strong className = "not_select" >{menu}</strong></span>)
+        if(menu === "KRW") { //className={categoryKey[tabCount]
+            return(<span onClick={handleClickCategory}><strong className = "select" >{menu}</strong></span>)
         }
         return(<span onClick={handleClickCategory}><strong className = "not_select">{menu}</strong></span>)
     });

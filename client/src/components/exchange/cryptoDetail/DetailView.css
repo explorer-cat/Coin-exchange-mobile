@@ -4,7 +4,6 @@
 
 }
 .DetailHeader{
-    padding-top: calc(env(safe-area-inset-bottom) + 25px);
     background: var(--content-box);
 }
 

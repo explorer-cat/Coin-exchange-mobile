@@ -6,10 +6,10 @@
     height: 40px;
     color: var(--default-font-color);
     font-size: 12px;
-    padding: 0px 24px;
+    padding: 0px 20px;
     padding-top: calc(env(safe-area-inset-bottom) + 25px);
     background: var(--content-box);
-    position: fixed;
+    position: relative;
     z-index: 999;
 }
 
@@ -21,30 +21,28 @@
 }
 
 
-.bookMark {
-    width: 18px;
-    height: 18px;
+.disable_bookMark {
+    width: 20px;
+    height: 20px;
     transform: scaleX(-1);
     content: url("../../../images/bookmark.png");
 }
 
-.bookMark {
-    width: 18px;
-    height: 18px;
-    content: url("../../../images/bookmark.png");
-}
-
-.bookMark_select {
-    width: 18px;
-    height: 18px;
+.active_bookMark {
+    width: 20px;
+    height: 20px;
     content: url("../../../images/bookmark_selected.png");
 }
 
 .detailView_page_Info{
-    display:flex;
+
+    display: flex;
     flex-direction: column;
-    padding:24px;
+    padding: 0px 24px;
+    /* padding-top: calc(env(safe-area-inset-bottom) + 25px); */
     background: var(--content-box);
+
+
 }
 
 .detailView_page_Info > span:nth-child(1),
