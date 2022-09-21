@@ -20,33 +20,70 @@ function DetailContent(): React.ReactElement {
         high_price: 0,
         low_price: 0,
         cryptoinfo : null,
+        tickerinfo : null
     })
 
     const location = useLocation().search
     let tradeCode = location.replace("?", "")
     let tradeSymbol = tradeCode.indexOf("BTC-") === -1 ? tradeCode.replace("KRW-","") : tradeCode.replace("BTC-","")
 
-    const getContentInfo = () => {
-        fetch(`https://api.upbit.com/v1/ticker?markets=${tradeCode}`).then((response) => response.json()).then(res => {
-            console.log("res", res)
-            if (res) {
-                console.log("tradeSymbol",tradeSymbol)
-                fetch(`https://api-manager.upbit.com/api/v1/coin_info/pub/${tradeSymbol}.json`).then((res) => res.json()).then(result => {
-                    setDetailInfo({
-                        highest_52_week_price : res[0].highest_52_week_price,
-                        highest_52_week_date : res[0].highest_52_week_date,
-                        lowest_52_week_price : res[0].lowest_52_week_price,
-                        lowest_52_week_date : res[0].lowest_52_week_date,
-                        acc_trade_volume_24h : res[0].acc_trade_volume_24h,
-                        acc_trade_price_24h : res[0].acc_trade_price_24h,
-                        prev_closing_price : res[0].prev_closing_price,
-                        high_price : res[0].high_price,
-                        low_price : res[0].low_price,
-                        cryptoinfo : result.data,
-                    })
-                })} else {
-                console.error("REST API 요청에 실패 했습니다.")
-            }
+    function getTickerInfo() {
+        return new Promise((resolve) => {
+            fetch(`https://api.upbit.com/v1/ticker?markets=${tradeCode}`).then((response) => response.json()).then(res => {
+                if(res) {
+                    resolve(res)
+                } else {
+                    resolve(false);
+                }
+            })
+        })
+    }
+
+    function getDetailCryptoInfo() {
+        return new Promise((resolve) => {
+            fetch(`https://api-manager.upbit.com/api/v1/coin_info/pub/${tradeSymbol}.json`).then((res) => res.json()).then(result => {
+                if(result) {
+                    resolve(result)
+                } else {
+                    resolve(false);
+                }
+            })
+        })
+    }
+
+    function getCandleInfo() {
+        return new Promise((resolve) => {
+            fetch(`https://crix-api-cdn.upbit.com/v1/crix/trades/days?code=CRIX.UPBIT.${tradeCode}&count=50&convertingPriceUnit=KRW`).then((res) => res.json()).then(result => {
+                if(result) {
+                    resolve(result)
+                } else {
+                    resolve(false);
+                }
+            })
+        })
+    }
+
+    const getContentInfo = async () => {
+        let result = await Promise.all([getTickerInfo(),getDetailCryptoInfo(),getCandleInfo()]).then((value:any) => {
+            let ticker = value[0][0];
+            let detail = value[1];
+            let candle = value[2];
+            console.log("result0",value[0])
+            console.log("result1",value[1])
+            console.log("result2",value[2])
+            setDetailInfo({
+                highest_52_week_price: ticker.highest_52_week_price,
+                highest_52_week_date: ticker.highest_52_week_date,
+                lowest_52_week_price: ticker.lowest_52_week_price,
+                lowest_52_week_date: ticker.lowest_52_week_date,
+                acc_trade_volume_24h: ticker.acc_trade_volume_24h,
+                acc_trade_price_24h: ticker.acc_trade_price_24h,
+                prev_closing_price: ticker.prev_closing_price,
+                high_price: ticker.high_price,
+                low_price: ticker.low_price,
+                cryptoinfo: detail.data,
+                tickerinfo: candle,
+            })
         })
     }
 

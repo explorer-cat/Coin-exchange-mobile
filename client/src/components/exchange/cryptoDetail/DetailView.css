@@ -37,5 +37,6 @@
 }
 
 .InvestInfoArea {
-    padding-top: 12px;
+    background-color: var(--content-box);
+    padding:18px
 }

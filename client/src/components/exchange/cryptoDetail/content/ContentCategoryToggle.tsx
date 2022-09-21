@@ -11,6 +11,7 @@ import {Skeleton} from '@mui/material';
 import ExchangeContent from './ExchangeContent';
 import InvestmentInfo from './InvestmentInfo';
 import CryptoInfo from './CryptoInfo';
+import DailyCandleTable from './DailyCandleTable';
 import './ContentCategoryToggle.css'
 
 interface contentType {
@@ -95,9 +96,13 @@ function ContentCategoryToggle({investInfo} : contentType): React.ReactElement {
                 </AppBar>
                 <TabPanel value={value} index={0}>
                     <InvestmentInfo props = {investInfo}/>
+                    <div className = "blockgap"></div>
+                    <DailyCandleTable props = {investInfo}/>
                 </TabPanel>
+
                 <TabPanel value={value} index={1}>
                     <CryptoInfo props = {investInfo}/>
+                    <div className = "blockgap"></div>
                 </TabPanel>
                 {/*<TabPanel value={value} index={1}>*/}
                 {/*    <ExchangeContent />*/}

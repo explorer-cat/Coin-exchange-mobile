@@ -5,6 +5,7 @@ import './InvestmentInfo.css'
 import '../DetailView.css'
 import './CryptoInfo.css'
 import '../DetailHeader.css'
+
 import CategoryToggle from './ContentCategoryToggle'
 import React, {useEffect, useState, useCallback} from 'react';
 import {useLocation} from "react-router-dom";
@@ -149,8 +150,8 @@ console.log("props",props)
                         </> : null}
                 </div>
             </div>
-        </div>
             {!detailToggle ?  <div className = "detailMore" onClick={handleViewDetailInfo}>더보기</div> : null}
+        </div>
         </>
     );
 }

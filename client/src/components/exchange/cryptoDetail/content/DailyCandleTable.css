@@ -1,9 +1,85 @@
-.cryptoContent {
-    margin-top:18px;
-    height: calc(100% - 707px);
+.candleTable li,
+.daily_candle_table li{
+    min-width: 50px !important;
+    text-align: left !important;
+    margin:0px !important;
 }
 
-.makeStyles-root-1{
-    /*border-top-left-radius: 18px;*/
-    /*border-top-right-radius: 18px;*/
+.DailyInfoArea li:nth-child(1) {
+    width: 50px !important;
+    text-align: left !important;
+}
+
+.DailyInfoArea li:nth-child(2) {
+    width: 20% !important;
+    text-align: right !important;
+}
+
+.DailyInfoArea li:nth-child(3) {
+    width: 30% !important;
+    text-align: right !important;
+}
+.DailyInfoArea li:nth-child(4) {
+    width: 40% !important;
+    text-align: right !important;
+
+}
+
+/*.daily_candle_table li:last-child{*/
+/*    min-width: 50px !important;*/
+/*    text-align: right !important;*/
+/*    margin:0px !important;*/
+/*}*/
+
+.DailyInfoArea{
+    background-color: var(--content-box);
+    padding:18px;
+
+}
+
+.DailyContent{
+
+}
+
+.candleTable{
+    /*border-top:1px solid var(--table-cell-default-font-color)*/
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.candleTable .date,
+.candleTable .price,
+.candleTable .percent,
+.candleTable .tradeMoney {
+    /*border-right: 1px solid var(--table-cell-default-font-color);*/
+    padding:4px;
+}
+
+.candleTable li:nth-child(1) {
+    /*border-left: 1px solid var(--table-cell-default-font-color);*/
+}
+
+/*.content-full > ul {*/
+/*    margin: 12px 0px !important;*/
+/*}*/
+
+
+.MuiPaper-elevation1{
+    background-color: #1f2127 !important;
+}
+
+.MuiTableRow-head  th,
+.MuiTableRow-root  th,
+.MuiTableRow-root  td{
+    color: var(--table-cell-default-font-color) !important;
+}
+
+.MuiTableRow-root  td:last-child{
+    color: var(--table-cell-default-font-color) !important;
+    font-size: 12px;
+}
+
+
+.content-title {
+    margin-bottom: 8px;
 }

@@ -56,12 +56,13 @@
 }
 
 .detailMore{
+    background-color: var(--content-box);
     font-size: 16px;
     color : var(--table-cell-default-font-color);
     text-align: center;
-    padding:8px;
+    padding:16px;
     margin-top:24px;
-    border-top : 1px solid var(--table-cell-default-font-color);
+    border-top : 1px solid var(--light-color-box);
 }
 
 .setDetailPage {
@@ -70,4 +71,11 @@
     height: 100% !important;
     position: fixed !important;
     z-index: 1001;
+}
+.detailMoreViewHeader{
+    padding-bottom: 12px;
+    padding-top: calc(env(safe-area-inset-bottom) + 30px);
+    background: var(--content-box);
+    padding-left: 16px;
+    padding-right: 16px;
 }

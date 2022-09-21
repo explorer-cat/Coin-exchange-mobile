@@ -1,5 +1,5 @@
 .cryptoContent > div {
-    background: var(--content-box) !important;
+    /*background: var(--content-box) !important;*/
 }
 
 .MuiTabs-fixed{
@@ -13,7 +13,7 @@
     min-height: 60px !important;
 }
 .MuiAppBar-root{
-    margin:0px 60px;
+    /*margin:0px 60px;*/
     width: calc(100% - 120px) !important;
     min-height : 0px !important;
 }
@@ -56,3 +56,20 @@
 /*    border-top: 1px solid var(--1gray-color);*/
 /*}*/
 
+.MuiPaper-root {
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+.MuiBox-root-6{
+    padding:0 !important;
+}
+.MuiBox-root-13{
+    padding:0 !important;
+}
+
+.blockgap{
+    height: 20px;
+    background-color: var(--bg-color-box);
+    width: 100%;
+}
