@@ -101,7 +101,7 @@ function Header({navigationMenu} : HeaderProps) {
         <div className ="navBar_header-content">
           <div className ="navBar_header-left">
             <img className ="header_home" /> 
-            <p>Coin King</p>
+            {/*<p>Coin King</p>*/}
           </div>
           <div className = "navBar_header-right">
             <ThemeToggle />

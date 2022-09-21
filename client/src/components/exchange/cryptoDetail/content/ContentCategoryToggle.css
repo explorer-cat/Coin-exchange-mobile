@@ -3,12 +3,19 @@
 }
 
 .MuiTabs-fixed{
-  overflow: unset !important;
+    overflow: unset !important;
+    /*display: none !important;*/
+    padding:24px;
+    height:26px;
 }
 
+.MuiTabs-root {
+    min-height: 60px !important;
+}
 .MuiAppBar-root{
     margin:0px 60px;
     width: calc(100% - 120px) !important;
+    min-height : 0px !important;
 }
 
 .MuiAppBar-colorPrimary{
@@ -23,14 +30,25 @@
 
 .MuiTabs-flexContainer{
     justify-content: center;
+    /*border: 1px solid #EAEAEA;*/
+    border-radius: 15px;
+    height: 46px;
+    background: #1f2127;
 }
 .MuiTabs-indicator{
-    background-color: var(--default-font-color)!important;
+    background-color: transparent!important;
+}
+
+.MuiTab-wrapper{
+    font-size: 16px;
+    font-weight: bold;
 }
 
 #simple-tabpanel-0,
 #simple-tabpanel-1,
 #simple-tabpanel-2 {
+    height: 100%;
+    overflow: auto;
     /*border-top: 1px solid var(--1gray-color);*/
 
 }

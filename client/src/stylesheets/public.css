@@ -42,3 +42,8 @@ main {
 footer{
 
 }
+
+
+.display_none{
+    display: none !important;
+}

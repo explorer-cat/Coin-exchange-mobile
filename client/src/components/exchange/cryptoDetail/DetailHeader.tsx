@@ -32,7 +32,7 @@ function DetailHeader({loadingFuc,crpytoInfo}: HeaderProps) {
         korean: '',
         symbol: '',
         warning: "",
-        price: 0,
+        price: 0.0,
         change: "",
         change_price: 0,
         change_rate: 0,
@@ -46,11 +46,20 @@ function DetailHeader({loadingFuc,crpytoInfo}: HeaderProps) {
     const navigate = useNavigate();
 
     const handleGoBack = () => {
-        navigate(-1)
+        let currentDetail = document.querySelector(".setDetailPage");
+        let detailViewBtn = document.querySelector(".detailMore");
+
+        if(currentDetail && detailViewBtn) {
+            currentDetail.classList.remove("setDetailPage");
+            detailViewBtn.classList.remove("display_none");
+        }
+        else {
+            navigate(-1)
+        }
     }
 
     const setFavoriteCrpyto = () => {
-        console.log("localStorage.getItem(detailInfo.market)",localStorage.getItem(detailInfo.market))
+        // console.log("localStorage.getItem(detailInfo.market)",localStorage.getItem(detailInfo.market))
         if(bookMark === "bookmark") {
             localStorage.removeItem(detailInfo.market)
         } else {
@@ -66,7 +75,7 @@ function DetailHeader({loadingFuc,crpytoInfo}: HeaderProps) {
             result.map((info: any) => {
                 if (tradeCode === info.market) {
                     fetch(`https://api.upbit.com/v1/ticker?markets=${tradeCode}`).then((response) => response.json()).then(res => {
-                        console.log("res", res)
+                        // console.log("res", res)
                         if (res) {
                             setDetailInfo({
                                 market: info.market,
@@ -193,8 +202,8 @@ function DetailHeader({loadingFuc,crpytoInfo}: HeaderProps) {
                 </div>
                 <div className="detailView_page_Info">
                     <span className="name">{detailInfo.korean}</span>
-                    <span className="price">{detailInfo.price.toLocaleString()}{tradeCode.indexOf("BTC-") !== -1 ? " btc" : "원"}</span>
-                    <span className={detailInfo.change === "FALL" ? "down" : "up"}>{detailInfo.change_price.toLocaleString()} ({(detailInfo.change_rate).toFixed(2)}%)</span>
+                    <span className="price">{detailInfo.market.indexOf("BTC-") !== -1 ? (detailInfo.price).toFixed(10) : detailInfo.price.toLocaleString()}{tradeCode.indexOf("BTC-") !== -1 ? " btc" : "원"}</span>
+                    <span className={detailInfo.change === "FALL" ? "down" : "up"}>{detailInfo.market.indexOf("BTC-") !== -1  ?  (detailInfo.change_price).toFixed(10) : detailInfo.change_price.toLocaleString()} ({(detailInfo.change_rate).toFixed(2)}%)</span>
                 </div>
             </header>
         );

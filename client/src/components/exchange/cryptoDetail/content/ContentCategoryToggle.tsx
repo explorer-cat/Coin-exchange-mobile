@@ -10,6 +10,7 @@ import Box from '@material-ui/core/Box';
 import {Skeleton} from '@mui/material';
 import ExchangeContent from './ExchangeContent';
 import InvestmentInfo from './InvestmentInfo';
+import CryptoInfo from './CryptoInfo';
 import './ContentCategoryToggle.css'
 
 interface contentType {
@@ -89,12 +90,14 @@ function ContentCategoryToggle({investInfo} : contentType): React.ReactElement {
                 <AppBar position="static">
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
                         <Tab label="가격 정보" {...a11yProps(0)} />
-                        {/*<Tab label="거래소" {...a11yProps(1)} />*/}
-                        {/*<Tab label="관련 뉴스" {...a11yProps(2)} />*/}
+                        <Tab label="자산 정보" {...a11yProps(1)} />
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
                     <InvestmentInfo props = {investInfo}/>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <CryptoInfo props = {investInfo}/>
                 </TabPanel>
                 {/*<TabPanel value={value} index={1}>*/}
                 {/*    <ExchangeContent />*/}

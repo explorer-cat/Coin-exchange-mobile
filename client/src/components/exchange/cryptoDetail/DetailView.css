@@ -35,3 +35,7 @@
 .down {
     color: var(--down-color)
 }
+
+.InvestInfoArea {
+    padding-top: 12px;
+}
