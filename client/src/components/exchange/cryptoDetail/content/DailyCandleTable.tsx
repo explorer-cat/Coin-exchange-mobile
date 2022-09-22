@@ -1,9 +1,12 @@
 import '../../../../stylesheets/initialization.css'
 import '../../../../stylesheets/palette.css'
+import '../../../../stylesheets/public.css'
 import './DetailContent.css'
 // import './InvestmentInfo.css'
-import './DailyCandleTable.css'
 import '../DetailView.css'
+import './CryptoInfo.css'
+import './DailyCandleTable.css'
+import '../DetailHeader.css'
 import CategoryToggle from './ContentCategoryToggle'
 import React, {useEffect, useState, useCallback} from 'react';
 import {useLocation} from "react-router-dom";
@@ -25,6 +28,32 @@ function DailyCandleTable({props}: DailyCandleTableType): React.ReactElement {
 
     const location = useLocation().search
     let tradeCode = location.replace("?", "")
+    const [detailToggle, setDetailToggle] = useState(false)
+
+
+    const closeDetailView = () => {
+        let target = document.querySelector(".DailyInfoArea");
+        let toggleBtn = document.querySelector(".MuiTabs-root");
+
+        if(target && toggleBtn) {
+            target.classList.remove("setDetailPageCandle");
+            toggleBtn.classList.remove("display_none");
+            setDetailToggle(false)
+        }
+    }
+
+    const handleViewDetailInfo = () => {
+        let target = document.querySelector(".DailyInfoArea");
+        let viewBtn = document.querySelector(".DailyInfoArea .detailMore");
+        let toggleBtn = document.querySelector(".MuiTabs-root");
+
+        if(target && viewBtn && toggleBtn) {
+            target.classList.add("setDetailPageCandle");
+            toggleBtn.classList.add("display_none");
+
+            setDetailToggle(true)
+        }
+    }
 
 
     function createData(
@@ -53,18 +82,41 @@ function DailyCandleTable({props}: DailyCandleTableType): React.ReactElement {
 
 
     if (loading) {
-        const rows : any = [
-            createData(props.tickerinfo[0].tradeDate, props.tickerinfo[0].tradePrice, (props.tickerinfo[0].tradePrice - props.tickerinfo[0].prevClosingPrice) / props.tickerinfo[0].prevClosingPrice * 100 , props.tickerinfo[0].accTradeVolume),
-            createData(props.tickerinfo[1].tradeDate, props.tickerinfo[1].tradePrice, (props.tickerinfo[1].tradePrice - props.tickerinfo[1].prevClosingPrice) / props.tickerinfo[1].prevClosingPrice * 100 , props.tickerinfo[1].accTradeVolume),
-            createData(props.tickerinfo[2].tradeDate, props.tickerinfo[2].tradePrice, (props.tickerinfo[2].tradePrice - props.tickerinfo[2].prevClosingPrice) / props.tickerinfo[2].prevClosingPrice * 100 , props.tickerinfo[2].accTradeVolume),
-            createData(props.tickerinfo[3].tradeDate, props.tickerinfo[3].tradePrice, (props.tickerinfo[3].tradePrice - props.tickerinfo[3].prevClosingPrice) / props.tickerinfo[3].prevClosingPrice * 100 , props.tickerinfo[3].accTradeVolume),
-            createData(props.tickerinfo[4].tradeDate, props.tickerinfo[4].tradePrice, (props.tickerinfo[4].tradePrice - props.tickerinfo[4].prevClosingPrice) / props.tickerinfo[4].prevClosingPrice * 100 ,props.tickerinfo[4].accTradeVolume),
-            createData(props.tickerinfo[5].tradeDate, props.tickerinfo[5].tradePrice, (props.tickerinfo[5].tradePrice - props.tickerinfo[5].prevClosingPrice) / props.tickerinfo[5].prevClosingPrice * 100 , props.tickerinfo[5].accTradeVolume),
-
-        ];
+        let rows : any = []
+        if(!detailToggle) {
+            rows = [
+                createData(props.tickerinfo[0].tradeDate, props.tickerinfo[0].tradePrice, (props.tickerinfo[0].tradePrice - props.tickerinfo[0].prevClosingPrice) / props.tickerinfo[0].prevClosingPrice * 100 , props.tickerinfo[0].accTradeVolume),
+                createData(props.tickerinfo[1].tradeDate, props.tickerinfo[1].tradePrice, (props.tickerinfo[1].tradePrice - props.tickerinfo[1].prevClosingPrice) / props.tickerinfo[1].prevClosingPrice * 100 , props.tickerinfo[1].accTradeVolume),
+                createData(props.tickerinfo[2].tradeDate, props.tickerinfo[2].tradePrice, (props.tickerinfo[2].tradePrice - props.tickerinfo[2].prevClosingPrice) / props.tickerinfo[2].prevClosingPrice * 100 , props.tickerinfo[2].accTradeVolume),
+                createData(props.tickerinfo[3].tradeDate, props.tickerinfo[3].tradePrice, (props.tickerinfo[3].tradePrice - props.tickerinfo[3].prevClosingPrice) / props.tickerinfo[3].prevClosingPrice * 100 , props.tickerinfo[3].accTradeVolume),
+                createData(props.tickerinfo[4].tradeDate, props.tickerinfo[4].tradePrice, (props.tickerinfo[4].tradePrice - props.tickerinfo[4].prevClosingPrice) / props.tickerinfo[4].prevClosingPrice * 100 ,props.tickerinfo[4].accTradeVolume),
+                createData(props.tickerinfo[5].tradeDate, props.tickerinfo[5].tradePrice, (props.tickerinfo[5].tradePrice - props.tickerinfo[5].prevClosingPrice) / props.tickerinfo[5].prevClosingPrice * 100 , props.tickerinfo[5].accTradeVolume),
+            ];
+        } else {
+            for(let i = 0; i < props.tickerinfo.length; i++) {
+                rows.push(createData(props.tickerinfo[i].tradeDate, props.tickerinfo[i].tradePrice, (props.tickerinfo[i].tradePrice - props.tickerinfo[i].prevClosingPrice) / props.tickerinfo[i].prevClosingPrice * 100 , props.tickerinfo[i].accTradeVolume));
+            }
+            // rows = [
+            //
+            //     createData(props.tickerinfo[1].tradeDate, props.tickerinfo[1].tradePrice, (props.tickerinfo[1].tradePrice - props.tickerinfo[1].prevClosingPrice) / props.tickerinfo[1].prevClosingPrice * 100 , props.tickerinfo[1].accTradeVolume),
+            //     createData(props.tickerinfo[2].tradeDate, props.tickerinfo[2].tradePrice, (props.tickerinfo[2].tradePrice - props.tickerinfo[2].prevClosingPrice) / props.tickerinfo[2].prevClosingPrice * 100 , props.tickerinfo[2].accTradeVolume),
+            //     createData(props.tickerinfo[3].tradeDate, props.tickerinfo[3].tradePrice, (props.tickerinfo[3].tradePrice - props.tickerinfo[3].prevClosingPrice) / props.tickerinfo[3].prevClosingPrice * 100 , props.tickerinfo[3].accTradeVolume),
+            //     createData(props.tickerinfo[4].tradeDate, props.tickerinfo[4].tradePrice, (props.tickerinfo[4].tradePrice - props.tickerinfo[4].prevClosingPrice) / props.tickerinfo[4].prevClosingPrice * 100 ,props.tickerinfo[4].accTradeVolume),
+            //     createData(props.tickerinfo[5].tradeDate, props.tickerinfo[5].tradePrice, (props.tickerinfo[5].tradePrice - props.tickerinfo[5].prevClosingPrice) / props.tickerinfo[5].prevClosingPrice * 100 , props.tickerinfo[5].accTradeVolume),
+            // ];
+        }
         return (
             <>
                 <div className="DailyInfoArea">
+                    {detailToggle ?
+                        <div className = "detailMoreViewHeader"
+                             style={{
+                                 paddingLeft: "0px"
+                             }}>
+                         <div className="backToHome">
+                                <img className="arrow_back" onClick={closeDetailView}/>
+                            </div>
+                        </div> : null}
                     <div className="content-title">
                         자산 시세
                     </div>
@@ -97,6 +149,7 @@ function DailyCandleTable({props}: DailyCandleTableType): React.ReactElement {
                             </TableBody>
                         </Table>
                     </TableContainer>
+                    {!detailToggle ?  <div className = "detailMore" onClick={handleViewDetailInfo}>더보기</div> : null}
                 </div>
             </>
         );

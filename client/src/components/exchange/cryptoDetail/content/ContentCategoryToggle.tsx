@@ -98,6 +98,7 @@ function ContentCategoryToggle({investInfo} : contentType): React.ReactElement {
                     <InvestmentInfo props = {investInfo}/>
                     <div className = "blockgap"></div>
                     <DailyCandleTable props = {investInfo}/>
+                    <div className = "blockgap"></div>
                 </TabPanel>
 
                 <TabPanel value={value} index={1}>

@@ -53,7 +53,7 @@ function DetailContent(): React.ReactElement {
 
     function getCandleInfo() {
         return new Promise((resolve) => {
-            fetch(`https://crix-api-cdn.upbit.com/v1/crix/trades/days?code=CRIX.UPBIT.${tradeCode}&count=50&convertingPriceUnit=KRW`).then((res) => res.json()).then(result => {
+            fetch(`https://crix-api-cdn.upbit.com/v1/crix/trades/days?code=CRIX.UPBIT.${tradeCode}&count=100&convertingPriceUnit=KRW`).then((res) => res.json()).then(result => {
                 if(result) {
                     resolve(result)
                 } else {
@@ -68,9 +68,6 @@ function DetailContent(): React.ReactElement {
             let ticker = value[0][0];
             let detail = value[1];
             let candle = value[2];
-            console.log("result0",value[0])
-            console.log("result1",value[1])
-            console.log("result2",value[2])
             setDetailInfo({
                 highest_52_week_price: ticker.highest_52_week_price,
                 highest_52_week_date: ticker.highest_52_week_date,

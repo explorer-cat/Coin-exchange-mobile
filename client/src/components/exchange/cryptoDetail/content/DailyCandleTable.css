@@ -83,3 +83,16 @@
 .content-title {
     margin-bottom: 8px;
 }
+
+.setDetailPageCandle {
+    top: 0 !important;
+    width: calc(100% - 36px) !important;
+    height: calc(100% - 36px) !important;
+    position: fixed !important;
+    z-index: 1001;
+    overflow: auto;
+}
+
+.detailMoreViewHeader {
+    /*padding-left:0px !important;*/
+}
