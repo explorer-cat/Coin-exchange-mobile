@@ -103,7 +103,7 @@ function DetailHeader({loadingFuc,crpytoInfo}: HeaderProps) {
             //부모 컴포넌트에도 로딩완료됐다고 보내줌.
             loadingFuc(true);
 
-            connectWS([detailInfo.market], (result: any) => {
+            connectWS([detailInfo.market], "upbit",(result: any) => {
                 // console.log("result",result)
                 if (result) {
                     console.log("result",result)

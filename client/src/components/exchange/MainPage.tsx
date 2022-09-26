@@ -17,7 +17,9 @@ function MainPage() : React.ReactElement {
 
     //백그라운드 회색 처리 여부
     const [navigationMenu, setNavigationMenu] = useState<boolean>(false);
+
     //로딩 진행중
+    const [exchange, setExchange] = useState("upbit")
 
 
     //navigation menu 실행
@@ -25,6 +27,10 @@ function MainPage() : React.ReactElement {
         setNavigationMenu(active)
     }
 
+
+    const handleChangeExchange = (type:any) => {
+        setExchange(type.id)
+    }
 
     return (
         <div className="mobile-view">
@@ -39,9 +45,9 @@ function MainPage() : React.ReactElement {
                 {/* 헤더 */}
                 <Header navigationMenu = {getNavigationMenu}  />
                 {/* 메인 */}
-                <Content />
+                <Content exchange = {exchange}/>
                 {/* 푸터 */}
-                {/*<Footer />*/}
+                <Footer exchangeFuc = {handleChangeExchange} />
             </div>
         </div>
     );

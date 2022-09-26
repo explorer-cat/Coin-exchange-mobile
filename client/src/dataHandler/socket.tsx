@@ -3,7 +3,7 @@ import getUpbitCryptoList from "../settings/upbitCryptoSetting";
 let socket: any; // 소켓
 
 // 웹소켓 연결
-function connectWS(symbol:any, callback:any) {
+function connectWS(symbol:any,exchange:any, callback:any) {
     getSocket().then((result:any) => {
         if(result) {
             socket = new WebSocket("wss://api.upbit.com/websocket/v1");

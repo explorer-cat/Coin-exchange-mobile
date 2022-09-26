@@ -21,7 +21,12 @@ import setting from '../../images/setting_icon.png'
 // import setting from '../../../public/images/setting_icon.png'
 // import trend from '../../../public/images/trend_icon.png'
 
-function Footer():React.ReactElement {
+//Header 컴포넌트 메게변수 타입을 직접 선언합니다.
+interface FooterType {
+    exchangeFuc : any,
+}
+
+function Footer({exchangeFuc} : FooterType):React.ReactElement {
 
     const footerIcon = {
         width : "18px",
@@ -29,23 +34,27 @@ function Footer():React.ReactElement {
         margin: "0 0 6px 0",
     }
 
+    const changeExchange = (e:any) =>{
+        exchangeFuc(e.target)
+    }
+
     return (
       <footer>
           <div className = "bottom_menu-content">
             <div className = "exchange_div">
-                <button className = "footer_select"><img src = {exchange_select} style={footerIcon}/>마켓</button>
+                <button className = "footer_select" id = "upbit" onClick={changeExchange}><img src = {exchange_select} style={footerIcon}/>업비트</button>
             </div>
             <div>
-                <button className = "my-wallet"><img src = {myWallet} style={footerIcon}/>내자산</button>
+                <button className = "my-wallet" id = "bithumb" onClick={changeExchange}><img src = {myWallet} style={footerIcon}/>빗썸</button>
             </div>
             <div>
-                <button className = "test"><img src = {news} style={footerIcon}/>뉴스</button>
+                <button className = "test"><img src = {news} style={footerIcon}/>코인원</button>
             </div>
             <div>
-                <button className = "test"><img src = {nft} style={footerIcon}/>NFT</button>
+                <button className = "test"><img src = {nft} style={footerIcon}/>바이낸스</button>
             </div>
             <div>
-                <button className = "test2"><img src = {setting} style={footerIcon}/>내 정보</button>
+                <button className = "test2"><img src = {setting} style={footerIcon}/>내정보</button>
             </div>
           </div>
       </footer>
