@@ -15,6 +15,15 @@ function getCryptoInfo(symbol:string) {
         case "MKR":
             info.name = "메이커"
             break;
+        case "BNB":
+            info.name = "바이낸스코인"
+            break;
+        case "BCH":
+            info.name = "비트코인 캐시"
+            break;
+        case "AAVE":
+            info.name = "에이브"
+            break;
     }
 
     return info;

@@ -13,7 +13,8 @@ import news from '../../images/news_icon.png'
 
 import nft_select from '../../images/nft_icon_select.png'
 import nft from '../../images/nft_icon.png'
-
+import upbitIcon from '../../images/upbit_logo.svg'
+import bithumbIcon from '../../images/bithumb_icon.png'
 import setting_select from '../../images/setting_icon_select.png'
 import setting from '../../images/setting_icon.png'
 // import myWallet from '../../../public/images/my_wallet_icon.png'
@@ -28,8 +29,13 @@ interface FooterType {
 
 function Footer({exchangeFuc} : FooterType):React.ReactElement {
 
-    const footerIcon = {
-        width : "18px",
+    const upbitStyle = {
+        width : "45px",
+        height: "18px",
+        margin: "0 0 6px 0",
+    }
+    const bithumbStyle = {
+        width : "65px",
         height: "18px",
         margin: "0 0 6px 0",
     }
@@ -42,19 +48,19 @@ function Footer({exchangeFuc} : FooterType):React.ReactElement {
       <footer>
           <div className = "bottom_menu-content">
             <div className = "exchange_div">
-                <button className = "footer_select" id = "upbit" onClick={changeExchange}><img src = {exchange_select} style={footerIcon}/>업비트</button>
+                <button className = "footer_select" id = "upbit" onClick={changeExchange}><img src = {upbitIcon} style={upbitStyle}/>업비트</button>
             </div>
             <div>
-                <button className = "my-wallet" id = "bithumb" onClick={changeExchange}><img src = {myWallet} style={footerIcon}/>빗썸</button>
+                <button className = "my-wallet" id = "bithumb" onClick={changeExchange}><img src = {bithumbIcon} style={bithumbStyle}/>빗썸</button>
             </div>
             <div>
-                <button className = "test"><img src = {news} style={footerIcon}/>코인원</button>
+                <button className = "test">코인원</button>
             </div>
             <div>
-                <button className = "test"><img src = {nft} style={footerIcon}/>바이낸스</button>
+                <button className = "test">바이낸스</button>
             </div>
             <div>
-                <button className = "test2"><img src = {setting} style={footerIcon}/>내정보</button>
+                <button className = "test2">내정보</button>
             </div>
           </div>
       </footer>

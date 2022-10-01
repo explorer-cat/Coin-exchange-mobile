@@ -39,3 +39,9 @@
 .footer_select {
     color: var(--default-font-color)!important;
 }
+
+
+.upbitIcon {
+    background: transparent url("https://cdn.upbit.com/upbit-web/images/logo_upbit.3073489.svg") no-repeat 0 0;
+
+}

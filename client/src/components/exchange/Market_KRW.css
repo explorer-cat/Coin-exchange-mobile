@@ -73,7 +73,7 @@ tr > .name > p {
 .exchange-public-table > tbody > tr > .volume > p,
 .exchange-public-table > tbody > tr > .volume > strong{
     font-size: 12px;
-    text-align: center;
+    text-align: right;
     color: var(--default-font-color);
 }
 
