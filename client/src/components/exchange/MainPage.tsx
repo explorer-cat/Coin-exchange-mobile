@@ -12,14 +12,14 @@ interface MainPage {
 }
 
 function MainPage() : React.ReactElement {
-
-
-
+    if(!localStorage.getItem("currentPage")) {
+        localStorage.setItem("currentPage","upbit")
+    }
     //백그라운드 회색 처리 여부
     const [navigationMenu, setNavigationMenu] = useState<boolean>(false);
 
     //로딩 진행중
-    const [exchange, setExchange] = useState("upbit")
+    const [changeCurrent, setChangeCurrent] = useState(false)
 
 
     //navigation menu 실행
@@ -29,7 +29,8 @@ function MainPage() : React.ReactElement {
 
 
     const handleChangeExchange = (type:any) => {
-        setExchange(type.id)
+        localStorage.setItem("currentPage",type.id)
+        setChangeCurrent(true)
     }
 
     return (
@@ -45,7 +46,7 @@ function MainPage() : React.ReactElement {
                 {/* 헤더 */}
                 <Header navigationMenu = {getNavigationMenu}  />
                 {/* 메인 */}
-                <Content exchange = {exchange}/>
+                <Content changeCurrent = {changeCurrent}/>
                 {/* 푸터 */}
                 <Footer exchangeFuc = {handleChangeExchange} />
             </div>

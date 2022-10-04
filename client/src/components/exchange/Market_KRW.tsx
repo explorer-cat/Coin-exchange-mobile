@@ -12,13 +12,15 @@ interface Market_KRW_Type {
     updateItem: any,
     search: any,
     sort: any,
+    loading : any,
 }
 
 
 
 //pair : ExchangeMarket_KRW_Type
-function Market_KRW({sort, coinList, updateItem, search}: Market_KRW_Type): React.ReactElement {
+function Market_KRW({sort, coinList, updateItem, search, loading}: Market_KRW_Type): React.ReactElement {
     // console.log("coinList", coinList)
+    // console.log("coinlist",coinList)
     const navigate = useNavigate();
     const [priceBox, setPriceBox] = useState("")
     const [sortComplete, setSortComplete] = useState(false);
@@ -85,7 +87,7 @@ function Market_KRW({sort, coinList, updateItem, search}: Market_KRW_Type): Reac
     }
 
 
-    if (coinList.length === 0) {
+    if (loading) {
         const rendering = () => {
             const temp = [];
             for (let i = 0; i < 20; i++) {

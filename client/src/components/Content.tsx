@@ -20,11 +20,11 @@ import Search from "./exchange/Search";
 import md5 from "md5";
 
 interface ContentViewType {
-    exchange: any,
+    changeCurrent: any,
 }
 
 
-function Content({exchange}: ContentViewType): React.ReactElement {
+function Content({changeCurrent} : ContentViewType): React.ReactElement {
     const [item, setItem] = useState([]);
     const [updateItem, setUpdateItem] = useState();
     const [searchKeyword, setSearchKeyword] = useState("");
@@ -35,6 +35,9 @@ function Content({exchange}: ContentViewType): React.ReactElement {
         sortTradePercent: 0,
         default: true,
     });
+    const [loading , setLoading] = useState(true)
+    
+
 
     const handleSortTable = (e: any) => {
         switch (e.target.className) {
@@ -145,7 +148,7 @@ function Content({exchange}: ContentViewType): React.ReactElement {
             let data = result.data;
             let key: any;
             for (key in data) {
-                console.log("eky",data[key])
+                // console.log("eky",data[key])
                 if (key !== "date") {
                     data[key]['market'] = "KRW-"+key;
                     data[key]['icon'] = `https://content.bithumb.com/resources/img/coin/coin-${md5(key)}.png`
@@ -170,21 +173,21 @@ function Content({exchange}: ContentViewType): React.ReactElement {
     let btcMarketList: any = []
 
     useEffect(() => {
-        if (exchange === "bithumb") {
+        if (localStorage.getItem("currentPage") === "bithumb") {
+            setLoading(true)
+
             //연결되있는 소켓 해제.
             getAllBithumbKRWCryptoList((coinItem: any, symbol: any) => {
-
                 connectWS(symbol, "bithumb", (result: any) => {
                     result = JSON.parse(result);
-                    if(result.content) {
+                    // console.log("result",result)
+                    if(result.content && localStorage.getItem("currentPage") === "bithumb") {
+                        // console.log("exchang",exchange)
+                        setLoading(false)
                         // console.log("result.content.symbol",result.content)
                         let findIndex = coinItem.findIndex((data: any) => data.symbol === result.content.symbol)
                         let copyArray: any = [...coinItem];
 
-                         // console.log("result", result)
-                        // console.log("findIndex",findIndex)
-                        // console.log("result.content.chgRate",result.content.chgRate)
-                        console.log("result.content",result.content)
                         if (findIndex !== -1) {
                             let target = copyArray[findIndex];
                             //현재 가격
@@ -199,9 +202,10 @@ function Content({exchange}: ContentViewType): React.ReactElement {
                             //금일 상승 하락
                             target.change = result.content.chgRate > 0 ? "ASK" : "BID";
                             target.updateIndex = result.code;
+                            target.socketType = "bithumb";
                             copyArray[findIndex] = target;
-                            console.log("copyArray", copyArray)
-                            setItem(copyArray)
+                            // console.log("copyArray", copyArray)
+                                setItem(copyArray)
                         } else {
 
                         }
@@ -224,10 +228,11 @@ function Content({exchange}: ContentViewType): React.ReactElement {
                         krwMarketList.push(Object.assign(result[index], coinItem[index]))
                         // }
                     })
+                    setLoading(false)
 
                     connectWS(symbol, "upbit" ,(result: any) => {
                          // console.log("result",result)
-                        if (result) {
+                        if (result && localStorage.getItem("currentPage") === "upbit") {
                             setUpdateItem(result);
 
                             let findIndex = krwMarketList.findIndex((data: any) => data.market === result.code)
@@ -246,8 +251,9 @@ function Content({exchange}: ContentViewType): React.ReactElement {
                                 //금일 상승 하락
                                 target.change = result.change;
                                 target.updateIndex = result.code;
+                                target.socketType = "upbit";
                                 copyArray[findIndex] = target;
-                                setItem(copyArray)
+                                    setItem(copyArray)
                             }
                         }
                     })
@@ -255,7 +261,7 @@ function Content({exchange}: ContentViewType): React.ReactElement {
             });
         }
 
-    }, [exchange])
+    }, [changeCurrent])
 
     return (
         <main>
@@ -345,6 +351,7 @@ function Content({exchange}: ContentViewType): React.ReactElement {
                         <SwiperSlide key="KRW_Makret" onClick={handleClickCategory}><Market_KRW sort={sort}
                                                                                                 coinList={item}
                                                                                                 updateItem={updateItem}
+                                                                                                loading = {loading}
                                                                                                 search={searchKeyword}/></SwiperSlide>
                         <SwiperSlide><Market_BTC sort={sort} coinList={item} updateItem={updateItem}
                                                  search={searchKeyword}/></SwiperSlide>
