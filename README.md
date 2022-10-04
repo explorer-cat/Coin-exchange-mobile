@@ -14,8 +14,7 @@ http://13.125.245.147:3000/react
 
 모바일환경으로 보시는것을 추천드립니다!
 
-<img src = "https://user-images.githubusercontent.com/55500077/188664629-6704dd25-13e3-4279-b78c-ecbf7160ee1e.jpeg" style = "width:235px; height:480px; margin-right:4px"><img src = "https://user-images.githubusercontent.com/55500077/188664696-d06d200b-bc93-43e4-8fcc-091c9681d136.jpeg" style = "width:235px; height:480px;margin-right:4px">
-<img src = "https://user-images.githubusercontent.com/55500077/188664774-04deddf9-b723-4bd6-8c8f-e4e7abb79dc4.jpeg" style = "width:235px; height:480px;margin-right:4px"><img src = "https://user-images.githubusercontent.com/55500077/188664847-ab5ef9ae-f844-4ede-a4bc-513ae55687b1.jpeg" style = "width:235px; height:480px"><img src = "https://user-images.githubusercontent.com/55500077/192142977-f223f881-e721-4008-a22a-24c193eba641.png" style = "width:235px; height:480px">
+<img src = "https://user-images.githubusercontent.com/55500077/193845891-aed0548e-5105-4bb2-950c-f61471e42765.png" style = "width:180px; height:390px; margin-right:8px">.  <img src = "https://user-images.githubusercontent.com/55500077/193846052-9ed5c029-bb3b-48d5-b711-8378b64ebfc1.png" style = "width:180px; height:390px; ">.  <img src = "https://user-images.githubusercontent.com/55500077/193846390-5737ed1e-98cb-4f1a-b130-f5ad0d941005.png" style = "width:180px; height:390px; ">.  <img src = "https://user-images.githubusercontent.com/55500077/193846502-d2c578a4-245c-4d1c-8216-c4a44ff4c71d.png" style = "width:180px; height:390px; ">.  <img src = "https://user-images.githubusercontent.com/55500077/193846917-a119d9aa-7e9e-450e-a4f0-15a8072fe1ba.png" style = "width:180px; height:390px; ">
 
 # 사용 스킬
 
@@ -28,7 +27,7 @@ Cordova
 # 서비스 이미지
 > 
 
-## 정보
+
 
 최성우 – [@instargram]https://www.instagram.com/sew_gg/) – sqlstyle@kakao.com
 
