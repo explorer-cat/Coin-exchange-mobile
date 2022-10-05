@@ -6,6 +6,8 @@ let socketBithumb: any;
 // 웹소켓 연결
 function connectWS(symbol: any, exchange: any, callback: any) {
     let connect: any;
+    getSocket().then((result: any) => {
+        if(result) {
     if (exchange === "upbit") {
         // getSocket().then((result: any) => {
         //     if (result) {
@@ -28,7 +30,7 @@ function connectWS(symbol: any, exchange: any, callback: any) {
                         let str_d = enc.decode(arr);
                         // console.log("str_d",str_d)
                         let response = JSON.parse(str_d);
-                        //  console.log("response",response)
+
                         return callback(response)
                     }
                 }
@@ -56,8 +58,8 @@ function connectWS(symbol: any, exchange: any, callback: any) {
                     socketBithumb = undefined;
                 }
             }
-        // })
-    // }
+         }
+    })
 }
 
 
@@ -77,7 +79,7 @@ function closeWS() {
 // 웹소켓 요청
 function upbitfilterRequest(filter: any) {
     if (socketUpbit == undefined) {
-        alert('no connect exists');
+        alert('no connect exists upbit');
         return;
     }
     socketUpbit.send(filter);
@@ -87,7 +89,7 @@ function upbitfilterRequest(filter: any) {
 // 웹소켓 요청
 function bithumbfilterRequest(filter: any) {
     if (socketBithumb == undefined) {
-        alert('no connect exists');
+        alert('no connect exists bithumb');
         return;
     }
     socketBithumb.send(filter);

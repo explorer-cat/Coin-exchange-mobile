@@ -19,14 +19,7 @@ interface Market_KRW_Type {
 
 //pair : ExchangeMarket_KRW_Type
 function Market_KRW({sort, coinList, updateItem, search, loading}: Market_KRW_Type): React.ReactElement {
-    // console.log("coinList", coinList)
-    // console.log("coinlist",coinList)
     const navigate = useNavigate();
-    const [priceBox, setPriceBox] = useState("")
-    const [sortComplete, setSortComplete] = useState(false);
-    // const loadingBg: String = "rgba(255, 255, 255, 0.13)";
-    // const [item, setItem] = useState([]);
-    // const [loading, setLoading] = useState(false);
 
 
     const convertToNumber = (obj:any) => {
@@ -52,9 +45,9 @@ function Market_KRW({sort, coinList, updateItem, search, loading}: Market_KRW_Ty
         return obj;
     }
 
-    useEffect(() => {
-        closeWS()
-    }, [])
+    // useEffect(() => {
+    //     closeWS()
+    // }, [])
 
     const getSearchCrpytoList = (korean_name: string, symbol: string) => {
         //이름 검색키워드에 포함되지않는 코인들은 숨기기.
@@ -212,24 +205,9 @@ function Market_KRW({sort, coinList, updateItem, search, loading}: Market_KRW_Ty
 
             })
 
-            if (sort) {
-
-            }
             return list;
         }
         return (<>
-                {/*<div className="exchange-view">*/}
-                {/*    <table className="exchange-public-table">*/}
-                {/*        <thead>*/}
-                {/*        <tr>*/}
-                {/*            <th></th>*/}
-                {/*            <th className="title">가상자산명</th>*/}
-                {/*            <th className="price">현재가</th>*/}
-                {/*            <th className="percent">전일대비</th>*/}
-                {/*            <th className="tradecost">거래대금</th>*/}
-                {/*        </tr>*/}
-                {/*        </thead>*/}
-                {/*    </table>*/}
                 <div className="scroll-table">
                     <table className="exchange-public-table">
                         <tbody>
@@ -238,42 +216,7 @@ function Market_KRW({sort, coinList, updateItem, search, loading}: Market_KRW_Ty
                     </table>
                 </div>
                 {/*</div>*/}
-            </>
-
-            // {
-            //         <tr onClick = {() => navigate("/react/trade?"+symbol)}>
-            //             <td className="icon"><img src = {cryptoImg}></img></td>
-            //             <td className="name">
-            //                 <strong>{props.name}</strong>
-            //                 <p>{symbol.replace("KRW-", "")}</p>
-            //             </td>
-            //             {/* 가격 표시 박스 */}
-            //             {props.percent  > 0  ?
-            //                 <td className={"price up"}>
-            //                     <p className ={priceBox}>{price}</p>
-            //                 </td> :
-            //                 <td className={"price down"}>
-            //                     <p className ={priceBox}>{price}</p>
-            //                 </td> }
-            //             {/* 퍼센트 표시 박스 */}
-            //             {props.percent  > 0  ?
-            //                 <td className="percent up">
-            //                     <p>{percent}%</p>
-            //                     <p>{percent_price}</p>
-            //                 </td>:
-            //                 <td className="percent down">
-            //                     <p>{percent}%</p>
-            //                     <p>{percent_price}</p>
-            //                 </td>}
-            //
-            //             <td className="volume">
-            //                 <strong>{volume}</strong><p>백만</p>
-            //             </td>
-            //         </tr>
-            //    }
-
-
-        )
+            </>)
     }
 }
 

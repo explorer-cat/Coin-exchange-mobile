@@ -10,15 +10,16 @@ interface SearchType {
 function Search({inputValue} : SearchType) {
 
     const handleKeyPress = (e:any) => {
-        console.log("e.target.value",e.target.value)
         inputValue(e.target.value)
     }
+    console.log("search render")
     return (
       // <span className = "navBar_search-box">
         <div className = "publicInput">
           <div className = "search-icon"></div>
           <input className = "search-input-box" onChange={handleKeyPress}  placeholder='코인명/심볼검색'/>
         </div>
+
       // </span>
   );
   // }

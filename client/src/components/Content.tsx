@@ -21,13 +21,13 @@ import md5 from "md5";
 
 interface ContentViewType {
     changeCurrent: any,
+    search : any,
 }
 
 
-function Content({changeCurrent} : ContentViewType): React.ReactElement {
+function Content({changeCurrent ,search} : ContentViewType): React.ReactElement {
     const [item, setItem] = useState([]);
     const [updateItem, setUpdateItem] = useState();
-    const [searchKeyword, setSearchKeyword] = useState("");
     const [selectCategory, setSelectCategory] = useState(0)
     const [sort, setSort] = useState({
         sortTradeMoney: 0, //기본 정렬 거래대금순
@@ -120,10 +120,10 @@ function Content({changeCurrent} : ContentViewType): React.ReactElement {
 
     }
 
-    //검색 키워드 props
-    const setCrpytoSearch = (search: any) => {
-        setSearchKeyword(search);
-    }
+    // //검색 키워드 props
+    // const setCrpytoSearch = (search: any) => {
+    //     setSearchKeyword(search);
+    // }
 
     const handleClickCategory = (e: any) => {
         // console.log("ezsdsds", e.target.key)
@@ -173,15 +173,14 @@ function Content({changeCurrent} : ContentViewType): React.ReactElement {
     let btcMarketList: any = []
 
     useEffect(() => {
-        if (localStorage.getItem("currentPage") === "bithumb") {
-            setLoading(true)
-
+        setLoading(true)
+        if (changeCurrent === "bithumb") {
             //연결되있는 소켓 해제.
             getAllBithumbKRWCryptoList((coinItem: any, symbol: any) => {
                 connectWS(symbol, "bithumb", (result: any) => {
                     result = JSON.parse(result);
                     // console.log("result",result)
-                    if(result.content && localStorage.getItem("currentPage") === "bithumb") {
+                    if(result.content) {
                         // console.log("exchang",exchange)
                         setLoading(false)
                         // console.log("result.content.symbol",result.content)
@@ -202,7 +201,6 @@ function Content({changeCurrent} : ContentViewType): React.ReactElement {
                             //금일 상승 하락
                             target.change = result.content.chgRate > 0 ? "ASK" : "BID";
                             target.updateIndex = result.code;
-                            target.socketType = "bithumb";
                             copyArray[findIndex] = target;
                             // console.log("copyArray", copyArray)
                                 setItem(copyArray)
@@ -213,6 +211,7 @@ function Content({changeCurrent} : ContentViewType): React.ReactElement {
                 })
             })
         } else {
+            console.log("rere")
             getAllUpbitCryptoList((coinItem: any, symbol: any) => {
                 //모든 심볼 기준 restApi 요청해서 테이블 세팅 시키기
                 fetch(`https://api.upbit.com/v1/ticker?markets=${symbol}`).then((response) => response.json()).then(result => {
@@ -229,32 +228,31 @@ function Content({changeCurrent} : ContentViewType): React.ReactElement {
                         // }
                     })
                     setLoading(false)
-
+                    //
                     connectWS(symbol, "upbit" ,(result: any) => {
-                         // console.log("result",result)
-                        if (result && localStorage.getItem("currentPage") === "upbit") {
+                        if (result) {
                             setUpdateItem(result);
 
                             let findIndex = krwMarketList.findIndex((data: any) => data.market === result.code)
                             let copyArray: any = [...krwMarketList];
-
-                            if (findIndex !== -1) {
-                                let target = copyArray[findIndex];
-                                //현재 가격
-                                target.trade_price = result.trade_price;
-                                //등락률
-                                target.signed_change_rate = result.signed_change_rate;
-                                //24시간 거래량
-                                target.acc_trade_price_24h = result.acc_trade_price_24h;
-                                //단기 상승 하락
-                                target.ask_bid = result.ask_bid;
-                                //금일 상승 하락
-                                target.change = result.change;
-                                target.updateIndex = result.code;
-                                target.socketType = "upbit";
-                                copyArray[findIndex] = target;
-                                    setItem(copyArray)
-                            }
+                            //
+                            // if (findIndex !== -1) {
+                            //     let target = copyArray[findIndex];
+                            //     //현재 가격
+                            //     target.trade_price = result.trade_price;
+                            //     //등락률
+                            //     target.signed_change_rate = result.signed_change_rate;
+                            //     //24시간 거래량
+                            //     target.acc_trade_price_24h = result.acc_trade_price_24h;
+                            //     //단기 상승 하락
+                            //     target.ask_bid = result.ask_bid;
+                            //     //금일 상승 하락
+                            //     target.change = result.change;
+                            //     target.updateIndex = result.code;
+                            //     target.socketType = "upbit";
+                            //     copyArray[findIndex] = target;
+                                 setItem(copyArray)
+                            // }
                         }
                     })
                 })
@@ -265,13 +263,6 @@ function Content({changeCurrent} : ContentViewType): React.ReactElement {
 
     return (
         <main>
-            {/* 카테고리 */}
-            <div className="category-view">
-                <MarketCategory/>
-            </div>
-            <div className="exchange-search">
-                <Search inputValue={setCrpytoSearch}/>
-            </div>
             <div className="content-view">
                 <div className="exchange-view">
                     <table className="exchange-public-table">
@@ -352,11 +343,11 @@ function Content({changeCurrent} : ContentViewType): React.ReactElement {
                                                                                                 coinList={item}
                                                                                                 updateItem={updateItem}
                                                                                                 loading = {loading}
-                                                                                                search={searchKeyword}/></SwiperSlide>
+                                                                                                search={search}/></SwiperSlide>
                         <SwiperSlide><Market_BTC sort={sort} coinList={item} updateItem={updateItem}
-                                                 search={searchKeyword}/></SwiperSlide>
+                                                 search={search}/></SwiperSlide>
                         <SwiperSlide><Market_BookMark sort={sort} coinList={item} updateItem={updateItem}
-                                                      search={searchKeyword}/></SwiperSlide>
+                                                      search={search}/></SwiperSlide>
                         {/*<SwiperSlide><Premium/></SwiperSlide>*/}
                         {/*<SwiperSlide><Premium/></SwiperSlide>*/}
                     </Swiper>
