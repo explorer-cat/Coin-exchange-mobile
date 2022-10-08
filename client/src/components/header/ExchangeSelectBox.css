@@ -1,0 +1,43 @@
+.exchange-select-box {
+
+}
+
+.sub-header{
+    position: fixed;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    /*background-color: red;*/
+    height: 32px;
+    left: 0;
+    top: 140px;
+    z-index: 888;
+}
+
+.MuiInputBase-root{
+    height: 36px !important;
+    border: red;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    color:var(--table-cell-default-font-color) !important;;
+}
+
+/*.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon{*/
+/*    color: var(--category-btn-background);*/
+/*}*/
+
+/*.css-yf8vq0-MuiSelect-nativeInput {*/
+/*    color:var(--table-cell-default-font-color)*/
+/*}*/
+
+/*.MuiSvgIcon-root > path {*/
+/*    color: var(--table-cell-default-font-color) !important;*/
+/*}*/
+.MuiFormLabel-root {
+    top: -10px !important;
+}
+.MuiFormLabel-root,
+.MuiSvgIcon-root > path,
+css-yf8vq0-MuiSelect-nativeInput{
+    color: var(--table-cell-default-font-color) !important;
+}

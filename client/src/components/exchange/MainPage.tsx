@@ -7,6 +7,9 @@ import Footer from '../footer/Footer'
 import {useState} from 'react'
 import MarketCategory from "../MarketCategory";
 import Search from "./Search";
+import ExchangeSelectBox from "../header/ExchangeSelectBox"
+import '../header/ExchangeSelectBox.css';
+
 
 //Header 컴포넌트 메게변수 타입을 직접 선언합니다.
 interface MainPage {
@@ -18,7 +21,7 @@ function MainPage() : React.ReactElement {
     const [navigationMenu, setNavigationMenu] = useState<boolean>(false);
 
     //로딩 진행중
-    const [changeCurrent, setChangeCurrent] = useState("upbit")
+    const [changeCurrent, setChangeCurrent] = useState("10")
     const [searchKeyword, setSearchKeyword] = useState("");
 
     //navigation menu 실행
@@ -28,9 +31,18 @@ function MainPage() : React.ReactElement {
 
 
     const handleChangeExchange = (type:any) => {
-        if(changeCurrent !== type.id) {
-            setChangeCurrent(type.id)
+    console.log("type12",type)
+        if(type === 10) {
+            type = "upbit"
+        } else if(type === 20) {
+            type = "bithumb"
         }
+
+        console.log("type1212",type)
+        setChangeCurrent(type)
+        // if(changeCurrent !== type.id) {
+        //     setChangeCurrent(type.id)
+        // }
     }
 
     //검색 키워드 props
@@ -57,13 +69,18 @@ function MainPage() : React.ReactElement {
                 <div className="category-view">
                     <MarketCategory />
                 </div>
-                <div className="exchange-search">
-                    <Search inputValue={setCrpytoSearch}/>
+                <div className = "sub-header">
+                    <div className="exchange-search">
+                        <Search inputValue={setCrpytoSearch}/>
+                    </div>
+                    <div className ="exchange-select-box">
+                        <ExchangeSelectBox exchangeFuc = {handleChangeExchange} />
+                    </div>
                 </div>
 
                 <Content changeCurrent = {changeCurrent} search = {searchKeyword}/>
                 {/* 푸터 */}
-                <Footer exchangeFuc = {handleChangeExchange} />
+                {/*<Footer exchangeFuc = {handleChangeExchange} />*/}
             </div>
         </div>
     );
