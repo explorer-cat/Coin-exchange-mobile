@@ -216,6 +216,10 @@ tr > .name > p {
 /*    overflow: auto;*/
 /*}*/
 
+.binancePrice{
+    color: var(--table-cell-default-font-color) !important;
+}
+
 
 
 

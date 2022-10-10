@@ -116,6 +116,9 @@ tr > .name > p {
 }
 
 .exchange-public-table > tbody > tr > .price {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
     /*width : 879x !important;*/
 }
 .exchange-public-table > tbody > tr > .name > strong  {
@@ -158,9 +161,9 @@ tr > .name > p {
 .exchange-public-table > tbody > tr > .price  > p{
     display: flex;
     align-items: center;
-    height: 24px;
+    height: 14px;
     justify-content: flex-end;
-    margin: 4px 2px 20px 0px;
+    margin: 4px 2px 0px 0px;
     /* padding-right: 5px; */
     box-sizing: border-box;
     width: fit-content;

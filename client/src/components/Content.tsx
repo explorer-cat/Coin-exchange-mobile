@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 // import required modules
 import {Pagination} from "swiper";
 // import Market_BTC from "./Market_BTC";
-import {closeWS, connectWS} from "../dataHandler/socket";
+import {closeWS, connectWS,connectBinaceSocket} from "../dataHandler/socket";
 import Market_KRW from "./exchange/Market_KRW";
 import Market_BTC from "./exchange/Market_BTC";
 import Market_BookMark from "./exchange/Market_BookMark";
@@ -36,7 +36,14 @@ function Content({changeCurrent ,search} : ContentViewType): React.ReactElement 
         default: true,
     });
     const [loading , setLoading] = useState(true)
-    
+    const [usdtPrice, setUsdtPrice] = useState(0);
+    const [binanceInfo, setBinanceInfo] = useState();
+
+
+
+
+
+
 
 
     const handleSortTable = (e: any) => {
@@ -141,6 +148,36 @@ function Content({changeCurrent ,search} : ContentViewType): React.ReactElement 
         })
     }
 
+
+
+//업비트 전체 자산 정보 가져오기
+const getUsdtPrice = (callback: any) => {
+    // let allSymbol: any = []
+    // fetch("https://www.coinbase.com/graphql/query?&operationName=assetInfoQuery&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2244310d9858595955724c80df81269f4e6c9ae8c1e87a42245fe3da4386dc82b9%22%7D%7D&variables=%7B%22baseSymbol%22%3A%22USDT%22%2C%22targetCurrency%22%3A%22KRW%22%2C%22assetSearchString%22%3A%22%22%7D").then((response) => response.json()).then(result => {
+
+        return callback(true);
+    // })
+}
+
+
+
+
+
+    const getBinanceCryptoInfo = async (symbol:any) => {
+        return new Promise((resolve) => {
+            let data:any = ["BTCUSDT", "MTLUSDT", "ETHUSDT", "NEOUSDT", "XRPUSDT", "ETCUSDT", "OMGUSDT", "WAVESUSDT", "XEMUSDT", "QTUMUSDT", "LSKUSDT", "STEEMUSDT", "XLMUSDT", "ARDRUSDT", "STORJUSDT", "REPUSDT", "ADAUSDT", "POWRUSDT", "BTGUSDT", "ICXUSDT", "EOSUSDT", "TRXUSDT", "SCUSDT", "ONTUSDT", "ZILUSDT", "POLYUSDT", "ZRXUSDT", "BCHUSDT", "BATUSDT", "IOSTUSDT", "CVCUSDT", "IOTAUSDT", "MFTUSDT", "ONGUSDT", "ELFUSDT", "KNCUSDT", "THETAUSDT", "BTTUSDT", "ENJUSDT", "TFUELUSDT", "MANAUSDT", "ANKRUSDT", "ATOMUSDT", "MBLUSDT", "WAXPUSDT", "HBARUSDT", "STPTUSDT", "VETUSDT", "CHZUSDT", "STMXUSDT", "HIVEUSDT", "KAVAUSDT", "LINKUSDT", "XTZUSDT", "JSTUSDT", "SXPUSDT", "PLAUSDT", "DOTUSDT", "SRMUSDT", "STRAXUSDT", "SANDUSDT", "DOGEUSDT", "PUNDIXUSDT", "XECUSDT", "FLOWUSDT", "AXSUSDT", "STXUSDT", "SOLUSDT", "NUUSDT", "MATICUSDT", "AAVEUSDT", "ALGOUSDT", "NEARUSDT", "1INCHUSDT", "AVAXUSDT", "TUSDT", "CELOUSDT", "GMTUSDT"]
+            fetch(`https://www.binance.me/api/v3/ticker/price?symbols=${JSON.stringify(data)}`).then((response) => response.json()).then(result => {
+                let data = result.data;
+                let key: any;
+                if(result) {
+                    resolve(result)
+                }
+            })
+        })
+    }
+
+
+
     const getAllBithumbKRWCryptoList = async (callback: any) => {
         let allSymbol: any = []
         let allData : any = [];
@@ -174,6 +211,11 @@ function Content({changeCurrent ,search} : ContentViewType): React.ReactElement 
 
     useEffect(() => {
         setLoading(true)
+
+        getUsdtPrice((price:any)=>{
+            setUsdtPrice(1425.3)
+        })
+
         if (changeCurrent === "bithumb") {
             //연결되있는 소켓 해제.
             getAllBithumbKRWCryptoList((coinItem: any, symbol: any) => {
@@ -203,7 +245,7 @@ function Content({changeCurrent ,search} : ContentViewType): React.ReactElement 
                             target.updateIndex = result.code;
                             copyArray[findIndex] = target;
                             // console.log("copyArray", copyArray)
-                                setItem(copyArray)
+                            setItem(copyArray)
                         } else {
 
                         }
@@ -211,14 +253,18 @@ function Content({changeCurrent ,search} : ContentViewType): React.ReactElement 
                 })
             })
         } else {
-            console.log("rere")
-            getAllUpbitCryptoList((coinItem: any, symbol: any) => {
+            // console.log("rere")
+            let binanceSymbol : any = [];
+
+            getAllUpbitCryptoList(async (coinItem: any, symbol: any) => {
                 //모든 심볼 기준 restApi 요청해서 테이블 세팅 시키기
-                fetch(`https://api.upbit.com/v1/ticker?markets=${symbol}`).then((response) => response.json()).then(result => {
+                fetch(`https://api.upbit.com/v1/ticker?markets=${symbol}`).then((response) => response.json()).then(async result => {
 
                     result.map((item: any, index: any) => {
                         //원화 usdt btc 구분해서 push
                         if (result[index].market.indexOf("KRW-") !== -1) {
+                            let initData = result[index]["market"].replace("KRW-","")
+                            binanceSymbol.push((initData+"USDT").toUpperCase())
                             result[index]["icon"] = `https://static.upbit.com/logos/${result[index].market.replace("KRW-", "")}.png`
                         }
                         if (result[index].market.indexOf("BTC-") !== -1) {
@@ -227,32 +273,51 @@ function Content({changeCurrent ,search} : ContentViewType): React.ReactElement 
                         krwMarketList.push(Object.assign(result[index], coinItem[index]))
                         // }
                     })
+
+                    // connectBinaceSocket(binanceSymbol,(result : any) => {
+                    //     // console.log("bresult",typeof result)
+                    //     if(result) {
+                    //         // console.log("binanceInfo",binanceInfo)
+                    //         setBinanceInfo(result)
+                    //     }
+                    // })
+
+
+
+                    getBinanceCryptoInfo(symbol).then((result:any) => {
+                        // console.log("result", result
+                        setBinanceInfo(result)
+                    })
+
                     setLoading(false)
-                    //
+
                     connectWS(symbol, "upbit" ,(result: any) => {
                         if (result) {
+                            let requestList = []
                             setUpdateItem(result);
+
 
                             let findIndex = krwMarketList.findIndex((data: any) => data.market === result.code)
                             let copyArray: any = [...krwMarketList];
+                            // console.log("bibbb",binanceInfo)
                             //
-                            // if (findIndex !== -1) {
-                            //     let target = copyArray[findIndex];
-                            //     //현재 가격
-                            //     target.trade_price = result.trade_price;
-                            //     //등락률
-                            //     target.signed_change_rate = result.signed_change_rate;
-                            //     //24시간 거래량
-                            //     target.acc_trade_price_24h = result.acc_trade_price_24h;
-                            //     //단기 상승 하락
-                            //     target.ask_bid = result.ask_bid;
-                            //     //금일 상승 하락
-                            //     target.change = result.change;
-                            //     target.updateIndex = result.code;
-                            //     target.socketType = "upbit";
-                            //     copyArray[findIndex] = target;
-                                 setItem(copyArray)
-                            // }
+                            if (findIndex !== -1) {
+                                let target = copyArray[findIndex];
+                                //현재 가격
+                                target.trade_price = result.trade_price;
+                                //등락률
+                                target.signed_change_rate = result.signed_change_rate;
+                                //24시간 거래량
+                                target.acc_trade_price_24h = result.acc_trade_price_24h;
+                                //단기 상승 하락
+                                target.ask_bid = result.ask_bid;
+                                //금일 상승 하락
+                                target.change = result.change;
+                                target.updateIndex = result.code;
+                                target.socketType = "upbit";
+                                copyArray[findIndex] = target;
+                            setItem(copyArray)
+                             }
                         }
                     })
                 })
@@ -342,6 +407,7 @@ function Content({changeCurrent ,search} : ContentViewType): React.ReactElement 
                         <SwiperSlide key="KRW_Makret" onClick={handleClickCategory}><Market_KRW sort={sort}
                                                                                                 coinList={item}
                                                                                                 updateItem={updateItem}
+                                                                                                binanceItem = {binanceInfo}
                                                                                                 loading = {loading}
                                                                                                 search={search}/></SwiperSlide>
                         <SwiperSlide><Market_BTC sort={sort} coinList={item} updateItem={updateItem}
@@ -360,3 +426,12 @@ function Content({changeCurrent ,search} : ContentViewType): React.ReactElement 
 
 export default Content;
 
+
+
+// let azzz : any =[]
+// for await (const symbol of binanceSymbol) {
+// getBinanceCryptoInfo(symbol).then((result:any) => {
+//     console.log("result",result)
+//  azzz.push(result)
+// })
+// }

@@ -11,6 +11,7 @@ interface Market_KRW_Type {
     coinList: any,
     updateItem: any,
     search: any,
+    binanceItem : any,
     sort: any,
     loading : any,
 }
@@ -18,9 +19,25 @@ interface Market_KRW_Type {
 
 
 //pair : ExchangeMarket_KRW_Type
-function Market_KRW({sort, coinList, updateItem, search, loading}: Market_KRW_Type): React.ReactElement {
+function Market_KRW({sort, coinList, updateItem, search, loading,binanceItem}: Market_KRW_Type): React.ReactElement {
     const navigate = useNavigate();
 
+    console.log("binanceItem",binanceItem)
+
+
+
+
+    const getToFixedBinance = (price : any) => {
+        if((Number(price)* 1424) >= 100) {
+            return Number(price * 1424).toFixed(0)
+        }
+        if((Number(price)* 1424) < 100) {
+            return Number(price * 1424).toFixed(1)
+        }
+        if((Number(price)* 1424) < 10 && (Number(price)* 1424) >= 0) {
+            return Number(price * 1424).toFixed(2)
+        }
+    }
 
     const convertToNumber = (obj:any) => {
         if(obj){
@@ -159,8 +176,29 @@ function Market_KRW({sort, coinList, updateItem, search, loading}: Market_KRW_Ty
             }
 
             coinList.map((data: any) => {
+                let binance:any = 0;
+                binance = data.market.replace("KRW-", "")
+                binance = binance + "USDT"
                 // console.log("data",data.updateIndex)
                 if (data.market.indexOf("KRW-") !== -1) {
+
+                    let tetherPrice :any = 0;
+
+                    binanceItem.find(function (data: any) {
+                        if (data.symbol === binance) {
+                            tetherPrice = data.price;
+                        }
+
+                    })
+
+                    // binanceItem.find(function(data:any){
+                    //     if(binance+'USDT' === data.symbol) {
+                    //         tetherPrice = data.price * 1400;
+                    //     }
+                    //
+                    //     // return data;
+                    // })
+
                     // console.log("data",data)
                     list.push(
                         <tr className={getSearchCrpytoList(data.korean_name, data.market)}
@@ -176,9 +214,12 @@ function Market_KRW({sort, coinList, updateItem, search, loading}: Market_KRW_Ty
                             {data.change === "RISE" ?
                                 <td className={"price up"}>
                                     <p className={updateItem.code === data.market ? (data.ask_bid === "ASK" ? "isAsk" : "isBid") : ""}>{data.trade_price.toLocaleString()}</p>
+                                    <p className= "binancePrice">{Number(getToFixedBinance(tetherPrice)).toLocaleString()}</p>
+
                                 </td> :
                                 <td className={"price down"}>
                                     <p className={updateItem.code === data.market ? (data.ask_bid === "ASK" ? "isAsk" : "isBid") : ""}>{data.trade_price.toLocaleString()}</p>
+                                    <p className= "binancePrice">{Number(getToFixedBinance(tetherPrice)).toLocaleString()}</p>
                                 </td>
                             }
                             {data.signed_change_rate * 100 > 0 ?

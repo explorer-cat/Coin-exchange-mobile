@@ -30,6 +30,29 @@ function Market_BookMark({sort, coinList, updateItem, search}: Market_BookMark_T
         closeWS()
     }, [])
 
+    const convertToNumber = (obj:any) => {
+        if(obj){
+            const formatter = Intl.NumberFormat();
+            if(obj > 99999999999) {
+                let jo:any = String(obj).slice(0,-12);
+                obj = (obj % 1000000000000);
+                var eok:any = (obj / 100000000).toFixed(0);
+                // console.log("jo",jo)
+                if(jo) {
+                    return formatter.format(jo) + '조 ' + formatter.format(eok) + '억';
+                } else {
+                    return formatter.format(eok) + '억';
+                }
+            } else if (obj > 99999999) {
+                obj = (obj / 100000000).toFixed(0);
+                return formatter.format(obj) + '억';
+            } else {
+                return formatter.format(obj);
+            }
+        }
+        return obj;
+    }
+
     const getSearchCrpytoList = (korean_name: string, symbol: string) => {
         //이름 검색키워드에 포함되지않는 코인들은 숨기기.
         if (korean_name.indexOf(search) === -1 && symbol.indexOf(search.toUpperCase()) === -1) {
@@ -171,9 +194,13 @@ function Market_BookMark({sort, coinList, updateItem, search}: Market_BookMark_T
                                     <p>{(data.trade_price - data.opening_price).toLocaleString()}</p>
                                 </td>
                             }
+                            <td className="premium">
+                                <p>{(data.signed_change_rate * 100).toFixed(2)}%</p>
+                                <p>{(data.trade_price - data.opening_price).toLocaleString()}</p>
+                            </td>
                             <td className="volume">
-                                <strong>{Number((data.acc_trade_price_24h / 1000000).toFixed(0)).toLocaleString()}</strong>
-                                <p>백만</p>
+                                <strong>{convertToNumber(Number(data.acc_trade_price_24h).toFixed(0))}</strong>
+                                {/*<strong>{Number((data.acc_trade_price_24h / 1000000).toFixed(0)).toLocaleString()}억</strong>*/}
                             </td>
                         </tr>)
 
