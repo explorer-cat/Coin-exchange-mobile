@@ -238,11 +238,11 @@ tr > .name > p {
 }
 
 .up {
-    color: var(--up-color);
+    color: var(--up-color) !important;
 
 }
 .down {
-    color: var(--down-color)
+    color: var(--down-color) !important;
 }
 
 

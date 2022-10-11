@@ -6,7 +6,7 @@
     position: fixed;
     display: flex;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: space-between;
     /*background-color: red;*/
     height: 32px;
     left: 0;
@@ -14,12 +14,14 @@
     z-index: 888;
 }
 
-.MuiInputBase-root{
-    height: 36px !important;
+
+.exchange-select-box .MuiInputBase-root{
+    height: 32px !important;
     border: red;
     font-size: 14px;
     border: 1px solid var(--border-color);
     color:var(--table-cell-default-font-color) !important;;
+    margin-right: 4px;
 }
 
 /*.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon{*/

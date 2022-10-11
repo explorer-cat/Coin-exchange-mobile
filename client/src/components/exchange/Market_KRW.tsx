@@ -28,14 +28,14 @@ function Market_KRW({sort, coinList, updateItem, search, loading,binanceItem}: M
 
 
     const getToFixedBinance = (price : any) => {
-        if((Number(price)* 1424) >= 100) {
-            return Number(price * 1424).toFixed(0)
+        if((Number(price)* 1435) >= 100) {
+            return Number(price * 1435).toFixed(0)
         }
-        if((Number(price)* 1424) < 100) {
-            return Number(price * 1424).toFixed(1)
+        if((Number(price)* 1435) < 100) {
+            return Number(price * 1435).toFixed(1)
         }
-        if((Number(price)* 1424) < 10 && (Number(price)* 1424) >= 0) {
-            return Number(price * 1424).toFixed(2)
+        if((Number(price)* 1435) < 10 && (Number(price)* 1424) >= 0) {
+            return Number(price * 1435).toFixed(2)
         }
     }
 
@@ -200,6 +200,8 @@ function Market_KRW({sort, coinList, updateItem, search, loading,binanceItem}: M
                     // })
 
                     // console.log("data",data)
+                    let kimp = (data.trade_price - (Number(getToFixedBinance(tetherPrice))) / data.trade_price * 100).toFixed(2)
+
                     list.push(
                         <tr className={getSearchCrpytoList(data.korean_name, data.market)}
                             onClick={() => navigate("/react/trade?" + data.market)}>
@@ -214,13 +216,14 @@ function Market_KRW({sort, coinList, updateItem, search, loading,binanceItem}: M
                             {data.change === "RISE" ?
                                 <td className={"price up"}>
                                     <p className={updateItem.code === data.market ? (data.ask_bid === "ASK" ? "isAsk" : "isBid") : ""}>{data.trade_price.toLocaleString()}</p>
-                                    <p className= "binancePrice">{Number(getToFixedBinance(tetherPrice)).toLocaleString()}</p>
+                                    <p className= "binancePrice">{Number(tetherPrice) === 0 ? '-' : Number(tetherPrice).toLocaleString()+'$'}</p>
 
                                 </td> :
                                 <td className={"price down"}>
                                     <p className={updateItem.code === data.market ? (data.ask_bid === "ASK" ? "isAsk" : "isBid") : ""}>{data.trade_price.toLocaleString()}</p>
-                                    <p className= "binancePrice">{Number(getToFixedBinance(tetherPrice)).toLocaleString()}</p>
+                                    <p className= "binancePrice">{Number(tetherPrice) === 0 ? '-' : Number(tetherPrice).toLocaleString()+'$'}</p>
                                 </td>
+                                // getToFixedBinance(tetherPrice)
                             }
                             {data.signed_change_rate * 100 > 0 ?
                                 <td className="percent up">
@@ -232,10 +235,17 @@ function Market_KRW({sort, coinList, updateItem, search, loading,binanceItem}: M
                                     <p>{(data.trade_price - data.opening_price).toLocaleString()}</p>
                                 </td>
                             }
-                            <td className="premium">
-                                <p>{(data.signed_change_rate * 100).toFixed(2)}%</p>
-                                <p>{(data.trade_price - data.opening_price).toLocaleString()}</p>
-                            </td>
+                           {Number(tetherPrice) === 0 ?
+                           <td className="premium">
+                               <p>-</p>
+                           </td>
+                               :
+                               <td className="premium">
+                                   <p className = {Number(kimp) >= 0.00 ? "up" : "down"} >{Number((data.trade_price - (Number(getToFixedBinance(tetherPrice)))) / data.trade_price * 100).toFixed(2)}% </p>
+                                   <p className = "binancePrice">{Number((Number(getToFixedBinance(tetherPrice)) - data.trade_price).toFixed(0)).toLocaleString()}</p>
+                               </td>
+                           }
+
                             <td className="volume">
                                 <strong>{convertToNumber(Number(data.acc_trade_price_24h).toFixed(0))}</strong>
                                 {/*<strong>{Number((data.acc_trade_price_24h / 1000000).toFixed(0)).toLocaleString()}억</strong>*/}
