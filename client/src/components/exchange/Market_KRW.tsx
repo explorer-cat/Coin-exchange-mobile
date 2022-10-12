@@ -21,21 +21,22 @@ interface Market_KRW_Type {
 //pair : ExchangeMarket_KRW_Type
 function Market_KRW({sort, coinList, updateItem, search, loading,binanceItem}: Market_KRW_Type): React.ReactElement {
     const navigate = useNavigate();
-
-    console.log("binanceItem",binanceItem)
+    const [kimupdown , setKimpupdown] = useState("")
+    // console.log("binanceItem",binanceItem)
 
 
 
 
     const getToFixedBinance = (price : any) => {
-        if((Number(price)* 1435) >= 100) {
-            return Number(price * 1435).toFixed(0)
+        let krwprice = 1428;
+        if((Number(price)* krwprice) >= 100) {
+            return Number(price * krwprice).toFixed(0)
         }
-        if((Number(price)* 1435) < 100) {
-            return Number(price * 1435).toFixed(1)
+        if((Number(price)* krwprice) < 100) {
+            return Number(price * krwprice).toFixed(1)
         }
-        if((Number(price)* 1435) < 10 && (Number(price)* 1424) >= 0) {
-            return Number(price * 1435).toFixed(2)
+        if((Number(price)* krwprice) < 10 && (Number(price)* krwprice) >= 0) {
+            return Number(price * krwprice).toFixed(2)
         }
     }
 
@@ -174,8 +175,8 @@ function Market_KRW({sort, coinList, updateItem, search, loading,binanceItem}: M
             } else if(!sort.default) {
                 handleSortTable(coinList);
             }
-
-            coinList.map((data: any) => {
+            let kimp;
+                coinList.map((data: any) => {
                 let binance:any = 0;
                 binance = data.market.replace("KRW-", "")
                 binance = binance + "USDT"
@@ -184,15 +185,16 @@ function Market_KRW({sort, coinList, updateItem, search, loading,binanceItem}: M
 
                     let tetherPrice :any = 0;
 
-                    binanceItem.find(function (data: any) {
-                        if (data.symbol === binance) {
-                            tetherPrice = data.price;
-                        }
-
-                    })
+                    if(binanceItem) {
+                        binanceItem.find(function (data: any) {
+                            if (data.symbol === binance) {
+                                tetherPrice = data.price;
+                            }
+                        })
+                    }
 
                     // binanceItem.find(function(data:any){
-                    //     if(binance+'USDT' === data.symbol) {
+                    //     if(binance+'25USDT' === data.symbol) {
                     //         tetherPrice = data.price * 1400;
                     //     }
                     //
@@ -200,7 +202,10 @@ function Market_KRW({sort, coinList, updateItem, search, loading,binanceItem}: M
                     // })
 
                     // console.log("data",data)
-                    let kimp = (data.trade_price - (Number(getToFixedBinance(tetherPrice))) / data.trade_price * 100).toFixed(2)
+
+
+
+                    let kimp = ((data.trade_price - (Number(getToFixedBinance(tetherPrice)))) / data.trade_price * 100).toFixed(2);
 
                     list.push(
                         <tr className={getSearchCrpytoList(data.korean_name, data.market)}
@@ -241,8 +246,8 @@ function Market_KRW({sort, coinList, updateItem, search, loading,binanceItem}: M
                            </td>
                                :
                                <td className="premium">
-                                   <p className = {Number(kimp) >= 0.00 ? "up" : "down"} >{Number((data.trade_price - (Number(getToFixedBinance(tetherPrice)))) / data.trade_price * 100).toFixed(2)}% </p>
-                                   <p className = "binancePrice">{Number((Number(getToFixedBinance(tetherPrice)) - data.trade_price).toFixed(0)).toLocaleString()}</p>
+                                   <p className = {Number(kimp) >= 0 ? "up" : "down"}>{((data.trade_price - (Number(getToFixedBinance(tetherPrice)))) / data.trade_price * 100).toFixed(2)}% </p>
+                                   <p className = "binancePrice">{Number((Number(getToFixedBinance(tetherPrice)) - data.trade_price).toFixed(2)).toLocaleString()}</p>
                                </td>
                            }
 

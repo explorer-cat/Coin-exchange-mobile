@@ -254,7 +254,9 @@ const getUsdtPrice = (callback: any) => {
             })
         } else {
             // console.log("rere")
+
             let binanceSymbol : any = [];
+
 
             getAllUpbitCryptoList(async (coinItem: any, symbol: any) => {
                 //모든 심볼 기준 restApi 요청해서 테이블 세팅 시키기
@@ -284,42 +286,49 @@ const getUsdtPrice = (callback: any) => {
 
 
 
-                    getBinanceCryptoInfo(symbol).then((result:any) => {
-                        // console.log("result", result
-                        setBinanceInfo(result)
-                    })
+                    // setTimeout
+
+
+
+                    setInterval(function() {
+                        getBinanceCryptoInfo(symbol).then((result:any) => {
+                            // console.log("result", result
+                            setBinanceInfo(result)
+                        })
+                    }, 3000);
 
                     setLoading(false)
 
-                    connectWS(symbol, "upbit" ,(result: any) => {
-                        if (result) {
-                            let requestList = []
-                            setUpdateItem(result);
+
+                        connectWS(symbol, "upbit" ,(result: any) => {
+                            if (result) {
+                                let requestList = []
+                                setUpdateItem(result);
 
 
-                            let findIndex = krwMarketList.findIndex((data: any) => data.market === result.code)
-                            let copyArray: any = [...krwMarketList];
-                            // console.log("bibbb",binanceInfo)
-                            //
-                            if (findIndex !== -1) {
-                                let target = copyArray[findIndex];
-                                //현재 가격
-                                target.trade_price = result.trade_price;
-                                //등락률
-                                target.signed_change_rate = result.signed_change_rate;
-                                //24시간 거래량
-                                target.acc_trade_price_24h = result.acc_trade_price_24h;
-                                //단기 상승 하락
-                                target.ask_bid = result.ask_bid;
-                                //금일 상승 하락
-                                target.change = result.change;
-                                target.updateIndex = result.code;
-                                target.socketType = "upbit";
-                                copyArray[findIndex] = target;
-                            setItem(copyArray)
-                             }
-                        }
-                    })
+                                let findIndex = krwMarketList.findIndex((data: any) => data.market === result.code)
+                                let copyArray: any = [...krwMarketList];
+                                // console.log("bibbb",binanceInfo)
+                                //
+                                if (findIndex !== -1) {
+                                    let target = copyArray[findIndex];
+                                    //현재 가격
+                                    target.trade_price = result.trade_price;
+                                    //등락률
+                                    target.signed_change_rate = result.signed_change_rate;
+                                    //24시간 거래량
+                                    target.acc_trade_price_24h = result.acc_trade_price_24h;
+                                    //단기 상승 하락
+                                    target.ask_bid = result.ask_bid;
+                                    //금일 상승 하락
+                                    target.change = result.change;
+                                    target.updateIndex = result.code;
+                                    target.socketType = "upbit";
+                                    copyArray[findIndex] = target;
+                                    setItem(copyArray)
+                                }
+                            }
+                        })
                 })
             });
         }
