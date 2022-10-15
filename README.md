@@ -6,13 +6,8 @@ ReactJS와 TypeScript를 사용하여 하이브리드 웹앱을 개발합니다.
 
 
 # 배포 링크
+https://play.google.com/store/apps/details?id=com.bitrush.sungwoo
 
-
-앱 출시 준비중
-
-http://13.125.245.147:3000/react
-
-모바일환경으로 보시는것을 추천드립니다!
 
 <img src = "https://user-images.githubusercontent.com/55500077/193845891-aed0548e-5105-4bb2-950c-f61471e42765.png" style = "width:180px; height:390px; margin-right:8px">.  <img src = "https://user-images.githubusercontent.com/55500077/193846052-9ed5c029-bb3b-48d5-b711-8378b64ebfc1.png" style = "width:180px; height:390px; ">.  <img src = "https://user-images.githubusercontent.com/55500077/193846390-5737ed1e-98cb-4f1a-b130-f5ad0d941005.png" style = "width:180px; height:390px; ">.  <img src = "https://user-images.githubusercontent.com/55500077/193846502-d2c578a4-245c-4d1c-8216-c4a44ff4c71d.png" style = "width:180px; height:390px; ">.  <img src = "https://user-images.githubusercontent.com/55500077/193846917-a119d9aa-7e9e-450e-a4f0-15a8072fe1ba.png" style = "width:180px; height:390px; ">
 
