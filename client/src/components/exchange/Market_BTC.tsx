@@ -272,8 +272,7 @@ function Market_BTC({sort, coinList, updateItem, search}: Market_BTC_Type): Reac
                             }
 
                             <td className="premium">
-                                <p>{(data.signed_change_rate * 100).toFixed(2)}%</p>
-                                <p>{(data.trade_price - data.opening_price).toLocaleString()}</p>
+                                <p>-</p>
                             </td>
                             <td className="volume btc_volume">
                                 <strong>{convertToNumber(Number(data.acc_trade_price_24h).toFixed(0))}</strong>

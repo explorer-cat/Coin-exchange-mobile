@@ -31,15 +31,11 @@ function MainPage() : React.ReactElement {
 
 
     const handleChangeExchange = (type:any) => {
-    console.log("type12",type)
-        if(type === 10) {
-            type = "upbit"
-        } else if(type === 20) {
-            type = "bithumb"
+        if(type === '10' || type === 10) {
+            setChangeCurrent("10")
+        } else {
+            setChangeCurrent("20")
         }
-
-        console.log("type1212",type)
-        setChangeCurrent(type)
         // if(changeCurrent !== type.id) {
         //     setChangeCurrent(type.id)
         // }

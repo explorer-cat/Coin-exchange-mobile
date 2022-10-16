@@ -87,7 +87,8 @@ tr > .name > p {
     width: calc(25% - 10px);
 }
 
-.exchange-public-table > thead > tr > .tradecost{
+.exchange-public-table > thead > tr > .tradecost,
+.exchange-public-table > thead > tr > .kimp{
     display: flex;
     height: 36px;
     align-items: center;
@@ -96,7 +97,8 @@ tr > .name > p {
 }
 .exchange-public-table > thead > tr > .price,
 .exchange-public-table > thead > tr > .percent,
-.exchange-public-table > thead > tr > .tradecost {
+.exchange-public-table > thead > tr > .tradecost,
+.exchange-public-table > thead > tr > .kimp{
     text-align: center;
     display: flex;
     align-items: center;
@@ -176,10 +178,15 @@ tr > .name > p {
 }
 
 
+.exchange-public-table > tbody > tr > .kimp > p {
+    min-height: 17px;
+    letter-spacing: -0.8px;
+}
+
 .exchange-public-table > tbody > tr > .premium {
     text-align: right;
     letter-spacing: -0.8px;
-    padding:0px 8px;
+    /*padding:0px 8px;*/
     /*padding-right: 14px;*/
 }
 
@@ -190,7 +197,8 @@ tr > .name > p {
 }
 
 
-.exchange-public-table > tbody > tr > .percent {
+.exchange-public-table > tbody > tr > .percent,
+.exchange-public-table > tbody > tr > .kimp{
     text-align: right;
     letter-spacing: -0.8px;
     /*padding-right: 14px;*/

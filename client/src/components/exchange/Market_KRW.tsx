@@ -94,6 +94,12 @@ function Market_KRW({sort, coinList, updateItem, search, loading,binanceItem}: M
                 } else if(sort.sortTradeMoney === 2){
                     return b.acc_trade_price_24h - a.acc_trade_price_24h
                 }
+
+                if (sort.sortTradeKimp === 1) {
+                    return a.acc_trade_price_24h - b.acc_trade_price_24h
+                } else if(sort.sortTradeMoney === 2){
+                    return b.acc_trade_price_24h - a.acc_trade_price_24h
+                }
             })
     }
 
