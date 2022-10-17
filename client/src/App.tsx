@@ -27,8 +27,8 @@ function App() : React.ReactElement {
   useEffect(() => {
     let theme = localStorage.getItem("theme");
     if (!theme) {
-      localStorage.setItem("theme", "light");
-      document.querySelector("html")?.setAttribute("data-theme", "light")
+      localStorage.setItem("theme", "dark");
+      document.querySelector("html")?.setAttribute("data-theme", "dark")
     } else {
       document.querySelector("html")?.setAttribute("data-theme", theme)
     }
