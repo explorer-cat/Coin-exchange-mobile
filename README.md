@@ -4,6 +4,8 @@
 
 ReactJS와 TypeScript를 사용하여 하이브리드 웹앱을 개발합니다.
 
+#다운로드 없이 웹뷰 환경에서 보기 (브라우저 환경을 모바일로 설정하시고 보는것을 추천드립니다)
+http://13.125.245.147:3000/react
 
 # 배포 링크
 https://play.google.com/store/apps/details?id=com.bitrush.sungwoo
