@@ -6,10 +6,11 @@
     position: fixed;
     display: flex;
     width: 100%;
+    max-width: 450px;
     justify-content: space-between;
-    /*background-color: red;*/
+    /* background-color: red; */
     height: 32px;
-    left: 0;
+    /* left: 0; */
     top: 140px;
     z-index: 888;
 }

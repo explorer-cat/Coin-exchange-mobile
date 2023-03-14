@@ -4,11 +4,13 @@ import './DetailContent.css'
 import CategoryToggle from './ContentCategoryToggle'
 import React, {useEffect, useState, useCallback} from 'react';
 import {useLocation} from "react-router-dom";
+import axios from 'axios';
 
 
 function DetailContent(): React.ReactElement {
     const [loading, setLoading] = useState(false)
 
+    console.log("load detail content")
     const [detailInfo, setDetailInfo] = useState({
         highest_52_week_price : 0,
         highest_52_week_date : "",
@@ -41,25 +43,54 @@ function DetailContent(): React.ReactElement {
 
     function getDetailCryptoInfo() {
         return new Promise((resolve) => {
-            fetch(`https://api-manager.upbit.com/api/v1/coin_info/pub/${tradeSymbol}.json`).then((res) => res.json()).then(result => {
-                if(result) {
-                    resolve(result)
-                } else {
-                    resolve(false);
-                }
-            })
+            console.log("tradeSymbol",tradeSymbol)
+            try {
+                axios.get(`https://api-manager.upbit.com/api/v1/coin_info/pub/${tradeSymbol}.json`, {
+                        headers: {
+                            "Content-Type": `application/json;charset=UTF-8`,
+                            "Accept": "application/json",
+                            // 추가
+                            // "Access-Control-Allow-Origin": `http://localhost:3000`,
+                            'Access-Control-Allow-Credentials': "true",
+                        }
+                    }
+                ).then(response => {
+                    console.log("dd",response);
+                    console.log("zzz,", response.data);
+                })
+            } catch (e) {
+                console.log("e",e)
+            }
+            //https://api-manager.upbit.com/api/v1/coin_info/pub/BTC.json
+            // fetch(`https://api-manager.upbit.com/api/v1/coin_info/pub/${tradeSymbol}.json`, {
+            //         profile: {
+            //             username: username,
+            //             password: password
+            //         }
+            //     },
+            //     { withCredentials: true }).then((res) => res.json()).then(result => {
+            //     if(result) {
+            //         resolve(result)
+            //     } else {
+            //         resolve(false);
+            //     }
+            // })
         })
     }
 
     function getCandleInfo() {
         return new Promise((resolve) => {
-            fetch(`https://crix-api-cdn.upbit.com/v1/crix/trades/days?code=CRIX.UPBIT.${tradeCode}&count=100&convertingPriceUnit=KRW`).then((res) => res.json()).then(result => {
-                if(result) {
-                    resolve(result)
-                } else {
-                    resolve(false);
-                }
-            })
+            try {
+                fetch(`https://crix-api-cdn.upbit.com/v1/crix/trades/days?code=CRIX.UPBIT.${tradeCode}&count=100&convertingPriceUnit=KRW`).then((res) => res.json()).then(result => {
+                    if(result) {
+                        resolve(result)
+                    } else {
+                        resolve(false);
+                    }
+                })
+            } catch (e) {
+                console.log("e",e)
+            }
         })
     }
 
@@ -68,6 +99,8 @@ function DetailContent(): React.ReactElement {
             let ticker = value[0][0];
             let detail = value[1];
             let candle = value[2];
+
+            console.log("detailzxxxxxx",detail)
             setDetailInfo({
                 highest_52_week_price: ticker.highest_52_week_price,
                 highest_52_week_date: ticker.highest_52_week_date,
@@ -85,6 +118,7 @@ function DetailContent(): React.ReactElement {
     }
 
     useEffect(() => {
+        console.log("getContentInfo")
         getContentInfo();
     },[])
 
